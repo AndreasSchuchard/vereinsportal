@@ -60,7 +60,7 @@ function load_settings(): array {
  * Zentrale Basis-URL des Vereinsportals (Template-Setup).
  * Konfigurierbar via `SITE_URL` in `.env` oder `site_url` in `data/settings.json`.
  * Fallback: generische Beispiel-Domain, damit das Template überall lauffähig ist.
- * Liefert die URL ohne abschließenden Slash, z.B. "https://kgv461.de".
+ * Liefert die URL ohne abschließenden Slash, z.B. "https://verein.example.org".
  */
 function site_url(): string {
     $s = load_settings();

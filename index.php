@@ -124,26 +124,26 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
     <meta name="description" content="Muster-Kleingartenverein e.V. - Ihre grüne Oase in Hamburg seit 1975. 63 Parzellen, Vereinshaus zu mieten, lebendige Gemeinschaft.">
     <meta name="keywords" content="Kleingartenverein, Hamburg, Musterstadt, KGV Musterstadt, Garten, Parzelle, Vereinshaus mieten">
     <meta name="author" content="Muster-Kleingartenverein e.V.">
-    <meta name="google-site-verification" content="4DbBQLtGID892BBKQr7bKhh_r3JISf-EXXXhlZHFhOA" />
+    <meta name="google-site-verification" content="GOOGLE_VERIFICATION_TOKEN" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kgv461.de/">
+    <meta property="og:url" content="<?= site_url() ?>/">
     <meta property="og:title" content="Muster-Kleingartenverein e.V.">
     <meta property="og:description" content="Ihre grüne Oase in Hamburg seit 1975. Werden Sie Teil unserer Gemeinschaft!">
-    <meta property="og:image" content="https://kgv461.de/front.jpg">
+    <meta property="og:image" content="<?= site_url() ?>/front.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://kgv461.de/">
+    <meta property="twitter:url" content="<?= site_url() ?>/">
     <meta property="twitter:title" content="Muster-Kleingartenverein e.V.">
     <meta property="twitter:description" content="Ihre grüne Oase in Hamburg seit 1975. Werden Sie Teil unserer Gemeinschaft!">
-    <meta property="twitter:image" content="https://kgv461.de/front.jpg">
+    <meta property="twitter:image" content="<?= site_url() ?>/front.jpg">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://kgv461.de/" />
+    <link rel="canonical" href="<?= site_url() ?>/" />
 
     <!-- Favicon + PWA -->
     <link rel="icon" type="image/png" href="logo_kgv461.png">
@@ -160,7 +160,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
         "@type": "Organization",
         "name": "Muster-Kleingartenverein e.V.",
         "alternateName": "KGV Musterstadt",
-        "url": "https://kgv461.de",
+        "url": "<?= site_url() ?>",
         "logo": "/logo_kgv461.png",
         "foundingDate": "1975",
         "description": "Kleingartenverein in Musterstadt mit 63 Parzellen und Vereinshaus",
@@ -184,7 +184,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": "KGV Musterstadt e.V. – Vereinshaus Musterstadt",
-        "url": "https://kgv461.de/",
+        "url": "<?= site_url() ?>/",
         "telephone": "+49-163-5140490",
         "email": "vorstand@example.org",
         "image": "/logo_kgv461.png",

@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KGV Musterstadt e.V. – Website-Präsentation</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g1:#2d5234;--g2:#3d6b41;--g3:#4a7c4e;--g4:#7cb342;--g5:#8bc34a;
+  --bg:#f4f7f4;--card:#fff;--text:#1a2e1a;--muted:#5a6c5a;
+  --gold:#e8a820;--shadow:0 8px 32px rgba(0,0,0,.12)
+}
+html,body{height:100%;font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow:hidden}
+
+/* ── Deck ─────────────────────────────────── */
+.deck{width:100%;height:100vh;position:relative}
+.slide{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  opacity:0;pointer-events:none;
+  transition:opacity .4s,transform .4s;
+  transform:translateX(40px);
+  overflow:hidden
+}
+.slide.active{opacity:1;pointer-events:auto;transform:translateX(0)}
+.slide.prev{opacity:0;transform:translateX(-40px)}
+
+/* ── Nav ──────────────────────────────────── */
+.nav{
+  position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);
+  z-index:100;display:flex;align-items:center;gap:1rem;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(12px);
+  padding:.6rem 1.4rem;border-radius:50px;
+  box-shadow:0 4px 20px rgba(0,0,0,.15)
+}
+.nav button{
+  background:none;border:none;cursor:pointer;
+  font-size:1.1rem;color:var(--g2);padding:.3rem .5rem;
+  border-radius:50px;transition:.2s
+}
+.nav button:hover{background:var(--bg)}
+.nav button.disabled{opacity:.3;cursor:default}
+.nav .counter{font-size:.82rem;font-weight:700;color:var(--g2);min-width:3.5rem;text-align:center}
+.dots{display:flex;gap:6px;align-items:center}
+.dot{width:7px;height:7px;border-radius:50%;background:#ccc;transition:.2s;cursor:pointer}
+.dot.active{background:var(--g3);width:18px;border-radius:4px}
+
+/* ── Title slide ──────────────────────────── */
+.slide-title{
+  background:linear-gradient(145deg,var(--g1) 0%,var(--g3) 60%,var(--g4) 100%);
+  justify-content:center;align-items:center;text-align:center;gap:0
+}
+.slide-title .logo-ring{
+  width:110px;height:110px;border-radius:50%;
+  background:rgba(255,255,255,.12);
+  border:3px solid rgba(255,255,255,.3);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 2rem;
+  font-size:3.5rem
+}
+.slide-title h1{color:#fff;font-size:2.8rem;font-weight:800;line-height:1.2;margin-bottom:.75rem}
+.slide-title h1 span{color:var(--g5)}
+.slide-title p{color:rgba(255,255,255,.75);font-size:1.1rem;max-width:480px;margin:0 auto 2.5rem}
+.badge-row{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.9);padding:.4rem 1rem;border-radius:50px;font-size:.82rem;font-weight:600}
+
+/* ── Section header ───────────────────────── */
+.slide-header{
+  background:linear-gradient(160deg,var(--g1),var(--g2));
+  padding:1.2rem 2.5rem;display:flex;align-items:center;gap:1rem;flex-shrink:0
+}
+.slide-header .icon{font-size:1.8rem}
+.slide-header h2{color:#fff;font-size:1.25rem;font-weight:700;line-height:1.2}
+.slide-header p{color:rgba(255,255,255,.7);font-size:.82rem;margin-top:.15rem}
+.chip{display:inline-block;background:rgba(255,255,255,.18);color:rgba(255,255,255,.9);font-size:.72rem;font-weight:700;padding:.2rem .65rem;border-radius:20px;margin-left:.5rem}
+
+/* ── Slide body ───────────────────────────── */
+.sbody{flex:1;overflow-y:auto;padding:1.5rem 2.5rem 5rem;display:flex;flex-direction:column;gap:1.2rem}
+.sbody.row{flex-direction:row;align-items:flex-start;gap:2rem}
+.sbody.center{justify-content:center;align-items:center;text-align:center}
+
+/* ── Cards ────────────────────────────────── */
+.cards{display:grid;gap:1rem}
+.cards.col2{grid-template-columns:1fr 1fr}
+.cards.col3{grid-template-columns:1fr 1fr 1fr}
+.card{background:var(--card);border-radius:14px;padding:1.25rem 1.4rem;box-shadow:0 2px 12px rgba(0,0,0,.07);border:1px solid rgba(0,0,0,.06);display:flex;flex-direction:column;gap:.5rem}
+.card.accent{border-top:4px solid var(--g4)}
+.card.gold{border-top:4px solid var(--gold)}
+.card h4{font-size:.88rem;font-weight:700;color:var(--g2)}
+.card p{font-size:.8rem;color:var(--muted);line-height:1.55}
+.card .icon-lg{font-size:2rem;margin-bottom:.3rem}
+
+/* ── Mockup Browser ───────────────────────── */
+.browser{
+  background:#fff;border-radius:14px;overflow:hidden;
+  box-shadow:var(--shadow);border:1px solid #e0e0e0;flex-shrink:0
+}
+.browser-bar{
+  background:#f0f0f0;padding:.55rem .8rem;display:flex;align-items:center;gap:.6rem;
+  border-bottom:1px solid #ddd
+}
+.browser-dots{display:flex;gap:5px}
+.browser-dots span{width:10px;height:10px;border-radius:50%;display:block}
+.browser-dots span:nth-child(1){background:#ff5f57}
+.browser-dots span:nth-child(2){background:#ffbd2e}
+.browser-dots span:nth-child(3){background:#28ca41}
+.browser-url{flex:1;background:#fff;border-radius:6px;padding:.2rem .7rem;font-size:.73rem;color:#666;border:1px solid #ddd;font-family:monospace}
+.browser-body{padding:0}
+
+/* ── Mock Website ─────────────────────────── */
+.mock-nav{background:var(--g1);padding:.45rem 1rem;display:flex;align-items:center;gap:.8rem}
+.mock-nav .m-logo{background:rgba(255,255,255,.18);border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:.65rem;flex-shrink:0}
+.mock-nav-links{display:flex;gap:.5rem;margin-left:auto;flex-wrap:wrap}
+.mock-nav-links span{background:rgba(255,255,255,.12);color:rgba(255,255,255,.85);border-radius:4px;padding:.15rem .5rem;font-size:.6rem;font-weight:600}
+.mock-nav-links span.active{background:rgba(255,255,255,.28)}
+.mock-hero{background:linear-gradient(160deg,#1a3320 0%,#2d5234 100%);padding:1.5rem 1rem;text-align:center;position:relative;overflow:hidden}
+.mock-hero::after{content:'🌿';position:absolute;right:-8px;top:-4px;font-size:3rem;opacity:.12}
+.mock-hero h3{color:#fff;font-size:.85rem;font-weight:800;margin-bottom:.3rem}
+.mock-hero p{color:rgba(255,255,255,.65);font-size:.6rem;margin-bottom:.6rem}
+.mock-hero-btns{display:flex;gap:.4rem;justify-content:center}
+.mock-hero-btns span{padding:.25rem .7rem;border-radius:20px;font-size:.58rem;font-weight:700}
+.mock-hero-btns .btn-p{background:var(--g3);color:#fff}
+.mock-hero-btns .btn-o{border:1px solid rgba(255,255,255,.4);color:rgba(255,255,255,.85)}
+.mock-stats{display:flex;justify-content:center;gap:.6rem;margin-top:.5rem}
+.mock-stats span{color:rgba(255,255,255,.75);font-size:.58rem;font-weight:700}
+
+.mock-section{padding:.7rem .8rem;border-bottom:1px solid #f0f0f0}
+.mock-section h4{font-size:.7rem;font-weight:700;color:var(--g2);margin-bottom:.35rem}
+.mock-cards{display:flex;gap:.4rem}
+.mock-card{flex:1;background:#f8faf8;border-radius:6px;padding:.4rem .5rem;border-left:2px solid var(--g4)}
+.mock-card p{font-size:.55rem;color:var(--muted);font-weight:600}
+
+/* ── Process flow ─────────────────────────── */
+.flow{display:flex;align-items:flex-start;gap:.5rem}
+.flow-step{display:flex;flex-direction:column;align-items:center;gap:.3rem;flex:1}
+.flow-num{width:32px;height:32px;border-radius:50%;background:var(--g3);color:#fff;font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.flow-line{flex:1;height:2px;background:linear-gradient(90deg,var(--g4),var(--g5));margin-top:15px}
+.flow-step p{font-size:.73rem;font-weight:600;color:var(--text);text-align:center}
+.flow-step small{font-size:.65rem;color:var(--muted);text-align:center;line-height:1.4}
+
+/* ── Benefit list ─────────────────────────── */
+.blist{display:flex;flex-direction:column;gap:.6rem}
+.bitem{display:flex;align-items:flex-start;gap:.75rem;background:#fff;border-radius:10px;padding:.8rem 1rem;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.bitem .bi-icon{font-size:1.4rem;flex-shrink:0;margin-top:.1rem}
+.bitem-text h5{font-size:.85rem;font-weight:700;color:var(--g2);margin-bottom:.15rem}
+.bitem-text p{font-size:.76rem;color:var(--muted);line-height:1.5}
+.bitem.highlight{border-left:3px solid var(--g4)}
+
+/* ── Compare ──────────────────────────────── */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.compare-col{border-radius:12px;padding:1rem 1.2rem}
+.compare-col.before{background:#fff3f3;border:1px solid #f5c6c6}
+.compare-col.after{background:#f0faf0;border:1px solid #b8d9b8}
+.compare-col h4{font-size:.82rem;font-weight:700;margin-bottom:.6rem}
+.compare-col.before h4{color:#b71c1c}
+.compare-col.after h4{color:var(--g2)}
+.compare-col ul{list-style:none;display:flex;flex-direction:column;gap:.35rem}
+.compare-col ul li{font-size:.76rem;color:var(--muted);display:flex;gap:.5rem;align-items:flex-start}
+.compare-col ul li::before{content:'';flex-shrink:0;font-size:.85rem}
+.compare-col.before ul li::before{content:'❌'}
+.compare-col.after ul li::before{content:'✅'}
+
+/* ── Summary ──────────────────────────────── */
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;width:100%;max-width:700px}
+.sum-card{background:#fff;border-radius:14px;padding:1.2rem;text-align:center;box-shadow:var(--shadow);border-top:4px solid var(--g4)}
+.sum-card .s-icon{font-size:2.2rem;margin-bottom:.5rem}
+.sum-card h4{font-size:.88rem;font-weight:700;color:var(--g2);margin-bottom:.3rem}
+.sum-card p{font-size:.75rem;color:var(--muted)}
+.sum-cta{margin-top:1.5rem;background:linear-gradient(135deg,var(--g2),var(--g4));color:#fff;padding:.8rem 2rem;border-radius:50px;font-weight:700;font-size:.9rem;display:inline-block;text-decoration:none;box-shadow:0 4px 16px rgba(74,124,78,.35)}
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- ══════════════ SLIDE 1: TITEL ══════════════ -->
+  <div class="slide slide-title active" data-slide="0">
+    <div class="logo-ring">🌿</div>
+    <h1>KGV Musterstadt e.V.<br><span>Die neue Website</span></h1>
+    <p>Eine moderne digitale Heimat für unsere Gartengemeinschaft in Musterstadt – für Besucher, Interessierte und unsere Mitglieder.</p>
+    <div class="badge-row">
+      <div class="badge">🌐 Öffentliche Website</div>
+      <div class="badge">🏡 Vereinshaus mieten</div>
+      <div class="badge">🔒 Mitgliederbereich</div>
+    </div>
+  </div>
+
+  <!-- ══════════════ SLIDE 2: ÜBERSICHT ÖFFENTLICHER BEREICH ══════════════ -->
+  <div class="slide" data-slide="1">
+    <div class="slide-header">
+      <span class="icon">🌐</span>
+      <div>
+        <h2>Der öffentliche Bereich <span class="chip">reparatur-hamburg.eu</span></h2>
+        <p>Was jeder Besucher sieht – ohne Login</p>
+      </div>
+    </div>
+    <div class="sbody row" style="align-items:flex-start">
+
+      <!-- Browser Mockup -->
+      <div style="flex:1;min-width:0">
+        <div class="browser">
+          <div class="browser-bar">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <div class="browser-url">reparatur-hamburg.eu</div>
+          </div>
+          <div class="browser-body">
+            <div class="mock-nav">
+              <div class="m-logo">🌿</div>
+              <div class="mock-nav-links">
+                <span class="active">Startseite</span>
+                <span>Über uns</span>
+                <span>Vorstand</span>
+                <span>Vereinshaus</span>
+                <span>Termine</span>
+                <span>Mitglied werden</span>
+              </div>
+            </div>
+            <div class="mock-hero">
+              <h3>Willkommen beim KGV Musterstadt e.V.</h3>
+              <p>Ihre Gartengemeinschaft in Musterstadt · seit 1975</p>
+              <div class="mock-hero-btns">
+                <span class="btn-p">🏡 Vereinshaus mieten</span>
+                <span class="btn-o">Mehr erfahren</span>
+              </div>
+              <div class="mock-stats">
+                <span>63 Parzellen</span><span>·</span>
+                <span>50+ Jahre</span><span>·</span>
+                <span>100+ Mitglieder</span>
+              </div>
+            </div>
+            <div class="mock-section">
+              <h4>Über unseren Verein</h4>
+              <div class="mock-cards">
+                <div class="mock-card"><p>🌱 Gemeinschaft & Natur</p></div>
+                <div class="mock-card"><p>🏡 Vereinshaus mieten</p></div>
+                <div class="mock-card"><p>🌻 63 Parzellen</p></div>
+              </div>
+            </div>
+            <div class="mock-section">
+              <h4>Termine & Veranstaltungen</h4>
+              <div class="mock-cards">
+                <div class="mock-card"><p>📅 Gartenflohmarkt</p></div>
+                <div class="mock-card"><p>📅 Vorstandssitzung</p></div>
+              </div>
+            </div>
+            <div class="mock-section" style="border:none">
+              <h4>Kontakt & Anfahrt</h4>
+              <div class="mock-cards">
+                <div class="mock-card"><p>📍 Musterstadt</p></div>
+                <div class="mock-card"><p>📞 +49 000 000 00 00</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inhalt rechts -->
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:.8rem">
+        <div class="card accent">
+          <div class="icon-lg">📢</div>
+          <h4>Ankündigungen & Ticker</h4>
+          <p>Aktuelle Meldungen (z. B. Gartenflohmarkt) erscheinen als Banner oben auf der Seite – vom Vorstand jederzeit anpassbar.</p>
+        </div>
+        <div class="card accent">
+          <div class="icon-lg">👥</div>
+          <h4>Der Vorstand</h4>
+          <p>Fotos, Namen, Rollen und Kontaktdaten aller Vorstandsmitglieder – immer aktuell über das Admin-Panel gepflegt.</p>
+        </div>
+        <div class="card accent">
+          <div class="icon-lg">📅</div>
+          <h4>Termine</h4>
+          <p>Alle öffentlichen Veranstaltungen auf einen Blick, sortiert nach Datum. Werden direkt im Admin-Panel eingetragen.</p>
+        </div>
+        <div class="card accent">
+          <div class="icon-lg">🌱</div>
+          <h4>Mitglied werden</h4>
+          <p>Interessierte können direkt ein Kontaktformular ausfüllen – die Anfrage landet beim Vorstand.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════ SLIDE 3: VEREINSHAUS VERMIETUNG ══════════════ -->
+  <div class="slide" data-slide="2">
+    <div class="slide-header">
+      <span class="icon">🏡</span>
+      <div>
+        <h2>Vereinshaus mieten <span class="chip">Online-Buchung</span></h2>
+        <p>So funktioniert die Vermietung über die Website</p>
+      </div>
+    </div>
+    <div class="sbody" style="gap:1.4rem">
+
+      <!-- Prozess -->
+      <div style="background:#fff;border-radius:14px;padding:1.2rem 1.5rem;box-shadow:0 2px 10px rgba(0,0,0,.07)">
+        <p style="font-size:.78rem;font-weight:700;color:var(--g2);margin-bottom:1rem;text-transform:uppercase;letter-spacing:.06em">Buchungsprozess</p>
+        <div class="flow">
+          <div class="flow-step">
+            <div class="flow-num">1</div>
+            <p>Kalender prüfen</p>
+            <small>Besucher sieht freie & belegte Tage live</small>
+          </div>
+          <div class="flow-line"></div>
+          <div class="flow-step">
+            <div class="flow-num">2</div>
+            <p>Datum wählen</p>
+            <small>Klick auf freien Tag öffnet Buchungsformular</small>
+          </div>
+          <div class="flow-line"></div>
+          <div class="flow-step">
+            <div class="flow-num">3</div>
+            <p>Anfrage senden</p>
+            <small>Name, Kontakt, Zweck, gewünschte Räume</small>
+          </div>
+          <div class="flow-line"></div>
+          <div class="flow-step">
+            <div class="flow-num">4</div>
+            <p>Bestätigung</p>
+            <small>Vorstand bestätigt manuell per E-Mail</small>
+          </div>
+          <div class="flow-line"></div>
+          <div class="flow-step">
+            <div class="flow-num">5</div>
+            <p>Datum gesperrt</p>
+            <small>Im Kalender automatisch als belegt markiert</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Details -->
+      <div class="cards col3">
+        <div class="card gold">
+          <div class="icon-lg">💶</div>
+          <h4>Preise auf der Website</h4>
+          <p>Miete, Kaution und Strompreis sind direkt sichtbar – werden im Admin-Panel gepflegt und aktualisiert.</p>
+        </div>
+        <div class="card gold">
+          <div class="icon-lg">📸</div>
+          <h4>Galerie</h4>
+          <p>Fotos von Saal, Küche, Bar und Terrasse können hochgeladen werden – macht das Angebot attraktiver.</p>
+        </div>
+        <div class="card gold">
+          <div class="icon-lg">📊</div>
+          <h4>Buchungsübersicht im Admin</h4>
+          <p>Alle Buchungsanfragen auf einen Blick. Sperrdaten und Zeiträume können einfach blockiert werden.</p>
+        </div>
+      </div>
+
+      <!-- Preistabelle Mockup -->
+      <div class="browser" style="max-width:520px;margin:0 auto">
+        <div class="browser-bar">
+          <div class="browser-dots"><span></span><span></span><span></span></div>
+          <div class="browser-url">reparatur-hamburg.eu/vereinshaus.php</div>
+        </div>
+        <div style="padding:.8rem 1rem;background:#f8faf8">
+          <p style="font-size:.7rem;font-weight:700;color:var(--g2);margin-bottom:.5rem">Kosten der Vermietung</p>
+          <div style="background:#fff;border-radius:8px;overflow:hidden;border:1px solid #e8f0e0">
+            <div style="display:flex;justify-content:space-between;padding:.45rem .75rem;border-bottom:1px solid #f0f4ee;font-size:.65rem">
+              <span style="color:var(--muted)">Miete gesamt</span><strong style="color:var(--g2)">300,00 €</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:.45rem .75rem;border-bottom:1px solid #f0f4ee;font-size:.65rem">
+              <span style="color:var(--muted)">Kaution</span><strong style="color:var(--g2)">200,00 €</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:.45rem .75rem;font-size:.65rem">
+              <span style="color:var(--muted)">Strom pro kWh</span><strong style="color:var(--g2)">0,50 €</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════ SLIDE 4: MITGLIEDERBEREICH – EINFÜHRUNG ══════════════ -->
+  <div class="slide" data-slide="3">
+    <div class="slide-header">
+      <span class="icon">🔒</span>
+      <div>
+        <h2>Der Mitgliederbereich <span class="chip">Nur für Mitglieder</span></h2>
+        <p>Was war vorher – und was ist jetzt möglich</p>
+      </div>
+    </div>
+    <div class="sbody">
+
+      <div class="compare">
+        <div class="compare-col before">
+          <h4>😓 Früher – ohne digitalen Bereich</h4>
+          <ul>
+            <li>Fragen nur per Telefon oder persönlich</li>
+            <li>Beitragsstatus unklar – nachfragen nötig</li>
+            <li>Gemeinschaftsstunden manuell auf Papier</li>
+            <li>Dokumente per Post oder Aushang</li>
+            <li>Keine Möglichkeit, Anliegen schriftlich festzuhalten</li>
+            <li>Vorstand hat keine Übersicht ohne Papierakte</li>
+          </ul>
+        </div>
+        <div class="compare-col after">
+          <h4>✨ Jetzt – mit dem Mitgliederbereich</h4>
+          <ul>
+            <li>Nachrichten direkt an den Vorstand senden</li>
+            <li>Beitragsstatus jederzeit einsehen</li>
+            <li>Eigene Gemeinschaftsstunden im Blick</li>
+            <li>Dokumente und Anhänge empfangen</li>
+            <li>Anliegen werden dokumentiert und beantwortet</li>
+            <li>Vorstand hat vollständige digitale Übersicht</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="background:linear-gradient(135deg,var(--g1),var(--g3));border-radius:14px;padding:1.2rem 1.5rem;color:#fff;display:flex;align-items:center;gap:1.2rem">
+        <div style="font-size:2.5rem;flex-shrink:0">🔑</div>
+        <div>
+          <h4 style="color:#fff;font-size:.92rem;margin-bottom:.3rem">Wie kommt ein Mitglied rein?</h4>
+          <p style="font-size:.78rem;color:rgba(255,255,255,.8);line-height:1.55">Der Vorstand legt jeden Pächter einmalig im Admin-Panel an und vergibt ein Passwort. Das Mitglied loggt sich dann unter <strong style="color:#c8e6c9">reparatur-hamburg.eu/mitglieder.php</strong> ein – kein separates Konto, kein E-Mail-Verifizierungsprozess nötig.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════ SLIDE 5: MITGLIEDERBEREICH – FUNKTIONEN ══════════════ -->
+  <div class="slide" data-slide="4">
+    <div class="slide-header">
+      <span class="icon">👤</span>
+      <div>
+        <h2>Was Mitglieder sehen & nutzen können</h2>
+        <p>Alle Funktionen auf einen Blick</p>
+      </div>
+    </div>
+    <div class="sbody row">
+
+      <!-- Browser Mockup Mitgliederbereich -->
+      <div style="flex:1;min-width:0">
+        <div class="browser">
+          <div class="browser-bar">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <div class="browser-url">reparatur-hamburg.eu/mitglieder.php</div>
+          </div>
+          <div class="browser-body">
+            <div class="mock-nav">
+              <div class="m-logo">🌿</div>
+              <div class="mock-nav-links">
+                <span class="active">Mein Bereich</span>
+                <span>Backoffice</span>
+              </div>
+            </div>
+            <div style="padding:.8rem">
+              <!-- Tabs -->
+              <div style="display:flex;gap:.3rem;margin-bottom:.8rem">
+                <span style="background:var(--g3);color:#fff;border-radius:6px;padding:.25rem .6rem;font-size:.58rem;font-weight:700">📊 Übersicht</span>
+                <span style="background:#f0f4ee;color:var(--g2);border-radius:6px;padding:.25rem .6rem;font-size:.58rem;font-weight:700">💬 Kontakt</span>
+                <span style="background:#f0f4ee;color:var(--g2);border-radius:6px;padding:.25rem .6rem;font-size:.58rem;font-weight:700">💶 Beitrag</span>
+                <span style="background:#f0f4ee;color:var(--g2);border-radius:6px;padding:.25rem .6rem;font-size:.58rem;font-weight:700">🔨 Arbeit</span>
+                <span style="background:#f0f4ee;color:var(--g2);border-radius:6px;padding:.25rem .6rem;font-size:.58rem;font-weight:700">👤 Profil</span>
+              </div>
+              <!-- Willkommen -->
+              <div style="background:linear-gradient(135deg,var(--g2),var(--g3));border-radius:8px;padding:.7rem .8rem;margin-bottom:.6rem">
+                <p style="color:#fff;font-size:.65rem;font-weight:700">Willkommen, Andreas 👋</p>
+                <p style="color:rgba(255,255,255,.75);font-size:.58rem">Parzelle 23 · Mitglied seit 2018</p>
+              </div>
+              <!-- Stats -->
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;margin-bottom:.6rem">
+                <div style="background:#f8faf8;border-radius:6px;padding:.45rem .6rem;border-left:2px solid var(--g4)">
+                  <p style="font-size:.58rem;color:var(--muted)">Beitrag 2026</p>
+                  <p style="font-size:.72rem;font-weight:700;color:var(--g2)">✅ Bezahlt</p>
+                </div>
+                <div style="background:#f8faf8;border-radius:6px;padding:.45rem .6rem;border-left:2px solid var(--g4)">
+                  <p style="font-size:.58rem;color:var(--muted)">Gemeinschaftsarbeit</p>
+                  <p style="font-size:.72rem;font-weight:700;color:var(--g2)">3 / 4 Std.</p>
+                </div>
+              </div>
+              <!-- Nachrichten -->
+              <div style="background:#fff;border-radius:6px;border:1px solid #e8f0e0;padding:.5rem .6rem">
+                <p style="font-size:.62rem;font-weight:700;color:var(--g2);margin-bottom:.3rem">💬 Letzte Nachricht</p>
+                <p style="font-size:.58rem;color:var(--muted)">Vorstand · Antwort zu „Wasseranschluss Parzelle 23"</p>
+                <p style="font-size:.55rem;color:var(--g4);margin-top:.15rem">Vor 2 Tagen beantwortet →</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Funktionsübersicht -->
+      <div style="flex:1.1;min-width:0">
+        <div class="blist">
+          <div class="bitem highlight">
+            <div class="bi-icon">💬</div>
+            <div class="bitem-text">
+              <h5>Direkte Kommunikation mit dem Vorstand</h5>
+              <p>Mitglieder können Nachrichten schreiben, Anhänge senden (Fotos, PDFs). Der Vorstand antwortet direkt – mit E-Mail-Benachrichtigung.</p>
+            </div>
+          </div>
+          <div class="bitem highlight">
+            <div class="bi-icon">💶</div>
+            <div class="bitem-text">
+              <h5>Beitragsübersicht</h5>
+              <p>Jahresbeitrag einsehen: Betrag, bezahlt/ausstehend, Zahlungsdatum. Kein Nachfragen mehr nötig.</p>
+            </div>
+          </div>
+          <div class="bitem highlight">
+            <div class="bi-icon">🔨</div>
+            <div class="bitem-text">
+              <h5>Gemeinschaftsarbeitsstunden</h5>
+              <p>Geleistete Stunden sind jederzeit einsehbar. Soll-Stunden klar definiert. Transparenz für Mitglied und Vorstand.</p>
+            </div>
+          </div>
+          <div class="bitem highlight">
+            <div class="bi-icon">👤</div>
+            <div class="bitem-text">
+              <h5>Persönliche Daten</h5>
+              <p>Telefon, Geburtstag und SEPA-Mandat selbst pflegen – entlastet den Vorstand bei Änderungswünschen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════ SLIDE 6: VORTEILE FÜR DEN VORSTAND ══════════════ -->
+  <div class="slide" data-slide="5">
+    <div class="slide-header">
+      <span class="icon">📊</span>
+      <div>
+        <h2>Vorteile für den Vorstand <span class="chip">Admin-Panel</span></h2>
+        <p>Was das System dem Vorstand abnimmt</p>
+      </div>
+    </div>
+    <div class="sbody">
+
+      <div class="cards col2" style="flex:none">
+        <div class="card accent">
+          <div class="icon-lg">🗃️</div>
+          <h4>Mitgliederverwaltung digital</h4>
+          <p>Alle Mitglieder mit Parzelle, Kontakt, SEPA, Rollen und Fotos in einem System. Kein Papierordner mehr nötig.</p>
+        </div>
+        <div class="card accent">
+          <div class="icon-lg">💬</div>
+          <h4>Nachrichten & Antworten</h4>
+          <p>Jede Kommunikation mit einem Mitglied ist dokumentiert und nachvollziehbar – kein Verlust durch Telefonate oder Zettel.</p>
+        </div>
+        <div class="card accent">
+          <div class="icon-lg">💰</div>
+          <h4>Kassenbuch & Beiträge</h4>
+          <p>Einnahmen und Ausgaben erfassen, Beitragsstatus je Mitglied und Jahr pflegen, als Excel exportieren.</p>
+        </div>
+        <div class="card accent">
+          <div class="icon-lg">🔨</div>
+          <h4>Arbeitsstunden erfassen</h4>
+          <p>Geleistete Gemeinschaftsstunden pro Mitglied und Jahr eintragen. Soll-Stunden zentral konfigurierbar.</p>
+        </div>
+        <div class="card accent">
+          <div class="icon-lg">📝</div>
+          <h4>Website selbst pflegen</h4>
+          <p>Texte, Bilder, Termine, Vorstand, Preise – alles ohne Programmierkenntnisse direkt im Browser ändern.</p>
+        </div>
+        <div class="card accent">
+          <div class="icon-lg">📋</div>
+          <h4>Aktivitätsprotokoll</h4>
+          <p>Jede Aktion im Admin-Panel wird protokolliert. Wer hat wann was geändert – lückenlose Nachvollziehbarkeit.</p>
+        </div>
+      </div>
+
+      <div style="background:linear-gradient(135deg,#f0faf0,#e8f5e9);border-radius:14px;padding:1rem 1.4rem;border:1px solid #b8d9b8;display:flex;align-items:center;gap:1rem;flex-shrink:0">
+        <span style="font-size:2rem;flex-shrink:0">💡</span>
+        <p style="font-size:.8rem;color:var(--g1);line-height:1.6"><strong>Rollenbasierte Zugänge:</strong> Nicht jeder muss alles sehen. Mitglieder mit der Rolle „Buchung" sehen Buchungen, „Schriftführer" sieht Mitgliederdaten – aber nicht das Kassenbuch. Individuell konfigurierbar.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════ SLIDE 7: ZUSAMMENFASSUNG ══════════════ -->
+  <div class="slide" data-slide="6">
+    <div class="slide-header">
+      <span class="icon">🎯</span>
+      <div>
+        <h2>Zusammenfassung</h2>
+        <p>Was die Website dem KGV Musterstadt bringt</p>
+      </div>
+    </div>
+    <div class="sbody center">
+      <div class="summary-grid">
+        <div class="sum-card">
+          <div class="s-icon">🌐</div>
+          <h4>Moderne Außendarstellung</h4>
+          <p>Professioneller erster Eindruck für Interessierte, Google-optimiert, mobilfreundlich</p>
+        </div>
+        <div class="sum-card">
+          <div class="s-icon">🏡</div>
+          <h4>Mehr Buchungen möglich</h4>
+          <p>Vereinshaus 24/7 online buchbar – kein Anruf nötig, Kalender immer aktuell</p>
+        </div>
+        <div class="sum-card">
+          <div class="s-icon">🤝</div>
+          <h4>Bessere Kommunikation</h4>
+          <p>Mitglieder haben direkten digitalen Draht zum Vorstand – dokumentiert und nachvollziehbar</p>
+        </div>
+        <div class="sum-card">
+          <div class="s-icon">⚡</div>
+          <h4>Weniger Verwaltungsaufwand</h4>
+          <p>Beiträge, Arbeitsstunden, Nachrichten – alles digital, kein Papier, kein manuelles Nachfragen</p>
+        </div>
+      </div>
+      <a href="https://reparatur-hamburg.eu" target="_blank" rel="noopener noreferrer" class="sum-cta">🌿 reparatur-hamburg.eu aufrufen →</a>
+    </div>
+  </div>
+
+</div><!-- /deck -->
+
+<!-- Navigation -->
+<div class="nav">
+  <button id="btn-prev" onclick="go(-1)" title="Zurück">◀</button>
+  <div class="dots" id="dots"></div>
+  <span class="counter" id="counter">1 / 7</span>
+  <button id="btn-next" onclick="go(1)" title="Weiter">▶</button>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const dots   = document.getElementById('dots');
+let cur = 0;
+
+// Build dots
+slides.forEach((_, i) => {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.onclick = () => goTo(i);
+  dots.appendChild(d);
+});
+
+function goTo(n) {
+  slides[cur].classList.remove('active');
+  slides[cur].classList.add('prev');
+  setTimeout(() => slides[cur].classList.remove('prev'), 400);
+  cur = Math.max(0, Math.min(n, slides.length - 1));
+  slides[cur].classList.add('active');
+  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === cur));
+  document.getElementById('counter').textContent = (cur + 1) + ' / ' + slides.length;
+  document.getElementById('btn-prev').classList.toggle('disabled', cur === 0);
+  document.getElementById('btn-next').classList.toggle('disabled', cur === slides.length - 1);
+}
+
+function go(dir) { goTo(cur + dir); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(-1);
+});
+
+goTo(0);
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+# lokale secrets & zugangsdaten
+.env
+
+# ECHTE VEREINSDATEN - bleiben lokal, nie auf GitHub!
+data/
+
+# alter code - kann secrets enthalten
+old/
+
+# echte fotos / hochgeladene bilder (personen!)
+images/
+
+# diverse
+*.log
+.DS_Store
+Thumbs.db
+
+# fotos ohne personen-check
+front.jpg
+hintergrund.png
+39fb9c8d57757a4b24a9738eef839176.png

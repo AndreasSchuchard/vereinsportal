@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /intern/
+Disallow: /data/
+Disallow: /booking.php
+Disallow: /contact.php
+Disallow: /mitglieder.php
+Disallow: /member-api/
+Allow: /
+
+Sitemap: https://kgv461.de/sitemap.xml

@@ -891,7 +891,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
                     Muster-Kleingartenverein e.V.<br>
                     Eingetragener Verein<br>
                     Registergericht: Amtsgericht Musterstadt<br>
-                    Registernummer: 8339
+                    Registernummer: 12345
                 </div>
             </div>
 

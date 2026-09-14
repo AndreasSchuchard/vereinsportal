@@ -408,7 +408,7 @@ ul li{margin-bottom:3px}
       <div style="background:#f9fbf7;border:1px solid var(--border);border-radius:8px;padding:12px">
         <div style="font-weight:700;margin-bottom:8px;color:var(--green)">📅 Nächste 14 Tage</div>
         <div style="border-bottom:1px solid var(--border);padding-bottom:6px;margin-bottom:6px"><strong>25.03.</strong> — Maria Muster · Geburtstag</div>
-        <div><strong>01.04.</strong> — Klaus Berger · Vereinsfest</div>
+        <div><strong>01.04.</strong> — Max Mustermann · Vereinsfest</div>
       </div>
       <div style="background:#f9fbf7;border:1px solid var(--border);border-radius:8px;padding:12px">
         <div style="font-weight:700;margin-bottom:8px;color:var(--green)">🎂 Geburtstage (30 Tage)</div>
@@ -675,7 +675,7 @@ ul li{margin-bottom:3px}
         <thead><tr style="background:var(--green);color:#fff"><th style="padding:7px 10px;text-align:left">Parzelle</th><th style="padding:7px 10px;text-align:left">Name</th><th style="padding:7px 10px;text-align:right">Betrag</th><th style="padding:7px 10px;text-align:center">Status</th><th style="padding:7px 10px;text-align:center">Aktion</th></tr></thead>
         <tbody>
           <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 10px">7</td><td style="padding:6px 10px">Maria Muster</td><td style="padding:6px 10px;text-align:right">120,00 €</td><td style="padding:6px 10px;text-align:center"><span style="background:#e8f5e9;color:#2e7d32;padding:2px 8px;border-radius:10px;font-size:0.72rem;font-weight:600">✓ bezahlt</span></td><td style="padding:6px 10px;text-align:center"><span class="mock-btn outline" style="font-size:0.72rem;padding:3px 8px">✏️</span></td></tr>
-          <tr><td style="padding:6px 10px">12</td><td style="padding:6px 10px">Klaus Berger</td><td style="padding:6px 10px;text-align:right">120,00 €</td><td style="padding:6px 10px;text-align:center"><span style="background:#fff8e1;color:#e65100;padding:2px 8px;border-radius:10px;font-size:0.72rem;font-weight:600">⏳ ausstehend</span></td><td style="padding:6px 10px;text-align:center"><span class="mock-btn outline" style="font-size:0.72rem;padding:3px 8px">✏️</span></td></tr>
+          <tr><td style="padding:6px 10px">12</td><td style="padding:6px 10px">Max Mustermann</td><td style="padding:6px 10px;text-align:right">120,00 €</td><td style="padding:6px 10px;text-align:center"><span style="background:#fff8e1;color:#e65100;padding:2px 8px;border-radius:10px;font-size:0.72rem;font-weight:600">⏳ ausstehend</span></td><td style="padding:6px 10px;text-align:center"><span class="mock-btn outline" style="font-size:0.72rem;padding:3px 8px">✏️</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -724,7 +724,7 @@ ul li{margin-bottom:3px}
       </div>
       <div style="display:flex;align-items:center;gap:10px;padding:8px 0">
         <span style="width:30px;color:var(--gray)">12</span>
-        <span style="flex:1">Klaus Berger</span>
+        <span style="flex:1">Max Mustermann</span>
         <span style="font-weight:700;color:#e65100;width:40px;text-align:right">1,5h</span>
         <div style="width:80px"><div class="progress-bar"><div class="progress-fill warn" style="width:37%"></div></div><div style="font-size:0.65rem;color:var(--gray);text-align:center;margin-top:2px">37%</div></div>
         <div class="mock-btn outline" style="font-size:0.72rem;padding:3px 8px">+</div>
@@ -840,7 +840,7 @@ ul li{margin-bottom:3px}
     <div class="mock-screen-title">Letzte Aktionen (Beispiel)</div>
     <div style="font-size:0.8rem">
       <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0f4ee"><div><strong>Buchung bestätigt</strong><br><span style="color:var(--gray)">Maria Muster · Geburtstag 25.04.2026</span><br><span style="font-size:0.7rem;color:#9aaa9a">Erika Musterfrau</span></div><span style="color:#9aaa9a;white-space:nowrap;font-size:0.7rem">2026-03-20 14:32</span></div>
-      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0f4ee"><div><strong>Arbeitsstunden eingetragen</strong><br><span style="color:var(--gray)">Klaus Berger · 2,0h am 18.03.2026</span><br><span style="font-size:0.7rem;color:#9aaa9a">Erika Musterfrau</span></div><span style="color:#9aaa9a;white-space:nowrap;font-size:0.7rem">2026-03-18 10:15</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0f4ee"><div><strong>Arbeitsstunden eingetragen</strong><br><span style="color:var(--gray)">Max Mustermann · 2,0h am 18.03.2026</span><br><span style="font-size:0.7rem;color:#9aaa9a">Erika Musterfrau</span></div><span style="color:#9aaa9a;white-space:nowrap;font-size:0.7rem">2026-03-18 10:15</span></div>
       <div style="display:flex;justify-content:space-between;padding:6px 0"><div><strong>Mitglied genehmigt</strong><br><span style="color:var(--gray)">Anna Schmidt</span><br><span style="font-size:0.7rem;color:#9aaa9a">SuperAdmin</span></div><span style="color:#9aaa9a;white-space:nowrap;font-size:0.7rem">2026-03-15 09:02</span></div>
     </div>
   </div>

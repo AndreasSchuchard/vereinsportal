@@ -40,6 +40,7 @@ function load_settings(): array {
         'imap_user' => getenv('IMAP_USER'),
         'imap_password' => getenv('IMAP_PASSWORD'),
         'anleitung_password' => getenv('ANLEITUNG_PASSWORD'),
+        'site_url' => getenv('SITE_URL'),
     ];
 
     foreach ($overrides as $k => $v) {
@@ -53,4 +54,17 @@ function load_settings(): array {
     }
 
     return $settings;
+}
+
+/**
+ * Zentrale Basis-URL des Vereinsportals (Template-Setup).
+ * Konfigurierbar via `SITE_URL` in `.env` oder `site_url` in `data/settings.json`.
+ * Fallback: generische Beispiel-Domain, damit das Template überall lauffähig ist.
+ * Liefert die URL ohne abschließenden Slash, z.B. "https://kgv461.de".
+ */
+function site_url(): string {
+    $s = load_settings();
+    $u = trim((string)($s['site_url'] ?? 'https://example.org'));
+    $u = str_ends_with($u, '/') ? substr($u, 0, -1) : $u;
+    return $u;
 }

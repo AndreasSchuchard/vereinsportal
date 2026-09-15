@@ -8,4 +8,4 @@ Disallow: /mitglieder.php
 Disallow: /member-api/
 Allow: /
 
-Sitemap: https://kgv461.de/sitemap.xml
+Sitemap: https://YOUR-DOMAIN.TLD/sitemap.xml

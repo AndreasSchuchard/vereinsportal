@@ -1,5 +1,5 @@
 Contact: mailto:security@example.org
 Expires: 2027-08-12T23:59:59Z
 Preferred-Languages: de, en
-Canonical: https://kgv461.de/.well-known/security.txt
-Policy: https://kgv461.de/datenschutz.php
+Canonical: https://YOUR-DOMAIN.TLD/.well-known/security.txt
+Policy: https://YOUR-DOMAIN.TLD/datenschutz.php

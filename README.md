@@ -50,3 +50,7 @@ cp data.example/content.example.json data/content.json
 ## Lizenz
 
 MIT — siehe [LICENSE](LICENSE).
+
+---
+
+*Gepflegt von [Horizont Labor](https://www.horizontlabor.de) — Webentwicklung mit Liebe zum Verein.*

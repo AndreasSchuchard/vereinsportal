@@ -3,6 +3,10 @@
 Diese Anleitung beschreibt, wie ein Verein das Portal auf einem eigenen
 Webserver aufsetzt. Dauer: ca. 30–60 Minuten.
 
+> **Empfohlener Weg:** `install.php` im Browser öffnen — der Setup-Assistent
+> führt durch Prüfung, Domain-Eingabe, Datei-Anlage und Admin-Passwort
+> (siehe Abschnitt 2b). Die manuelle Variante steht danach beschrieben.
+
 ---
 
 ## 1. Voraussetzungen
@@ -17,6 +21,27 @@ Webserver aufsetzt. Dauer: ca. 30–60 Minuten.
 
 Kopiere alle Dateien des Repos in das Webroot deiner Domain (z.B. `public_html/`).
 Danach sollte `https://DEINE-DOMAIN/` die Startseite zeigen.
+
+## 2b. Setup-Assistent (empfohlen)
+
+Nach dem Hochladen rufst du im Browser auf:
+
+```
+https://DEINE-DOMAIN/install.php
+```
+
+Der Assistent prüft der Reihe nach:
+
+1. **Voraussetzungen** — PHP-Version, Erweiterungen (mbstring, gd, dom), Schreibrechte
+2. **Domain & Vereinsdaten** — Domain (ersetzt `YOUR-DOMAIN.TLD` in `.htaccess`,
+   sitemap.xml, robots.txt, security.txt), Basis-URL, Vereinsname, Kontakt-E-Mail.
+   Er legt dabei `.env`, `data/settings.json` und `data/content.json` an.
+3. **Admin-Passwort** — wird als bcrypt-Hash in `data/settings.json` gespeichert.
+4. **Fertig** — Sicherheits-Checkliste; der Installer sperrt sich selbst
+   (`install.lock`) und zeigt, wie du ihn vom Server entfernst.
+
+> Nach Abschluss unbedingt `install.php` vom Server löschen oder den Zugriff
+> blocken!
 
 ## 3. Domain-Platzhalter ersetzen
 

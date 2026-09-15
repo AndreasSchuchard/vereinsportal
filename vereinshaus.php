@@ -329,7 +329,7 @@ $_hasPhoto = !empty($_vh['main_image']);
 
                 <h3 class="contact-title">Ihre Ansprechpartnerin</h3>
                 <div class="contact-card">
-                    <img class="contact-avatar" src="/images/0bee519732d5e264caf6615e7376637e.jpg" alt="Erika Musterfrau">
+                    <img class="contact-avatar" src="/images/avatar.png" alt="Erika Musterfrau">
                     <div>
                         <h4>Erika Musterfrau</h4>
                         <p>Kassiererin & Vermietung<br>

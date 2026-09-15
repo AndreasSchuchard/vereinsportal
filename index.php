@@ -90,9 +90,9 @@ $_sec        = array_merge(
     $_c['sections_visible'] ?? []
 );
 $_vsDefault = [
-    ['role'=>'1. Vorsitzender','name'=>'Max Mustermann','email'=>'vorstand@example.org','phone'=>'+49 000 000 00 00','photo'=>'acd13576e591a1e8489257f397b5475c.jpg','full'=>true],
-    ['role'=>'Kassiererin','name'=>'Erika Musterfrau','email'=>'kasse@example.org','phone'=>'+49 000 000 00 00','photo'=>'0bee519732d5e264caf6615e7376637e.jpg','full'=>false],
-    ['role'=>'Schriftführerin','name'=>'Maria Beispiel','email'=>'schriftfuehrer@example.org','phone'=>'+49 000 000 00 00','photo'=>'3c42cb389d6efb741958253a5a7b0aa4.jpg','full'=>false],
+    ['role'=>'1. Vorsitzender','name'=>'Max Mustermann','email'=>'vorstand@example.org','phone'=>'+49 000 000 00 00','photo'=>'','full'=>true],
+    ['role'=>'Kassiererin','name'=>'Erika Musterfrau','email'=>'kasse@example.org','phone'=>'+49 000 000 00 00','photo'=>'','full'=>false],
+    ['role'=>'Schriftführerin','name'=>'Maria Beispiel','email'=>'schriftfuehrer@example.org','phone'=>'+49 000 000 00 00','photo'=>'','full'=>false],
 ];
 $_lkDefault = [
     ['emoji'=>'🌿','title'=>'Landesverband der Gartenfreunde','desc'=>'Dachverband der regionalen Kleingartenvereine','url'=>'https://www.example.org'],

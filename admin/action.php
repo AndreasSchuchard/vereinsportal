@@ -353,7 +353,7 @@ foreach ($bookings as &$b) {
             require_once dirname(__DIR__) . '/inc/local_qr.php';
             try {
                 $qrImg = kgv_qr_png($epcData, 180);
-                $qrCid       = 'qr_' . bin2hex(random_bytes(8)) . '@kgv461';
+                $qrCid       = 'qr_' . bin2hex(random_bytes(8)) . '@verein';
                 $qrInlineImg = [['cid' => $qrCid, 'data' => $qrImg, 'mime' => 'image/png', 'name' => 'girocode.png']];
                 $epcQrHtml =
                     "<div style='background:#f8faf8;border-radius:10px;padding:20px;margin-bottom:20px;"

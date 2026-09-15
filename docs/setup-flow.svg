@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <style>
+      .step { fill:#ffffff; stroke:#3d6b41; stroke-width:2; rx:12 }
+      .num { fill:#3d6b41; font-size:26px; font-weight:bold }
+      .tt { fill:#2d3e2d; font-size:13px; font-weight:bold }
+      .ts { fill:#5a6c5a; font-size:10.5px }
+      .line { stroke:#8aa87f; stroke-width:2; fill:none }
+      .arrow { fill:#3d6b41 }
+    </style>
+    <marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" class="arrow"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="900" height="300" fill="#f4f7f0"/>
+  <text x="450" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#2d5231">Setup — install.php im Browser</text>
+
+  <rect class="step" x="30" y="70" width="180" height="150"/>
+  <text x="120" y="108" text-anchor="middle" class="num">1</text>
+  <text x="120" y="140" text-anchor="middle" class="tt">Prüfung</text>
+  <text x="120" y="162" text-anchor="middle" class="ts">PHP-Version, Erweiterungen,</text>
+  <text x="120" y="176" text-anchor="middle" class="ts">Schreibrechte</text>
+
+  <rect class="step" x="250" y="70" width="180" height="150"/>
+  <text x="340" y="108" text-anchor="middle" class="num">2</text>
+  <text x="340" y="140" text-anchor="middle" class="tt">Domain &amp; Daten</text>
+  <text x="340" y="162" text-anchor="middle" class="ts">Domain, Vereinsname, E-Mail</text>
+  <text x="340" y="176" text-anchor="middle" class="ts">→ .env, data/ anlegen,</text>
+  <text x="340" y="190" text-anchor="middle" class="ts">Platzhalter ersetzen</text>
+
+  <rect class="step" x="470" y="70" width="180" height="150"/>
+  <text x="560" y="108" text-anchor="middle" class="num">3</text>
+  <text x="560" y="140" text-anchor="middle" class="tt">Admin-Passwort</text>
+  <text x="560" y="162" text-anchor="middle" class="ts">wird als bcrypt-Hash</text>
+  <text x="560" y="176" text-anchor="middle" class="ts">gespeichert</text>
+
+  <rect class="step" x="690" y="70" width="180" height="150"/>
+  <text x="780" y="108" text-anchor="middle" class="num">4</text>
+  <text x="780" y="140" text-anchor="middle" class="tt">Fertig</text>
+  <text x="780" y="162" text-anchor="middle" class="ts">Checkliste, Selbst-Sperrung</text>
+  <text x="780" y="176" text-anchor="middle" class="ts">(install.lock)</text>
+
+  <path d="M210 145 L246 145" class="line" marker-end="url(#arr2)"/>
+  <path d="M430 145 L466 145" class="line" marker-end="url(#arr2)"/>
+  <path d="M650 145 L686 145" class="line" marker-end="url(#arr2)"/>
+
+  <text x="450" y="260" text-anchor="middle" class="ts">Danach: install.php vom Server löschen — fertig für den &gt;/intern&gt;-Admin-Bereich.</text>
+</svg>

@@ -17,6 +17,18 @@ Open-Source-Template veröffentlicht wurde.
 - **Konfiguration ohne Datenbank** — alles in `data/settings.json` + `data/content.json`
   und `.env` für Secrets
 
+## Architektur & Setup
+
+![Architektur](docs/architecture.svg)
+
+Das Portal läuft ohne Datenbank — Konfiguration und Inhalte liegen in
+`data/settings.json` und `data/content.json`, Secrets in `.env`.
+
+![Setup-Ablauf](docs/setup-flow.svg)
+
+Der Setup-Assistent (`install.php`) führt in vier Schritten durch die
+Einrichtung: Prüfung → Domain/Daten → Admin-Passwort → Fertig.
+
 ## Voraussetzungen
 
 - PHP **8.1+** (Ext.: `mbstring`, `gd`, `dom`, `json`) + Webserver (Apache mit

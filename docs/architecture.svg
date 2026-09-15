@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <style>
+      .box { fill:#ffffff; stroke:#3d6b41; stroke-width:2; rx:12 }
+      .box2 { fill:#eef4ea; stroke:#3d6b41; stroke-width:1.5; rx:10 }
+      .t { fill:#2d3e2d; font-size:14px; font-weight:bold }
+      .s { fill:#5a6c5a; font-size:11px }
+      .line { stroke:#8aa87f; stroke-width:2; fill:none }
+      .arrow { fill:#3d6b41 }
+    </style>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" class="arrow"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="900" height="420" fill="#f4f7f0"/>
+  <text x="450" y="34" text-anchor="middle" font-size="17" font-weight="bold" fill="#2d5231">Architektur — Vereinsportal (datenbanklos)</text>
+
+  <!-- Besucher -->
+  <rect class="box2" x="40" y="70" width="200" height="90"/>
+  <text x="140" y="98" text-anchor="middle" class="t">🌐 Besucher &amp; Mitglieder</text>
+  <text x="140" y="118" text-anchor="middle" class="s">Browser / Mobil</text>
+  <text x="140" y="136" text-anchor="middle" class="s">Startseite, Termine, Vereinshaus,</text>
+  <text x="140" y="150" text-anchor="middle" class="s">Mitgliederbereich</text>
+
+  <!-- Admin -->
+  <rect class="box2" x="40" y="220" width="200" height="90"/>
+  <text x="140" y="248" text-anchor="middle" class="t">🔐 Vorstand / Admin</text>
+  <text x="140" y="268" text-anchor="middle" class="s">Backoffice (/intern)</text>
+  <text x="140" y="286" text-anchor="middle" class="s">CMS, Mitglieder, Schriftführung</text>
+
+  <!-- Server -->
+  <rect class="box" x="330" y="120" width="260" height="180"/>
+  <text x="460" y="148" text-anchor="middle" class="t">PHP-Webserver</text>
+  <text x="460" y="172" text-anchor="middle" class="s">Vereinsportal (PHP 8.1+)</text>
+  <text x="460" y="196" text-anchor="middle" class="s">• Startseite, Events, Buchungen</text>
+  <text x="460" y="214" text-anchor="middle" class="s">• Schriftführung, QR, PDF</text>
+  <text x="460" y="232" text-anchor="middle" class="s">• E-Mail-Benachrichtigungen</text>
+  <text x="460" y="256" text-anchor="middle" class="t" font-size="12">.env + data/settings.json</text>
+  <text x="460" y="274" text-anchor="middle" class="t" font-size="12">data/content.json</text>
+  <text x="460" y="292" text-anchor="middle" class="s">(JSON — keine Datenbank)</text>
+
+  <!-- Postfach -->
+  <rect class="box2" x="690" y="80" width="180" height="90"/>
+  <text x="780" y="108" text-anchor="middle" class="t">📧 Postfach</text>
+  <text x="780" y="128" text-anchor="middle" class="s">IMAP (optional)</text>
+  <text x="780" y="146" text-anchor="middle" class="s">eingehende Antworten</text>
+
+  <!-- Mailversand -->
+  <rect class="box2" x="690" y="230" width="180" height="90"/>
+  <text x="780" y="258" text-anchor="middle" class="t">📧 E-Mail-Versand</text>
+  <text x="780" y="278" text-anchor="middle" class="s">Buchungs-, Bestätigungs-,</text>
+  <text x="780" y="294" text-anchor="middle" class="s">Erinnerungs-Mails</text>
+
+  <!-- Verbinder -->
+  <path d="M240 115 L326 170" class="line" marker-end="url(#arr)"/>
+  <path d="M240 265 L326 220" class="line"/>
+  <path d="M590 170 L686 130" class="line"/>
+  <path d="M590 200 L686 262" class="line"/>
+
+  <text x="450" y="380" text-anchor="middle" class="s">Kleinster Fußabdruck: keine Datenbank, kein Framework — nur PHP + JSON-Dateien.</text>
+</svg>

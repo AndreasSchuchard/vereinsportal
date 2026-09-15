@@ -1,5 +1,7 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__ . '/inc/settings_loader.php';
+
 
 // ── Secure session ────────────────────────────────────────────────────────────
 ini_set('session.cookie_httponly', '1');
@@ -144,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_SESSION['kgv_member'])) {
                   . "Kategorie: {$cat}\nTitel: {$title}\n"
                   . "Von: " . ($member['name'] ?? '?') . " <" . ($member['email'] ?? '?') . ">\n\n"
                   . "Beschreibung:\n{$desc}\n\n"
-                  . "Im Cockpit ansehen: https://kgv461.de/intern/?tab=schriftfuehrung&sub=schaeden";
+                  . "Im Cockpit ansehen: " . site_url() . "/intern/?tab=schriftfuehrung&sub=schaeden";
             $html = kgv_email_html(
                 'Hallo Sandra 👋,',
                 "<p>Es ist eine neue Schadenmeldung eingegangen.</p>"
@@ -155,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_SESSION['kgv_member'])) {
                 . "</table>"
                 . "<div style='background:#fafafa;border-left:4px solid #b71c1c;border-radius:8px;padding:14px 18px;white-space:pre-wrap'>" . htmlspecialchars($desc) . "</div>"
                 . ($photoFilename ? "<p>📸 Ein Foto wurde mitgesendet — im Cockpit ansehen.</p>" : '')
-                . "<p style='text-align:center;margin-top:18px'><a href='https://kgv461.de/intern/?tab=schriftfuehrung&sub=schaeden' style='display:inline-block;background:#b71c1c;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:700'>→ Im Cockpit bearbeiten</a></p>",
+                . "<p style='text-align:center;margin-top:18px'><a href='" . site_url() . "/intern/?tab=schriftfuehrung&sub=schaeden' style='display:inline-block;background:#b71c1c;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:700'>→ Im Cockpit bearbeiten</a></p>",
                 'Neue Schadenmeldung',
                 'Schriftführung-Cockpit', '', 'kontakt@example.org', 'Automatische Benachrichtigung'
             );
@@ -227,7 +229,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_SESSION['kgv_member'])) {
                   . ($nAtt > 0 ? "Anhänge: {$nAtt}\n" : '')
                   . "\nTitel: {$title}\n\n"
                   . "Antrag:\n{$message}\n\n"
-                  . "Im Cockpit ansehen: https://kgv461.de/intern/?tab=schriftfuehrung&sub=applications";
+                  . "Im Cockpit ansehen: " . site_url() . "/intern/?tab=schriftfuehrung&sub=applications";
             $html = kgv_email_html(
                 'Hallo Sandra 👋,',
                 "<p>Es ist ein neuer Antrag eingegangen.</p>"
@@ -238,7 +240,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_SESSION['kgv_member'])) {
                 . ($nAtt > 0 ? "<tr><td style='padding:8px 12px;background:#f5f0fa;font-weight:700;color:#5e35b1'>Anhänge</td><td style='padding:8px 12px;background:#f9fbf7'>" . $nAtt . " Datei(en) — im Cockpit ansehen</td></tr>" : '')
                 . "</table>"
                 . "<div style='background:#fff8e1;border-left:4px solid #f9a825;border-radius:8px;padding:14px 18px;margin:14px 0;white-space:pre-wrap;line-height:1.6'>" . htmlspecialchars($message) . "</div>"
-                . "<p style='text-align:center;margin-top:18px'><a href='https://kgv461.de/intern/?tab=schriftfuehrung&sub=applications' style='display:inline-block;background:#01579b;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:700'>→ Im Cockpit bearbeiten</a></p>",
+                . "<p style='text-align:center;margin-top:18px'><a href='" . site_url() . "/intern/?tab=schriftfuehrung&sub=applications' style='display:inline-block;background:#01579b;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:700'>→ Im Cockpit bearbeiten</a></p>",
                 'Neuer Antrag',
                 'Schriftführung-Cockpit', '', 'kontakt@example.org', 'Automatische Benachrichtigung'
             );
@@ -279,12 +281,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_SESSION['kgv_member'])) {
             if ($to !== '' && filter_var($to, FILTER_VALIDATE_EMAIL)) {
                 $subj = '[KGV Musterstadt · Antrag zurückgezogen] ' . $withdrawnTitle . ' — ' . ($member['name'] ?? '?');
                 $txt  = ($member['name'] ?? '?') . " hat den Antrag \"{$withdrawnTitle}\" zurückgezogen.\n\n"
-                      . "Im Cockpit: https://kgv461.de/intern/?tab=schriftfuehrung&sub=applications";
+                      . "Im Cockpit: " . site_url() . "/intern/?tab=schriftfuehrung&sub=applications";
                 $html = kgv_email_html(
                     'Hallo Sandra 👋,',
                     "<p><strong>" . htmlspecialchars((string)($member['name'] ?? '?')) . "</strong> hat den Antrag "
                     . "„<strong>" . htmlspecialchars($withdrawnTitle) . "</strong>\" zurückgezogen.</p>"
-                    . "<p style='text-align:center;margin-top:18px'><a href='https://kgv461.de/intern/?tab=schriftfuehrung&sub=applications' style='display:inline-block;background:#01579b;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:700'>→ Im Cockpit ansehen</a></p>",
+                    . "<p style='text-align:center;margin-top:18px'><a href='" . site_url() . "/intern/?tab=schriftfuehrung&sub=applications' style='display:inline-block;background:#01579b;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:700'>→ Im Cockpit ansehen</a></p>",
                     'Antrag zurückgezogen',
                     'Schriftführung-Cockpit', '', 'kontakt@example.org', 'Automatische Benachrichtigung'
                 );
@@ -684,7 +686,7 @@ if (($isKoppel || $isKassier) && $_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_rsubj = 'Antwort auf Ihre Anfrage: ' . $rSubject;
                 $_rcontent = "<p style='color:#5a6c5a;line-height:1.7;margin-bottom:14px'>Ihre Anfrage wurde beantwortet von <strong>" . htmlspecialchars($member['name']) . "</strong>.</p>"
                            . "<div style='background:#f5f7f2;border-radius:8px;padding:14px;margin-bottom:14px'><p style='margin:0;white-space:pre-wrap;color:#2d3e2d'>" . htmlspecialchars($rBody) . "</p></div>"
-                           . "<a href='https://kgv461.de/mitglieder.php?tab=kontakt' style='display:inline-block;background:#3d6b41;color:#fff;padding:10px 22px;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.88rem'>Antwort ansehen →</a>";
+                           . "<a href='" . site_url() . "/mitglieder.php?tab=kontakt' style='display:inline-block;background:#3d6b41;color:#fff;padding:10px 22px;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.88rem'>Antwort ansehen →</a>";
                 $_rhtml = kgv_email_html('Hallo ' . htmlspecialchars($rMemberName) . ',', $_rcontent, 'Antwort auf Ihre Anfrage');
                 $_rhdr  = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: KGV Musterstadt e.V. <{$_rfrom}>\r\nReturn-Path: {$_rfrom}\r\n";
                 @mail($rMemberEmail, '=?UTF-8?B?' . base64_encode($_rsubj) . '?=', $_rhtml, $_rhdr, "-f{$_rfrom}");
@@ -995,7 +997,7 @@ body { font-family: 'Poppins', sans-serif; background: var(--green-pale); color:
 <!-- ══ LOGIN PAGE ══════════════════════════════════════════════════════════════ -->
 <div class="login-wrap">
   <div class="login-card">
-    <div style="text-align:center;margin-bottom:8px"><img src="https://kgv461.de/images/logo.png" alt="KGV Musterstadt e.V." style="max-height:72px;width:auto"></div>
+    <div style="text-align:center;margin-bottom:8px"><img src="<?= site_url() ?>/images/logo.png" alt="KGV Musterstadt e.V." style="max-height:72px;width:auto"></div>
     <h1>Mitgliederbereich</h1>
     <p>Bitte melden Sie sich mit Ihrer E-Mail-Adresse und Ihrem Passwort an.</p>
     <div id="loginError" class="error-msg"></div>

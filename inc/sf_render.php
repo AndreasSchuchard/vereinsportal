@@ -1,5 +1,7 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__ . '/settings_loader.php';
+
 
 require_once __DIR__ . '/schriftfuehrung.php';
 
@@ -1431,7 +1433,7 @@ function sf_render_settings(string $csrf): void {
         $cronToken = bin2hex(random_bytes(16));
         sf_config_save(['cron_token' => $cronToken]);
     }
-    $cronUrl = 'https://kgv461.de/cron-sf-daily.php?t=' . urlencode($cronToken);
+    $cronUrl = site_url() . '/cron-sf-daily.php?t=' . urlencode($cronToken);
     ?>
     <div style="background:linear-gradient(135deg,#37474f,#263238);color:#fff;border-radius:14px;padding:22px 26px;margin-bottom:18px">
       <h3 style="margin:0 0 8px">⚙ Einstellungen Schriftführung-Cockpit</h3>

@@ -1,11 +1,13 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__ . '/../inc/settings_loader.php';
+
 
 /**
  * Member-API Security-Helper.
  * Muss VOR session_start() geladen werden.
  *  - Setzt sichere Session-Cookie-Flags
- *  - Origin-/Referer-Check gegen kgv461.de blockt klassische CSRF
+ *  - Origin-/Referer-Check gegen https://verein.example.org blockt klassische CSRF
  *  - CRLF-Sanitizer für Mail-Header-Felder
  */
 
@@ -23,7 +25,7 @@ ini_set('log_errors',              '1');
  */
 function memberapi_check_origin(): void {
     if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') return;
-    $allowed = ['https://kgv461.de', 'https://www.kgv461.de'];
+    $allowed = [site_url()];
     $origin  = (string)($_SERVER['HTTP_ORIGIN']  ?? '');
     $referer = (string)($_SERVER['HTTP_REFERER'] ?? '');
 

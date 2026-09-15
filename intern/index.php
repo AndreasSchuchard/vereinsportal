@@ -298,16 +298,16 @@ if ($loggedIn && $canSeeMembers && !empty($_POST['member_action'])) {
                     ],
                 ];
                 // Setup-Link für Welcome-Mail
-                $_setupLink = 'https://kgv461.de/mitglieder.php?reset_token=' . urlencode($setupToken);
+                $_setupLink = site_url() . '/mitglieder.php?reset_token=' . urlencode($setupToken);
                 $_from = 'kontakt@example.org';
                 $_subj = 'Ihr Mitgliederzugang KGV Musterstadt – Passwort einrichten';
-                $_text = "Liebe/r {$req['name']},\n\nIhr Zugang zum Mitgliederbereich des KGV Musterstadt e.V. wurde freigeschaltet. 🎉\n\nBitte klicken Sie auf den folgenden Link, um Ihr persönliches Passwort einzurichten (gültig 7 Tage):\n\n{$_setupLink}\n\nLogin nach Einrichtung: https://kgv461.de/mitglieder.php\nE-Mail: {$req['email']}\n\nMit freundlichen Grüßen\nKGV Musterstadt e.V.";
+                $_text = "Liebe/r {$req['name']},\n\nIhr Zugang zum Mitgliederbereich des KGV Musterstadt e.V. wurde freigeschaltet. 🎉\n\nBitte klicken Sie auf den folgenden Link, um Ihr persönliches Passwort einzurichten (gültig 7 Tage):\n\n{$_setupLink}\n\nLogin nach Einrichtung: " . site_url() . "/mitglieder.php\nE-Mail: {$req['email']}\n\nMit freundlichen Grüßen\nKGV Musterstadt e.V.";
                 $_activContent =
                     "<p style='color:#5a6c5a;line-height:1.7;margin-bottom:18px'>Dein Zugang zum Mitgliederbereich ist freigeschaltet! 🎉</p>"
                   . "<p style='color:#5a6c5a;line-height:1.7;margin-bottom:14px'>Bitte richte jetzt dein persönliches Passwort ein. Der Link ist <strong>7 Tage gültig</strong>:</p>"
                   . "<p style='margin:22px 0;text-align:center'><a href='" . htmlspecialchars($_setupLink) . "' style='display:inline-block;background:#3d6b41;color:#fff;text-decoration:none;padding:13px 28px;border-radius:8px;font-weight:700'>Passwort jetzt einrichten →</a></p>"
                   . "<table style='width:100%;border-collapse:collapse;margin-bottom:18px;font-size:0.9rem'>"
-                  . "<tr><td style='padding:6px 0;color:#5a6c5a'>Login (nach Einrichtung)</td><td style='padding:6px 0'><a href='https://kgv461.de/mitglieder.php' style='color:#3d6b41;font-weight:600'>Mitgliederbereich</a></td></tr>"
+                  . "<tr><td style='padding:6px 0;color:#5a6c5a'>Login (nach Einrichtung)</td><td style='padding:6px 0'><a href='" . site_url() . "/mitglieder.php' style='color:#3d6b41;font-weight:600'>Mitgliederbereich</a></td></tr>"
                   . "<tr><td style='padding:6px 0;color:#5a6c5a;border-top:1px solid #e8f0e0'>E-Mail</td><td style='padding:6px 0;border-top:1px solid #e8f0e0'>" . htmlspecialchars($req['email']) . "</td></tr>"
                   . "</table>"
                   . "<p style='font-size:0.83rem;color:#8a9a8a;line-height:1.6'>Falls der Link in deinem Mail-Programm nicht funktioniert, kopiere ihn bitte in die Adresszeile deines Browsers:<br><span style='font-family:monospace;word-break:break-all'>" . htmlspecialchars($_setupLink) . "</span></p>";
@@ -364,7 +364,7 @@ if ($loggedIn && $canSeeMembers && !empty($_POST['member_action'])) {
                 $mem['reset_token']         = $resetToken;
                 $mem['reset_token_expires'] = time() + 3600;
                 $mem['must_change_password'] = true;
-                $_resetLink = 'https://kgv461.de/mitglieder.php?reset_token=' . urlencode($resetToken);
+                $_resetLink = site_url() . '/mitglieder.php?reset_token=' . urlencode($resetToken);
                 $_from = 'kontakt@example.org';
                 $_subj = 'Passwort zurücksetzen – KGV Musterstadt Mitgliederbereich';
                 $_pwContent =
@@ -522,7 +522,7 @@ if ($loggedIn && $canSeeMembers && !empty($_POST['member_action'])) {
                     $_mn = htmlspecialchars($memberName);
                     $_subjectE = htmlspecialchars($threadSubj);
                     $_replyE   = nl2br(htmlspecialchars($replyBody));
-                    $_link = 'https://kgv461.de/mitglieder.php?tab=kontakt';
+                    $_link = site_url() . '/mitglieder.php?tab=kontakt';
 
                     $_sig_name_e = htmlspecialchars($_sig_name);
                     $_replyContent =
@@ -584,7 +584,7 @@ if ($loggedIn && $canSeeMembers && !empty($_POST['member_action'])) {
                             . "<div style='background:#e8f5e9;border-left:4px solid #3d6b41;border-radius:0 8px 8px 0;padding:14px 18px;margin-bottom:20px'>"
                             . "<div style='font-size:0.88rem;color:#1a3320;line-height:1.6;white-space:pre-wrap'>" . nl2br(htmlspecialchars($bmBody)) . "</div>"
                             . "</div>"
-                            . "<div style='text-align:center;margin:20px 0'><a href='https://kgv461.de/mitglieder.php?tab=kontakt' style='display:inline-block;background:#3d6b41;color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.88rem'>Im Mitgliederbereich ansehen →</a></div>";
+                            . "<div style='text-align:center;margin:20px 0'><a href='" . site_url() . "/mitglieder.php?tab=kontakt' style='display:inline-block;background:#3d6b41;color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.88rem'>Im Mitgliederbereich ansehen →</a></div>";
                         $_bmHtml = kgv_email_html('Hallo ' . htmlspecialchars($_bm['name']) . ' 👋,', $_bmContent, $bmSubject, $_bmsig['name'], $_bmsig['phone'], $_bmsig['email'], $_bmsig['rolle']);
                         $_hdr = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: KGV Musterstadt e.V. <{$_from}>\r\nReturn-Path: {$_from}\r\n";
                         @mail($_bm['email'], '=?UTF-8?B?' . base64_encode($bmSubject) . '?=', $_bmHtml, $_hdr, "-f{$_from}");
@@ -672,7 +672,7 @@ if ($loggedIn && $canSeeMembers && !empty($_POST['member_action'])) {
                     if ($hasConsent && filter_var($targetMem['email'], FILTER_VALIDATE_EMAIL)) {
                         $_from  = 'kontakt@example.org';
                         $_mn    = htmlspecialchars($targetMem['name']);
-                        $_link  = 'https://kgv461.de/mitglieder.php?tab=kontakt';
+                        $_link  = site_url() . '/mitglieder.php?tab=kontakt';
                         $_bodyE = nl2br(htmlspecialchars($nmBody));
                         $_nmContent =
                               "<p style='color:#5a6c5a;line-height:1.7;margin-bottom:16px'><strong>" . htmlspecialchars($_sig['name']) . "</strong> hat dir eine Nachricht geschickt.</p>"
@@ -1403,7 +1403,7 @@ textarea.modal-textarea:focus{border-color:#3d6b41}
 <?php if (!$loggedIn): ?>
 <div class="login-wrap">
   <div class="login-box">
-    <div class="login-logo"><img src="https://kgv461.de/images/logo.png" alt="KGV Musterstadt e.V." style="max-height:80px;width:auto"></div>
+    <div class="login-logo"><img src="<?= site_url() ?>/images/logo.png" alt="KGV Musterstadt e.V." style="max-height:80px;width:auto"></div>
     <h2>KGV Musterstadt Backoffice</h2>
     <p>Buchungsverwaltung · Muster-Kleingartenverein</p>
     <?php if (!empty($loginError)): ?>
@@ -3120,7 +3120,7 @@ textarea.modal-textarea:focus{border-color:#3d6b41}
     // Wenn gerade gespeichert UND zur Edit-Seite des frischen Events weitergeleitet
     if ($_evFlashSaved !== '' && $_editEvent && ($_editEvent['id'] ?? '') === $_evFlashSaved):
         $_savedHasFlyer = !empty($_editEvent['custom_flyer_file']) && !empty($_editEvent['use_custom_flyer']);
-        $_savedQrUrl    = 'https://kgv461.de/event/' . rawurlencode($_editEvent['slug'] ?? '');
+        $_savedQrUrl    = site_url() . '/event/' . rawurlencode($_editEvent['slug'] ?? '');
     ?>
     <?php if (!$_savedHasFlyer): ?>
     <!-- Onboarding-Wizard: nach dem Anlegen prominente Anleitung zum Flyer-Workflow -->
@@ -3232,7 +3232,7 @@ textarea.modal-textarea:focus{border-color:#3d6b41}
                 $_dt = DateTimeImmutable::createFromFormat('Y-m-d', $_ev['event_date']);
                 $_evdate = $_dt ? $_dt->format('d.m.Y') : (string)$_ev['event_date'];
             }
-            $_url = 'https://kgv461.de/event/' . htmlspecialchars($_ev['slug'] ?? '');
+            $_url = site_url() . '/event/' . htmlspecialchars($_ev['slug'] ?? '');
           ?>
           <tr style="border-top:1px solid #e8f0e0">
             <td style="padding:12px">
@@ -3430,14 +3430,14 @@ textarea.modal-textarea:focus{border-color:#3d6b41}
           <a href="?tab=events" style="background:#f0f4ee;color:#3d6b41;padding:11px 22px;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.92rem">Abbrechen</a>
           <?php if ($_editEvent): ?>
             <span style="margin-left:auto"></span>
-            <a href="https://kgv461.de/event/<?= htmlspecialchars($_ed['slug']) ?>" target="_blank" style="background:#e3f2fd;color:#1565c0;padding:8px 16px;border-radius:6px;text-decoration:none;font-size:0.82rem;font-weight:600">🔗 Anmeldeseite öffnen</a>
+            <a href="<?= site_url() ?>/event/<?= htmlspecialchars($_ed['slug']) ?>" target="_blank" style="background:#e3f2fd;color:#1565c0;padding:8px 16px;border-radius:6px;text-decoration:none;font-size:0.82rem;font-weight:600">🔗 Anmeldeseite öffnen</a>
           <?php endif; ?>
         </div>
       </form>
     </div>
 
     <?php if ($_editEvent): ?>
-      <?php $_qrUrl = 'https://kgv461.de/event/' . rawurlencode($_ed['slug']); ?>
+      <?php $_qrUrl = site_url() . '/event/' . rawurlencode($_ed['slug']); ?>
 
       <!-- QR-Code + PDF-Aushang -->
       <div style="background:#fff;border-radius:12px;border:1px solid #d4e6c3;padding:22px 24px;margin-bottom:18px">

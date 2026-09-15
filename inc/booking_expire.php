@@ -1,11 +1,13 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__ . '/settings_loader.php';
+
 
 /**
  * 24h Auto-Expire für Pending-Buchungsanfragen.
  *
  * Wird beim Öffnen von /intern/ lazy aufgerufen (siehe intern/index.php).
- * Später optional via Strato-Cronjob `https://kgv461.de/cron-expire-bookings.php` ergänzbar.
+ * Später optional via Strato-Cronjob `https://verein.example.org/cron-expire-bookings.php` ergänzbar.
  *
  * Logik:
  * - Pending-Anfragen, deren created_at > 24h zurückliegt, werden auf status='expired' gesetzt.
@@ -125,7 +127,7 @@ function kgv_send_booking_expire_mail(array $b): bool {
         . "deine Anfrage für das KGV-461-Vereinshaus" . ($dateStr !== '' ? " am {$dateStr}" : '') . " ist leider innerhalb der 24-Stunden-Frist nicht beantwortet worden.\n\n"
         . "Die Reservierung wurde automatisch freigegeben — der Termin ist im Kalender wieder buchbar.\n\n"
         . "Falls dein Termin noch aktuell ist, melde dich gerne erneut:\n"
-        . "https://kgv461.de/vereinshaus\n\n"
+        . site_url() . "/vereinshaus\n\n"
         . "Wir kümmern uns dann schneller. Sorry für die Wartezeit.\n\n"
         . "Freundliche Grüße\n{$sigName}\n{$sigRole} · KGV Musterstadt e.V.";
 
@@ -136,7 +138,7 @@ function kgv_send_booking_expire_mail(array $b): bool {
         . "<p>Die Reservierung wurde automatisch freigegeben — der Termin ist im Kalender wieder buchbar.</p>"
         . "<div style='background:#fff8e1;border-left:4px solid #f9a825;border-radius:8px;padding:14px 18px;margin:18px 0'>"
         .   "<p style='margin:0;font-size:0.92rem;line-height:1.6;color:#5a6c5a'>Falls dein Termin noch aktuell ist, melde dich gerne erneut:</p>"
-        .   "<p style='margin:8px 0 0'><a href='https://kgv461.de/vereinshaus' style='display:inline-block;background:#3d6b41;color:#fff;padding:10px 18px;border-radius:6px;text-decoration:none;font-weight:600'>→ Neue Anfrage stellen</a></p>"
+        .   "<p style='margin:8px 0 0'><a href='" . site_url() . "/vereinshaus' style='display:inline-block;background:#3d6b41;color:#fff;padding:10px 18px;border-radius:6px;text-decoration:none;font-weight:600'>→ Neue Anfrage stellen</a></p>"
         . "</div>"
         . "<p>Wir kümmern uns dann schneller. Sorry für die Wartezeit.</p>";
 

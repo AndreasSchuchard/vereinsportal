@@ -1,12 +1,13 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__ . '/settings_loader.php';
+
 /**
  * Simple settings loader.
  * - Loads `data/settings.json` if present
  * - Allows overriding sensitive values via environment variables
  *
- * Usage: require_once __DIR__ . '/settings_loader.php';
- *        $_settings = load_settings();
+ * Usage: *        $_settings = load_settings();
  */
 function load_settings(): array {
     // Load local `.env` into environment for convenience (no external dependency)

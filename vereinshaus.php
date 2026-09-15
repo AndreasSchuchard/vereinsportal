@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/inc/settings_loader.php';
+
 $_cf = __DIR__ . '/data/content.json';
 $_c  = file_exists($_cf) ? (json_decode(file_get_contents($_cf), true) ?: []) : [];
 $_vh            = $_c['vereinshaus']   ?? ['description' => '', 'main_image' => '', 'gallery' => []];
@@ -37,16 +39,16 @@ $_hasPhoto = !empty($_vh['main_image']);
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vereinshaus mieten Musterstadt | Gartengemeinschaft Musterstadt</title>
 <meta name="description" content="Vereinshaus des KGV Musterstadt e.V. in Musterstadt mieten. Platz für bis zu 50 Personen, voll ausgestattete Küche, Terrasse. Jetzt Verfügbarkeit prüfen & anfragen.">
-<link rel="canonical" href="https://kgv461.de/vereinshaus" />
+<link rel="canonical" href="<?= site_url() ?>/vereinshaus" />
 <link rel="icon" type="image/png" href="logo_kgv461.png">
 <meta name="theme-color" content="#3d6b41">
 <link rel="manifest" href="/manifest.json">
 <link rel="apple-touch-icon" href="/icon-180.png">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://kgv461.de/vereinshaus">
+<meta property="og:url" content="<?= site_url() ?>/vereinshaus">
 <meta property="og:title" content="Vereinshaus mieten – KGV Musterstadt e.V. Musterstadt">
 <meta property="og:description" content="Vereinshaus in Musterstadt mieten. Bis zu 50 Personen, Küche, Terrasse, Parkplätze. Ab <?php echo (int)$_mieteMember; ?> € für Mitglieder.">
-<meta property="og:image" content="https://kgv461.de/front.jpg">
+<meta property="og:image" content="<?= site_url() ?>/front.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <script type="application/ld+json">
@@ -55,7 +57,7 @@ $_hasPhoto = !empty($_vh['main_image']);
   "@type": "EventVenue",
   "name": "Vereinshaus KGV Musterstadt e.V.",
   "description": "Vereinshaus und Veranstaltungssaal in Musterstadt. Geeignet für Geburtstage, Feiern, Vereinstreffen und private Veranstaltungen. Bis zu 50 Personen, voll ausgestattete Küche, Terrasse und Parkplätze.",
-  "url": "https://kgv461.de/vereinshaus",
+  "url": "<?= site_url() ?>/vereinshaus",
   "telephone": "+49-163-5140490",
   "email": "vorstand@example.org",
   "address": {
@@ -71,7 +73,7 @@ $_hasPhoto = !empty($_vh['main_image']);
     "latitude": 53.6580,
     "longitude": 10.0140
   },
-  "image": "https://kgv461.de/front.jpg",
+  "image": "<?= site_url() ?>/front.jpg",
   "maximumAttendeeCapacity": 50,
   "amenityFeature": [
     {"@type": "LocationFeatureSpecification", "name": "Küche", "value": true},
@@ -87,7 +89,7 @@ $_hasPhoto = !empty($_vh['main_image']);
     "opens": "08:00",
     "closes": "23:00"
   },
-  "sameAs": "https://kgv461.de"
+  "sameAs": "<?= site_url() ?>"
 }
 </script>
 <link rel="stylesheet" href="/assets/fonts/fonts.css">

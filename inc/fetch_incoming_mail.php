@@ -1,5 +1,7 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__ . '/settings_loader.php';
+
 
 /**
  * Fetches incoming replies from the KGV mailbox via IMAP and saves them
@@ -17,7 +19,6 @@ function fetch_incoming_contact_replies(string $contactsFile): array
     }
 
     // ── IMAP credentials: prefer environment variables, fallback to data/settings.json
-    require_once __DIR__ . '/settings_loader.php';
     $_settings     = load_settings();
     $imapHostName  = (string)($_settings['imap_host'] ?? 'imap.strato.de');
     $imapPort      = (int)($_settings['imap_port'] ?? 993);

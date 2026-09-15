@@ -1,5 +1,7 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__ . '/../inc/settings_loader.php';
+
 require_once __DIR__ . '/_security.php';
 
 /**
@@ -69,19 +71,19 @@ if ($memberId === '' || $token === '') {
 <body>
 <div class="card">
   <div class="header">
-    <img src="https://kgv461.de/images/logo.png" alt="KGV Musterstadt e.V.">
+    <img src="<?= site_url() ?>/images/logo.png" alt="KGV Musterstadt e.V.">
   </div>
   <div class="body">
     <?php if ($success !== ''): ?>
       <div class="icon">✅</div>
       <h2>Abmeldung erfolgreich</h2>
       <p><?= htmlspecialchars($success) ?><br>Sie können sich jederzeit im Mitglieder-Bereich wieder anmelden.</p>
-      <a href="https://kgv461.de/mitglieder.php" class="btn">Zum Mitglieder-Bereich</a>
+      <a href="<?= site_url() ?>/mitglieder.php" class="btn">Zum Mitglieder-Bereich</a>
     <?php else: ?>
       <div class="icon">⚠️</div>
       <h2 class="error">Fehler</h2>
       <p class="error"><?= htmlspecialchars($error) ?></p>
-      <a href="https://kgv461.de/mitglieder.php" class="btn">Zur Startseite</a>
+      <a href="<?= site_url() ?>/mitglieder.php" class="btn">Zur Startseite</a>
     <?php endif; ?>
   </div>
 </div>

@@ -1,10 +1,11 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__ . '/inc/settings_loader.php';
+
 session_start();
 
 // ── Passwort-Konfiguration ───────────────────────────────────────────────────
 // Prefer environment variable `ANLEITUNG_PASSWORD`; fall back to data/settings.json
-require_once __DIR__ . '/inc/settings_loader.php';
 $_sf = load_settings();
 $_anlPass = (string)($_sf['anleitung_password'] ?? '');
 
@@ -294,9 +295,9 @@ ul li{margin-bottom:3px}
     <div class="box-icon">🔗</div>
     <div class="box-text">
       <strong>Die wichtigsten Adressen:</strong>
-      <span class="url">kgv461.de/mitglieder.php</span> → Euer persönlicher Login (Mitgliederbereich + Admin)<br>
-      <span class="url">kgv461.de/intern/</span> → Direktzugang Backoffice (Notfall-Passwort)<br>
-      <span class="url">kgv461.de/intern/content.php</span> → Website-Editor
+      <span class="url">https://verein.example.org/mitglieder.php</span> → Euer persönlicher Login (Mitgliederbereich + Admin)<br>
+      <span class="url">https://verein.example.org/intern/</span> → Direktzugang Backoffice (Notfall-Passwort)<br>
+      <span class="url">https://verein.example.org/intern/content.php</span> → Website-Editor
     </div>
   </div>
 </div>
@@ -315,11 +316,11 @@ ul li{margin-bottom:3px}
   <div class="cols">
     <div class="mock-card">
       <div class="mock-card-title">👤 Als Vorstandsmitglied (empfohlen)</div>
-      <p style="margin:0;font-size:0.85rem;color:var(--gray)">Über <span class="url">kgv461.de/mitglieder.php</span> mit eurem persönlichen Passwort einloggen. Ihr seht dann „Mein Bereich", „Backoffice" und „Website" je nach eurer Rolle.</p>
+      <p style="margin:0;font-size:0.85rem;color:var(--gray)">Über <span class="url">https://verein.example.org/mitglieder.php</span> mit eurem persönlichen Passwort einloggen. Ihr seht dann „Mein Bereich", „Backoffice" und „Website" je nach eurer Rolle.</p>
     </div>
     <div class="mock-card">
       <div class="mock-card-title">🔑 SuperAdmin (Notfall)</div>
-      <p style="margin:0;font-size:0.85rem;color:var(--gray)">Über <span class="url">kgv461.de/intern/</span> mit dem Notfall-Passwort. Hat Zugriff auf alles, aber kein persönliches Profil.</p>
+      <p style="margin:0;font-size:0.85rem;color:var(--gray)">Über <span class="url">https://verein.example.org/intern/</span> mit dem Notfall-Passwort. Hat Zugriff auf alles, aber kein persönliches Profil.</p>
     </div>
   </div>
 
@@ -356,7 +357,7 @@ ul li{margin-bottom:3px}
     <div class="box-icon">💡</div>
     <div class="box-text">
       <strong>Lesezeichen anlegen</strong>
-      Speichert <code>kgv461.de/mitglieder.php</code> als Lesezeichen — von dort kommt ihr per Klick überall hin.
+      Speichert <code>https://verein.example.org/mitglieder.php</code> als Lesezeichen — von dort kommt ihr per Klick überall hin.
     </div>
   </div>
 
@@ -617,7 +618,7 @@ ul li{margin-bottom:3px}
     </div>
   </div>
 
-  <p>Der Tab „👥 Mitglieder" im Backoffice zeigt alle registrierten Mitglieder. Mitglieder registrieren sich selbst auf <span class="url">kgv461.de/mitglieder.php</span> — ihr genehmigt die Anfrage mit einem Klick.</p>
+  <p>Der Tab „👥 Mitglieder" im Backoffice zeigt alle registrierten Mitglieder. Mitglieder registrieren sich selbst auf <span class="url"><?= site_url() ?>/mitglieder.php</span> — ihr genehmigt die Anfrage mit einem Klick.</p>
 
   <h3>Registrierungsanfragen genehmigen</h3>
   <div class="steps">
@@ -1085,7 +1086,7 @@ ul li{margin-bottom:3px}
   </div>
 
   <h3>Navigation &amp; Zugang</h3>
-  <div class="mock-card"><div class="mock-card-title">Wo logge ich mich am besten ein?</div><p style="margin:0;font-size:0.85rem;color:var(--gray)">Über <span class="url">kgv461.de/mitglieder.php</span> mit eurem persönlichen Passwort. Von dort kommt ihr per Klick in alle Bereiche.</p></div>
+  <div class="mock-card"><div class="mock-card-title">Wo logge ich mich am besten ein?</div><p style="margin:0;font-size:0.85rem;color:var(--gray)">Über <span class="url">https://verein.example.org/mitglieder.php</span> mit eurem persönlichen Passwort. Von dort kommt ihr per Klick in alle Bereiche.</p></div>
   <div class="mock-card"><div class="mock-card-title">Ich sehe „Backoffice" nicht in der Navigation — warum?</div><p style="margin:0;font-size:0.85rem;color:var(--gray)">Eure Rolle hat keinen Admin-Zugang. Wendet euch an den SuperAdmin oder ein Vorstandsmitglied um die Rolle anzupassen (🎭-Button).</p></div>
   <div class="mock-card"><div class="mock-card-title">Ich werde immer ausgeloggt — was tun?</div><p style="margin:0;font-size:0.85rem;color:var(--gray)">Die Session läuft nach 60 Minuten ohne Aktivität ab. Einfach neu einloggen — alle Daten bleiben erhalten.</p></div>
 

@@ -1,11 +1,13 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__ . '/inc/settings_loader.php';
+
 /**
  * Cron-Endpoint für das Daily-Briefing der Schriftführerin.
  * Wird via Strato-Cronjob täglich morgens aufgerufen.
  * Token-geschützt (sf_config()['cron_token']).
  *
- * URL: https://kgv461.de/cron-sf-daily.php?t=<TOKEN>
+ * URL: https://verein.example.org/cron-sf-daily.php?t=<TOKEN>
  */
 ini_set('display_errors', '0');
 ini_set('log_errors',     '1');

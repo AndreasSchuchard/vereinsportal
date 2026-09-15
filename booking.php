@@ -1,5 +1,7 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__ . '/inc/settings_loader.php';
+
 require_once __DIR__ . '/inc/session.php';
 kgv_start_existing_session();
 header('Content-Type: application/json; charset=UTF-8');
@@ -260,7 +262,7 @@ $adminText = "Neue Buchungsanfrage eingegangen!\n\n"
            . ($purpose !== '' ? "Anlass: {$purpose}\n" : '')
            . ($guests > 0  ? "Personen: {$guests}\n" : '')
            . "\nBooking-ID: {$id}\n\n"
-           . "Backoffice: https://kgv461.de/intern/";
+           . "Backoffice: " . site_url() . "/intern/";
 
 $adminHtml = "<!DOCTYPE html><html><body style='background:#f5f7f2;font-family:Arial,sans-serif;padding:20px;'>"
            . "<div style='max-width:560px;margin:0 auto;background:#fff;border-radius:12px;border:1px solid #d4e6c3;overflow:hidden;'>"
@@ -277,7 +279,7 @@ $adminHtml = "<!DOCTYPE html><html><body style='background:#f5f7f2;font-family:A
            . ($guests > 0  ? "<tr><td style='padding:8px 0;color:#5a6c5a;border-top:1px solid #e8f0e0;'>Personen</td><td style='padding:8px 0;color:#2d3e2d;border-top:1px solid #e8f0e0;'>{$guests}</td></tr>" : '')
            . "</table>"
            . "<div style='margin-top:24px;text-align:center;'>"
-           . "<a href='https://kgv461.de/intern/' style='display:inline-block;background:#3d6b41;color:#fff;padding:12px 28px;border-radius:50px;text-decoration:none;font-weight:600;'>Zum Backoffice</a>"
+           . "<a href='" . site_url() . "/intern/' style='display:inline-block;background:#3d6b41;color:#fff;padding:12px 28px;border-radius:50px;text-decoration:none;font-weight:600;'>Zum Backoffice</a>"
            . "</div>"
            . "</div></div></body></html>";
 

@@ -588,7 +588,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 $firstName  = explode(' ', trim((string)($nm['name'] ?? 'Mitglied')))[0];
                 $unsubToken = (string)($nm['notify_token'] ?? '');
-                $unsubUrl   = 'https://kgv461.de/member-api/unsubscribe.php'
+                $unsubUrl   = site_url() . '/member-api/unsubscribe.php'
                             . '?id='    . urlencode((string)($nm['id'] ?? ''))
                             . '&token=' . urlencode($unsubToken)
                             . '&type=posts';
@@ -608,7 +608,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if ($hasFile) {
                     $content2 .= "<p style='font-size:0.82rem;color:#5a6c5a;margin:0 0 16px'>📎 Anhang verfügbar</p>";
                 }
-                $content2 .= "<a href='https://kgv461.de/mitglieder.php?tab=pinnwand' "
+                $content2 .= "<a href='" . site_url() . "/mitglieder.php?tab=pinnwand' "
                            . "style='display:inline-block;background:#3d6b41;color:#fff;"
                            . "padding:11px 26px;border-radius:8px;text-decoration:none;"
                            . "font-weight:600;font-size:0.88rem'>Zur Pinnwand →</a>";
@@ -625,7 +625,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                        . "Es gibt eine neue Mitteilung im Mitglieder-Bereich.\r\n\r\n"
                        . "Typ: {$typeLabel2}\r\nTitel: {$newPost['title']}\r\n\r\n"
                        . ($bodyPreview !== '' ? $bodyPreview . "\r\n\r\n" : '')
-                       . "Zur Pinnwand: https://kgv461.de/mitglieder.php?tab=pinnwand\r\n\r\n"
+                       . "Zur Pinnwand: " . site_url() . "/mitglieder.php?tab=pinnwand\r\n\r\n"
                        . "---\r\nViele Grüße\r\n{$sig['name']}, {$sig['rolle']} · KGV Musterstadt e.V.\r\n\r\n"
                        . "Abmelden: {$unsubUrl}";
 

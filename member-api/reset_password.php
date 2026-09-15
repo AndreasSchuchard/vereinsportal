@@ -1,5 +1,7 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__ . '/../inc/settings_loader.php';
+
 require_once __DIR__ . '/_security.php';
 session_start();
 require_once dirname(__DIR__) . '/inc/email_template.php';
@@ -69,7 +71,7 @@ if ($action === 'request') {
     if ($found !== null) {
         file_put_contents($membersFile, json_encode($members, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE), LOCK_EX);
 
-        $resetLink = 'https://kgv461.de/mitglieder.php?reset_token=' . urlencode($token);
+        $resetLink = site_url() . '/mitglieder.php?reset_token=' . urlencode($token);
         $mn = htmlspecialchars($found['name']);
         $_resetContent =
               "<p style='color:#5a6c5a;line-height:1.7;margin-bottom:16px'>Du hast eine Anfrage zum Zurücksetzen deines Passworts gestellt. Klick auf den Button, um ein neues festzulegen:</p>"

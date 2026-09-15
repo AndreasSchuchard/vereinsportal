@@ -1,5 +1,7 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__ . '/../inc/settings_loader.php';
+
 session_start();
 
 $_isSuperAdmin  = !empty($_SESSION['kgv_admin']);
@@ -240,7 +242,7 @@ if ($action === 'add_todo') {
                         . "─────────────────────\n"
                         . $text . "\n"
                         . "─────────────────────\n\n"
-                        . "Direktlink: https://kgv461.de/intern/?tab=todos\n";
+                        . "Direktlink: " . site_url() . "/intern/?tab=todos\n";
         $_notifyHtml    = kgv_email_html(
             'Hallo Andreas 👋,',
               "<p style='color:#5a6c5a;line-height:1.7;margin-bottom:14px'>im Backoffice wurde ein neues Todo erstellt:</p>"
@@ -251,7 +253,7 @@ if ($action === 'add_todo') {
             . "<div style='background:#f5f7f2;border-left:4px solid #3d6b41;border-radius:6px;padding:14px 18px;margin-bottom:18px;color:#2d3e2d;line-height:1.6;white-space:pre-wrap'>"
             . htmlspecialchars($text)
             . "</div>"
-            . "<p style='margin-bottom:8px'><a href='https://kgv461.de/intern/?tab=todos' style='display:inline-block;background:#3d6b41;color:#fff;text-decoration:none;padding:10px 18px;border-radius:6px;font-weight:600'>→ Zum Backoffice</a></p>",
+            . "<p style='margin-bottom:8px'><a href='" . site_url() . "/intern/?tab=todos' style='display:inline-block;background:#3d6b41;color:#fff;text-decoration:none;padding:10px 18px;border-radius:6px;font-weight:600'>→ Zum Backoffice</a></p>",
             'Neues Todo – KGV Musterstadt',
             'KGV Musterstadt e.V.', '', 'kontakt@example.org', 'Webmaster-Notification'
         );

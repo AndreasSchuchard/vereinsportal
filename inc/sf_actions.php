@@ -1,5 +1,7 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__ . '/settings_loader.php';
+
 
 require_once __DIR__ . '/schriftfuehrung.php';
 
@@ -863,7 +865,7 @@ function sf_action_newsletter(): void {
     if ($banner !== '') {
         foreach (sf_load_json(SF_CANVA) as $cf) {
             if (($cf['id'] ?? '') === $banner) {
-                $bannerHtml = "<div style='margin:-28px -32px 22px;border-radius:12px 12px 0 0;overflow:hidden'><img src='https://kgv461.de/intern/sf-canva-file.php?id=" . urlencode($banner) . "' alt='' style='display:block;width:100%;max-height:240px;object-fit:cover'></div>";
+                $bannerHtml = "<div style='margin:-28px -32px 22px;border-radius:12px 12px 0 0;overflow:hidden'><img src='" . site_url() . "/intern/sf-canva-file.php?id=" . urlencode($banner) . "' alt='' style='display:block;width:100%;max-height:240px;object-fit:cover'></div>";
                 break;
             }
         }
@@ -1221,7 +1223,7 @@ function sf_mail_application_decision(array $a): bool {
           . "Status: {$stLabel}\n\n"
           . ($decNote !== '' ? $decNote . "\n\n" : '')
           . "Den vollständigen Stand und alle Dokumente findest du im Mitgliederbereich unter „Meine Anträge\":\n"
-          . "https://kgv461.de/mitglieder.php?tab=meine-antraege\n\n"
+          . site_url() . "/mitglieder.php?tab=meine-antraege\n\n"
           . "Viele Grüße\nDein Vorstand · KGV Musterstadt e.V.";
 
     $html = kgv_email_html(
@@ -1230,7 +1232,7 @@ function sf_mail_application_decision(array $a): bool {
         . "<p style='margin:10px 0'><span style='display:inline-block;background:" . ($statuses[$st][0] ?? '#5a6c5a') . ";color:#fff;padding:4px 12px;border-radius:14px;font-size:0.82rem;font-weight:700'>" . htmlspecialchars($stLabel) . "</span></p>"
         . ($decNote !== '' ? "<div style='background:#f5f7f2;border-left:4px solid #3d6b41;border-radius:8px;padding:14px 18px;margin:14px 0;white-space:pre-wrap;line-height:1.6'>" . htmlspecialchars($decNote) . "</div>" : '')
         . "<p>Den vollständigen Stand und alle Dokumente findest du im Mitgliederbereich unter „Meine Anträge\".</p>"
-        . "<p style='text-align:center;margin-top:18px'><a href='https://kgv461.de/mitglieder.php?tab=meine-antraege' style='display:inline-block;background:#3d6b41;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:700'>→ Zu meinen Anträgen</a></p>",
+        . "<p style='text-align:center;margin-top:18px'><a href='" . site_url() . "/mitglieder.php?tab=meine-antraege' style='display:inline-block;background:#3d6b41;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:700'>→ Zu meinen Anträgen</a></p>",
         'Antwort zu deinem Antrag',
         (string)($settings['kontakt_name'] ?? 'Der Vorstand'),
         (string)($settings['telefon'] ?? ''),

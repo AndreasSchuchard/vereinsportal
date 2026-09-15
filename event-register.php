@@ -1,5 +1,7 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__ . '/inc/settings_loader.php';
+
 ini_set('display_errors', '0');
 ini_set('log_errors',     '1');
 require_once __DIR__ . '/inc/events.php';
@@ -30,7 +32,7 @@ function _send_mail(string $to, string $subject, string $text, string $html, str
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') { http_response_code(405); exit('Method Not Allowed'); }
 
 // Origin/Referer-Check (analog Member-API)
-$allowedOrigins = ['https://kgv461.de', 'https://www.kgv461.de'];
+$allowedOrigins = [site_url()];
 $origin  = (string)($_SERVER['HTTP_ORIGIN']  ?? '');
 $referer = (string)($_SERVER['HTTP_REFERER'] ?? '');
 if ($origin !== '' && !in_array($origin, $allowedOrigins, true)) { http_response_code(403); exit('Forbidden'); }
@@ -104,7 +106,7 @@ if (!kgv_events_save($all)) { http_response_code(500); exit('Storage write error
 // ── Bestätigungs-Mail an Anmelder ─────────────────────────────────────────
 $fromEmail = 'kontakt@example.org';
 $fromName  = 'KGV Musterstadt e.V.';
-$cancelUrl = 'https://kgv461.de/event-cancel.php?id=' . urlencode($registration['id']) . '&t=' . urlencode($cancelToken);
+$cancelUrl = site_url() . '/event-cancel.php?id=' . urlencode($registration['id']) . '&t=' . urlencode($cancelToken);
 
 $catRow = (!empty($event['show_catering']) && $catering !== '')
     ? "<tr><td style='padding:10px;border-bottom:1px solid #e0e0e0;font-weight:bold;width:40%'>Buffet-Beitrag:</td>"
@@ -174,7 +176,7 @@ $adminTxt  = "Neue Anmeldung für '{$_evTitle}'\n\n"
            . "Name: {$fullname}\nE-Mail: {$email}\nTelefon: {$phone}\nPersonen: {$guests}\n"
            . ((!empty($event['show_catering']) && $catering !== '') ? "Buffet-Beitrag: {$catering}\n" : '')
            . "\nQuelle: {$source}\nAnmelde-Zeit: " . $registration['submitted_at'] . "\n\n"
-           . "Backoffice-Link: https://kgv461.de/intern/?tab=events&id=" . urlencode($event['id'] ?? '');
+           . "Backoffice-Link: " . site_url() . "/intern/?tab=events&id=" . urlencode($event['id'] ?? '');
 $adminHtml = "<p style='color:#5a6c5a;line-height:1.7'>Neue Anmeldung für <strong>" . htmlspecialchars($_evTitle) . "</strong>:</p>"
            . "<table style='border-collapse:collapse;font-size:0.92rem'>"
            .   "<tr><td style='padding:5px 14px 5px 0;color:#5a6c5a'>Name</td><td><strong>" . htmlspecialchars($fullname) . "</strong></td></tr>"
@@ -184,7 +186,7 @@ $adminHtml = "<p style='color:#5a6c5a;line-height:1.7'>Neue Anmeldung für <stro
            . ((!empty($event['show_catering']) && $catering !== '') ? "<tr><td style='padding:5px 14px 5px 0;color:#5a6c5a'>Buffet</td><td>" . htmlspecialchars($catering) . "</td></tr>" : '')
            .   "<tr><td style='padding:5px 14px 5px 0;color:#5a6c5a'>Quelle</td><td>" . htmlspecialchars($source) . "</td></tr>"
            . "</table>"
-           . "<p style='margin-top:18px'><a href='https://kgv461.de/intern/?tab=events&id=" . urlencode($event['id'] ?? '') . "' style='display:inline-block;background:#3d6b41;color:#fff;padding:10px 18px;border-radius:6px;text-decoration:none;font-weight:600'>→ Im Backoffice ansehen</a></p>";
+           . "<p style='margin-top:18px'><a href='" . site_url() . "/intern/?tab=events&id=" . urlencode($event['id'] ?? '') . "' style='display:inline-block;background:#3d6b41;color:#fff;padding:10px 18px;border-radius:6px;text-decoration:none;font-weight:600'>→ Im Backoffice ansehen</a></p>";
 
 $adminHtmlWrap = kgv_email_html('Hallo Vorstand 👋,', $adminHtml, 'Neue Veranstaltungs-Anmeldung',
     $sigName, $sigPhone, $sigEmail, $sigRole);

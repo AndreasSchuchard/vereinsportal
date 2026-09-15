@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/inc/settings_loader.php';
+
 require_once __DIR__ . '/inc/session.php';
 kgv_start_existing_session();
 require_once __DIR__ . '/inc/privacy_cleanup.php';
@@ -8,7 +10,6 @@ try {
     error_log('[privacy-cleanup] ' . $e->getMessage());
 }
 // ── Wartungsmodus ─────────────────────────────────────────────────────────
-require_once __DIR__ . '/inc/settings_loader.php';
 $_sm = load_settings();
 $_elevatedRoles = ['vorstand','buchung','schriftfuehrer','web'];
 $_memberBypasses = !empty($_SESSION['kgv_member']['roles']) && array_intersect($_SESSION['kgv_member']['roles'], $_elevatedRoles);

@@ -1,5 +1,7 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__ . '/../inc/settings_loader.php';
+
 ini_set('display_errors', '0');
 ini_set('log_errors',     '1');
 session_start();
@@ -43,7 +45,7 @@ if (!$forceStandard && !empty($event['use_custom_flyer']) && !empty($event['cust
     }
 }
 
-$url = 'https://kgv461.de/event/' . rawurlencode($event['slug'] ?? '');
+$url = site_url() . '/event/' . rawurlencode($event['slug'] ?? '');
 $qrPng = kgv_qr_png($url, 900);
 $qrTmp = tempnam(sys_get_temp_dir(), 'kgv_qr_') . '.png';
 file_put_contents($qrTmp, $qrPng);
@@ -166,7 +168,7 @@ $pdf->Line(20, $pdf->GetY(), 190, $pdf->GetY());
 $pdf->Ln(2);
 $pdf->SetFont('Helvetica', 'I', 7.5);
 $pdf->SetTextColor(150, 150, 150);
-$pdf->Cell(0, 4, $e('KGV Musterstadt e.V. · www.kgv461.de · Druck-Aushang ' . date('d.m.Y')), 0, 1, 'C');
+$pdf->Cell(0, 4, $e('KGV Musterstadt e.V. · www.' . site_url() . ' · Druck-Aushang ' . date('d.m.Y')), 0, 1, 'C');
 
 @unlink($qrTmp);
 

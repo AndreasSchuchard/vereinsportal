@@ -1,5 +1,7 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__ . '/settings_loader.php';
+
 
 /**
  * Schriftführerin-Cockpit für KGV Musterstadt
@@ -1008,12 +1010,12 @@ function sf_daily_briefing_render_html(array $b): string {
     if (!empty($b['new_apps'])) {
         $h .= "<div style='background:#e3f2fd;border-left:4px solid #1565c0;padding:14px;margin:14px 0;border-radius:6px'>";
         $h .= "<strong style='color:#0d47a1'>📥 Neue Anträge (" . count($b['new_apps']) . ")</strong>";
-        $h .= "<p style='margin:4px 0 0;font-size:0.88rem'><a href='https://kgv461.de/intern/?tab=schriftfuehrung&sub=applications'>→ Im Cockpit ansehen</a></p></div>";
+        $h .= "<p style='margin:4px 0 0;font-size:0.88rem'><a href='" . site_url() . "/intern/?tab=schriftfuehrung&sub=applications'>→ Im Cockpit ansehen</a></p></div>";
     }
     if (!empty($b['new_contacts'])) {
         $h .= "<div style='background:#e8eaf6;border-left:4px solid #3f51b5;padding:14px;margin:14px 0;border-radius:6px'>";
         $h .= "<strong style='color:#283593'>📨 Unbearbeitete Kontaktanfragen (" . count($b['new_contacts']) . ")</strong>";
-        $h .= "<p style='margin:4px 0 0;font-size:0.88rem'><a href='https://kgv461.de/intern/?tab=contacts'>→ Im Backoffice ansehen</a></p></div>";
+        $h .= "<p style='margin:4px 0 0;font-size:0.88rem'><a href='" . site_url() . "/intern/?tab=contacts'>→ Im Backoffice ansehen</a></p></div>";
     }
 
     if (empty($b['bdays_today']) && empty($b['bdays_week']) && empty($b['annivs'])

@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 require_once __DIR__ . '/inc/settings_loader.php';
+
 $s = load_settings();
 echo "SMOKE_TEST: settings loaded\n";
 echo "IMAP_HOST=" . ($s['imap_host'] ?? '') . "\n";

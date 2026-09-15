@@ -1,5 +1,7 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__ . '/settings_loader.php';
+
 
 /**
  * Buchungs-Kontakt: für ALLE Vereinshaus-Buchungsmails (Inquiry, Confirm,
@@ -145,7 +147,7 @@ function kgv_email_html(
       // ── Header ──────────────────────────────────────────────────────────
       . "<div style='background:#3d6b41;border-radius:12px 12px 0 0;padding:18px 26px;"
       .              "display:flex;align-items:center;gap:16px'>"
-      . "<img src='https://kgv461.de/images/logo.png' alt='KGV Musterstadt e.V.' height='42'"
+      . "<img src='" . site_url() . "/images/logo.png' alt='KGV Musterstadt e.V.' height='42'"
       .      " style='display:block;max-height:42px;flex-shrink:0'>"
       . "<span style='color:#b8d9ba;font-size:0.82rem;line-height:1.4'>" . htmlspecialchars($subtitle) . "</span>"
       . "</div>"

@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/inc/settings_loader.php';
+
 $contentFile = __DIR__ . '/data/content.json';
 $c = file_exists($contentFile) ? (json_decode((string)file_get_contents($contentFile), true) ?: []) : [];
 $imp = $c['impressum'] ?? [];
@@ -24,7 +26,7 @@ function he(string $s): string { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Impressum der Muster-Kleingartenverein e.V.">
-<link rel="canonical" href="https://kgv461.de/impressum.php">
+<link rel="canonical" href="<?= site_url() ?>/impressum.php">
 <title>Impressum – Muster-Kleingartenverein e.V.</title>
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
 <style>

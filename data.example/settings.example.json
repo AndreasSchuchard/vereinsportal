@@ -1,0 +1,18 @@
+{
+  "site_url": "https://YOUR-DOMAIN.TLD",
+  "maintenance": false,
+  "maintenance_message": "Wartungsarbeiten — wir sind gleich wieder da.",
+  "password_hash": "ERSETZE_DURCH_BEHALTE_DEIN_ADMIN_PASSWORT_HASH",
+  "imap_host": "imap.example.org",
+  "imap_port": 993,
+  "imap_user": "postfach@example.org",
+  "imap_password": "",
+  "anleitung_password": "",
+  "email": "vorstand@example.org",
+  "email_notifications": {
+    "contact_to": "vorstand@example.org",
+    "contact_cc": "",
+    "booking_to": "vermietung@example.org",
+    "booking_cc": ""
+  }
+}

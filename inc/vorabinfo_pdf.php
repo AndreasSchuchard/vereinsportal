@@ -67,7 +67,7 @@ function generate_vorabinfo_pdf(array $b, array $prices, array $settings): strin
     $W = 170; // usable width
 
     // ── LOGO ─────────────────────────────────────────────────────────────────
-    $logoPath = dirname(__DIR__) . '/logo_kgv461.png';
+    $logoPath = dirname(__DIR__) . '/logo.png';
     if (file_exists($logoPath)) {
         $pdf->Image($logoPath, 165, 5, 21);
     }

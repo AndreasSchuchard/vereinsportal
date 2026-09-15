@@ -682,7 +682,7 @@ function sf_action_protocol_pdf(): void {
     $W = 170;
 
     // Logo
-    $logoPath = dirname(__DIR__) . '/logo_kgv461.png';
+    $logoPath = dirname(__DIR__) . '/logo.png';
     if (file_exists($logoPath)) $pdf->Image($logoPath, 165, 12, 22);
 
     // Header

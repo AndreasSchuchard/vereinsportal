@@ -1,4 +1,4 @@
-const CACHE = 'kgv461-v4';
+const CACHE = 'portal-v1';
 const OFFLINE_URL = '/mitglieder.php';
 
 const PRECACHE = [
@@ -7,7 +7,7 @@ const PRECACHE = [
     '/vereinshaus.php',
     '/vereinshaus.css',
     '/vereinshaus.js',
-    '/logo_kgv461.png',
+    '/logo.png',
     '/icon-192.png',
     '/icon-512.png',
     '/manifest.json',
@@ -54,7 +54,7 @@ self.addEventListener('fetch', e => {
                 // Cache successful responses for static assets
                 if (res.ok && (
                     e.request.url.match(/\.(css|js|png|jpg|webp|svg|woff2?)$/) ||
-                    e.request.url.includes('/logo_kgv461.png')
+                    e.request.url.includes('/logo.png')
                 )) {
                     const clone = res.clone();
                     caches.open(CACHE).then(c => c.put(e.request, clone));
@@ -80,7 +80,7 @@ self.addEventListener('push', e => {
             body:    data.body    || '',
             icon:    data.icon    || '/icon-192.png',
             badge:   '/icon-192.png',
-            tag:     data.tag     || 'kgv461',
+            tag:     data.tag     || 'portal',
             data:    data.url     ? { url: data.url } : {},
             vibrate: [200, 100, 200],
         })
@@ -93,7 +93,7 @@ self.addEventListener('notificationclick', e => {
     const url = (e.notification.data && e.notification.data.url) || '/mitglieder.php';
     e.waitUntil(
         clients.matchAll({ type: 'window', includeUncontrolled: true }).then(all => {
-            const match = all.find(c => c.url.includes('kgv461') && 'focus' in c);
+            const match = all.find(c => c.url.includes('portal') && 'focus' in c);
             if (match) return match.focus();
             return clients.openWindow(url);
         })

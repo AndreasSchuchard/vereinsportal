@@ -599,7 +599,7 @@ function sf_certificate_pdf(string $name, int $jahre, string $datum = '', string
     $pdf->Rect(11, 11, 297-22, 210-22);
 
     // Logo zentriert oben
-    $logoPath = dirname(__DIR__) . '/logo_kgv461.png';
+    $logoPath = dirname(__DIR__) . '/logo.png';
     if (file_exists($logoPath)) $pdf->Image($logoPath, (297/2)-15, 22, 30);
 
     // Titel
@@ -754,7 +754,7 @@ function sf_aushang_pdf(string $title, string $body, string $accentColor = '#3d6
     $pdf->Rect(0, 0, 210, 38, 'F');
 
     // Logo
-    $logoPath = dirname(__DIR__) . '/logo_kgv461.png';
+    $logoPath = dirname(__DIR__) . '/logo.png';
     if (file_exists($logoPath)) $pdf->Image($logoPath, 15, 5, 28);
 
     $pdf->SetY(12);
@@ -1302,7 +1302,7 @@ function sf_briefkopf_top(\FPDF $pdf, array $settings = [], float $startY = 12):
     $e = fn(string $s): string => iconv('UTF-8', 'ISO-8859-1//TRANSLIT', $s) ?: $s;
 
     // Logo oben rechts (möglichst groß für sichtbaren Effekt)
-    $logoPath = dirname(__DIR__) . '/logo_kgv461.png';
+    $logoPath = dirname(__DIR__) . '/logo.png';
     if (file_exists($logoPath)) {
         $pdf->Image($logoPath, 158, $startY, 32);
     }

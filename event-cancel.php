@@ -62,8 +62,8 @@ $confirmStep = ($msg === '' && $regId !== '' && $token !== '' && $regName !== ''
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
 <title>Anmeldung stornieren | KGV Musterstadt e.V.</title>
-<link rel="icon" type="image/png" href="/logo_kgv461.png">
-<link rel="stylesheet" href="/kgv461.css?v=2">
+<link rel="icon" type="image/png" href="/logo.png">
+<link rel="stylesheet" href="/portal.css?v=2">
 <style>
 .cnc-wrap { max-width: 540px; margin: 40px auto; padding: 28px 30px; background: #fff; border-radius: 14px; box-shadow: 0 4px 18px rgba(0,0,0,0.08); }
 .cnc-head { background: #c62828; color: #fff; padding: 18px 22px; margin: -28px -30px 22px; border-radius: 14px 14px 0 0; text-align: center; }

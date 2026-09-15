@@ -43,8 +43,8 @@ $flashId    = (string)($_GET['rid'] ?? '');
 <meta name="robots" content="noindex,nofollow">
 <meta name="description" content="<?= htmlspecialchars($event['subtitle'] ?? 'Anmeldung zur Veranstaltung des KGV Musterstadt e.V.') ?>">
 <title><?= htmlspecialchars($pageTitle) ?> | KGV Musterstadt e.V.</title>
-<link rel="icon" type="image/png" href="/logo_kgv461.png">
-<link rel="stylesheet" href="/kgv461.css?v=2">
+<link rel="icon" type="image/png" href="/logo.png">
+<link rel="stylesheet" href="/portal.css?v=2">
 <style>
 .evt-wrap { max-width: 720px; margin: 0 auto; padding: 28px 20px 60px; }
 .evt-head {

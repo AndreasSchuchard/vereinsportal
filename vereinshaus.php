@@ -40,7 +40,7 @@ $_hasPhoto = !empty($_vh['main_image']);
 <title>Vereinshaus mieten Musterstadt | Gartengemeinschaft Musterstadt</title>
 <meta name="description" content="Vereinshaus des KGV Musterstadt e.V. in Musterstadt mieten. Platz für bis zu 50 Personen, voll ausgestattete Küche, Terrasse. Jetzt Verfügbarkeit prüfen & anfragen.">
 <link rel="canonical" href="<?= site_url() ?>/vereinshaus" />
-<link rel="icon" type="image/png" href="logo_kgv461.png">
+<link rel="icon" type="image/png" href="logo.png">
 <meta name="theme-color" content="#3d6b41">
 <link rel="manifest" href="/manifest.json">
 <link rel="apple-touch-icon" href="/icon-180.png">
@@ -100,7 +100,7 @@ $_hasPhoto = !empty($_vh['main_image']);
 <!-- ── NAVIGATION ── -->
 <nav class="topnav">
     <a href="/" class="topnav-logo" title="KGV Musterstadt e.V. – Startseite">
-        <img src="logo_kgv461.png" alt="KGV Musterstadt Logo">
+        <img src="logo.png" alt="KGV Musterstadt Logo">
         <span>Gartengemeinschaft<br>Musterstadt e.V.</span>
     </a>
     <div class="topnav-links">
@@ -405,7 +405,7 @@ $_hasPhoto = !empty($_vh['main_image']);
 <!-- ── FOOTER ── -->
 <footer class="footer">
     <div class="container">
-        <img src="logo_kgv461.png" alt="KGV Musterstadt e.V. Logo" class="footer-logo">
+        <img src="logo.png" alt="KGV Musterstadt e.V. Logo" class="footer-logo">
         <p class="footer-tagline">Muster-Kleingartenverein e.V. · Hamburg</p>
         <p class="footer-nav-row">
             <a href="/" title="KGV Musterstadt e.V. – Startseite">Startseite</a>

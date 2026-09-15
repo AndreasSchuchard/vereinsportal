@@ -62,7 +62,7 @@ footer a:hover{color:white}
   <nav>
     <div class="logo">
       <div class="logo-img">
-        <img src="/logo_kgv461.png" alt="Muster-Kleingartenverein e.V. Logo">
+        <img src="/logo.png" alt="Muster-Kleingartenverein e.V. Logo">
       </div>
     </div>
     <a href="/" class="back-link">← Zurück zur Startseite</a>

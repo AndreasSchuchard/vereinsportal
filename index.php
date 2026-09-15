@@ -52,7 +52,7 @@ h1{font-family:"Playfair Display",serif;color:#fff;font-size:2rem;line-height:1.
 </head>
 <body>
 <div class="card">
-  <div class="logo-wrap"><img src="/logo_kgv461.png" alt="KGV Musterstadt"></div>
+  <div class="logo-wrap"><img src="/logo.png" alt="KGV Musterstadt"></div>
   <div class="badge">Wartungsarbeiten</div>
   <h1>Wir sind gleich zurück</h1>
   <p class="sub">KGV Musterstadt e.V. · Muster-Kleingartenverein</p>
@@ -147,7 +147,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
     <link rel="canonical" href="<?= site_url() ?>/" />
 
     <!-- Favicon + PWA -->
-    <link rel="icon" type="image/png" href="logo_kgv461.png">
+    <link rel="icon" type="image/png" href="logo.png">
     <meta name="theme-color" content="#3d6b41">
     <link rel="manifest" href="/manifest.json">
     <link rel="apple-touch-icon" href="/icon-180.png">
@@ -162,7 +162,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
         "name": "Muster-Kleingartenverein e.V.",
         "alternateName": "KGV Musterstadt",
         "url": "<?= site_url() ?>",
-        "logo": "/logo_kgv461.png",
+        "logo": "/logo.png",
         "foundingDate": "1975",
         "description": "Kleingartenverein in Musterstadt mit 63 Parzellen und Vereinshaus",
         "address": {
@@ -188,7 +188,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
         "url": "<?= site_url() ?>/",
         "telephone": "+49-163-5140490",
         "email": "vorstand@example.org",
-        "image": "/logo_kgv461.png",
+        "image": "/logo.png",
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "Musterstraße 1",
@@ -212,7 +212,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
     <!-- Self-hosted fonts -->
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="/kgv461.css?v=3">
+    <link rel="stylesheet" href="/portal.css?v=3">
 </head>
 <body>
     <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
@@ -227,7 +227,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
         <nav aria-label="Hauptnavigation">
             <div class="logo">
                 <div class="logo-img">
-                    <img src="logo_kgv461.png" alt="Muster-Kleingartenverein e.V. Logo" title="KGV Musterstadt e.V. – Startseite" width="180" height="60">
+                    <img src="logo.png" alt="Muster-Kleingartenverein e.V. Logo" title="KGV Musterstadt e.V. – Startseite" width="180" height="60">
                 </div>
             </div>
             <button class="mobile-menu-btn" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navMenu" onclick="toggleMobileMenu(this)">☰</button>
@@ -848,7 +848,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
             <!-- Spalte 1: Branding + Kontakt -->
             <div class="footer-section">
                 <div class="footer-logo-row">
-                    <img src="logo_kgv461.png" alt="KGV Musterstadt Logo" title="Muster-Kleingartenverein e.V." width="60" height="60" loading="lazy">
+                    <img src="logo.png" alt="KGV Musterstadt Logo" title="Muster-Kleingartenverein e.V." width="60" height="60" loading="lazy">
                     <span>Gartengemeinschaft<br>Musterstadt e.V.</span>
                 </div>
                 <p class="footer-tagline">Grüne Oase in Hamburg seit 1975 –<br>Natur, Gemeinschaft und Nachbarschaft.</p>

@@ -27,11 +27,11 @@ durch deine echte Domain (ohne `https://`):
 - `sitemap.xml` (Alle `<loc>`-URLs)
 - `.well-known/security.txt` (Canonical, Policy)
 - `robots.txt` (Sitemap-URL)
-- `kgv461.css` (Kommentar)
+- `portal.css` (Kommentar)
 
 ```bash
 # Beispiel (in allen Dateien)
-sed -i 's/YOUR-DOMAIN\.TLD/mein-verein.de/g' .htaccess sitemap.xml .well-known/security.txt robots.txt kgv461.css
+sed -i 's/YOUR-DOMAIN\.TLD/mein-verein.de/g' .htaccess sitemap.xml .well-known/security.txt robots.txt portal.css
 ```
 
 ## 4. `.env` anlegen

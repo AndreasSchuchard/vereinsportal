@@ -67,7 +67,7 @@ $pdf->SetAutoPageBreak(false, 18);
 $pdf->AddPage();
 
 // ── Logo (rechts oben)
-$logoPath = dirname(__DIR__) . '/logo_kgv461.png';
+$logoPath = dirname(__DIR__) . '/logo.png';
 if (file_exists($logoPath)) {
     $pdf->Image($logoPath, 165, 14, 25);
 }

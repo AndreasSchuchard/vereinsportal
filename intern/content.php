@@ -795,7 +795,7 @@ $_vsDefault = [
 ];
 $_lkDefault = [
     ['emoji'=>'🌿','title'=>'Landesverband der Gartenfreunde','desc'=>'Dachverband der regionalen Kleingartenvereine','url'=>'https://www.example.org'],
-    ['emoji'=>'🦋','title'=>'Naturschutzbund Hamburg (NABU)','desc'=>'Für Mensch und Natur in Hamburg','url'=>'https://hamburg.nabu.de'],
+    ['emoji'=>'🦋','title'=>'Naturschutzverband (Beispiel)','desc'=>'Für Mensch und Natur','url'=>'https://example.org'],
     ['emoji'=>'📚','title'=>'Garten Wissen','desc'=>'Tipps und Tricks für Ihren Garten','url'=>'https://www.mein-schoener-garten.de'],
 ];
 $_etDefault = [

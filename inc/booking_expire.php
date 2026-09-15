@@ -124,7 +124,7 @@ function kgv_send_booking_expire_mail(array $b): bool {
 
     $textBody =
           "Hallo {$name},\n\n"
-        . "deine Anfrage für das KGV-461-Vereinshaus" . ($dateStr !== '' ? " am {$dateStr}" : '') . " ist leider innerhalb der 24-Stunden-Frist nicht beantwortet worden.\n\n"
+        . "deine Anfrage für das Vereinshaus" . ($dateStr !== '' ? " am {$dateStr}" : '') . " ist leider innerhalb der 24-Stunden-Frist nicht beantwortet worden.\n\n"
         . "Die Reservierung wurde automatisch freigegeben — der Termin ist im Kalender wieder buchbar.\n\n"
         . "Falls dein Termin noch aktuell ist, melde dich gerne erneut:\n"
         . site_url() . "/vereinshaus\n\n"
@@ -132,7 +132,7 @@ function kgv_send_booking_expire_mail(array $b): bool {
         . "Freundliche Grüße\n{$sigName}\n{$sigRole} · KGV Musterstadt e.V.";
 
     $htmlBody =
-          "<p>deine Anfrage für das KGV-461-Vereinshaus"
+          "<p>deine Anfrage für das Vereinshaus"
         . ($dateStr !== '' ? " am <strong>" . htmlspecialchars($dateStr) . "</strong>" : '')
         . " ist leider innerhalb der 24-Stunden-Frist nicht beantwortet worden.</p>"
         . "<p>Die Reservierung wurde automatisch freigegeben — der Termin ist im Kalender wieder buchbar.</p>"

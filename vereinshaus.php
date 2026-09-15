@@ -63,7 +63,7 @@ $_hasPhoto = !empty($_vh['main_image']);
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Musterstraße 1",
-    "addressLocality": "Hamburg",
+    "addressLocality": "DEINE STADT",
     "addressRegion": "HH",
     "postalCode": "22419",
     "addressCountry": "DE"
@@ -120,7 +120,7 @@ $_hasPhoto = !empty($_vh['main_image']);
     <div class="hero-no-photo"></div>
     <?php endif; ?>
     <div class="hero-content">
-        <span class="hero-badge">Hamburg · Musterstadt · 22419</span>
+        <span class="hero-badge">DEINE STADT · DEINE PLZ</span>
         <h1>Vereinshaus mieten in Musterstadt</h1>
         <p class="hero-sub">
             <?php echo !empty($_vh['description']) ? htmlspecialchars($_vh['description']) : 'Ihr besonderer Ort für Feiern, Feste und Vereinstreffen – mitten in der grünen Gartenanlage des KGV Musterstadt e.V.'; ?>
@@ -128,7 +128,7 @@ $_hasPhoto = !empty($_vh['main_image']);
         <div class="hero-stats">
             <div class="hero-stat"><strong>50</strong><span>Personen</span></div>
             <div class="hero-stat"><strong><?php echo number_format((float)$_prices['miete'], 0, ',', '.'); ?> €</strong><span>Raummiete</span></div>
-            <div class="hero-stat"><strong>22419</strong><span>Hamburg</span></div>
+            <div class="hero-stat"><strong>DEINE PLZ</strong><span>DEINE STADT</span></div>
         </div>
         <div class="hero-actions">
             <a href="#buchung" class="btn-primary" title="Verfügbarkeit prüfen und Vereinshaus anfragen">📅 Verfügbarkeit prüfen</a>

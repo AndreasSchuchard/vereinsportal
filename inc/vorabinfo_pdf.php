@@ -80,7 +80,7 @@ function generate_vorabinfo_pdf(array $b, array $prices, array $settings): strin
 
     $pdf->SetFont('Helvetica', 'B', 10.5);
     $pdf->SetTextColor(0, 0, 0);
-    $pdf->Cell(140, 5.5, $e('Muster-Kleingartenverein e.V. 461'), 0, 1);
+    $pdf->Cell(140, 5.5, $e('Muster-Kleingartenverein e.V.'), 0, 1);
 
     $pdf->SetFont('Helvetica', '', 7);
     $pdf->SetTextColor(90, 90, 90);
@@ -216,7 +216,7 @@ function generate_vorabinfo_pdf(array $b, array $prices, array $settings): strin
     $pdf->Ln(2);
     $pdf->SetFont('Helvetica', '', 7); $pdf->SetTextColor(140, 140, 140);
     $pdf->Cell($W, 4,
-        $e('Muster-Kleingartenverein e.V. 461    Bankverbindung: ' . $bank . '    IBAN: ' . $iban),
+        $e('Muster-Kleingartenverein e.V.    Bankverbindung: ' . $bank . '    IBAN: ' . $iban),
         0, 1, 'C');
 
     return $pdf->Output('S');

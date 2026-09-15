@@ -96,7 +96,7 @@ $_vsDefault = [
 ];
 $_lkDefault = [
     ['emoji'=>'🌿','title'=>'Landesverband der Gartenfreunde','desc'=>'Dachverband der regionalen Kleingartenvereine','url'=>'https://www.example.org'],
-    ['emoji'=>'🦋','title'=>'Naturschutzbund Hamburg (NABU)','desc'=>'Für Mensch und Natur in Hamburg','url'=>'https://hamburg.nabu.de'],
+    ['emoji'=>'🦋','title'=>'Naturschutzverband (Beispiel)','desc'=>'Für Mensch und Natur','url'=>'https://example.org'],
     ['emoji'=>'📚','title'=>'Garten Wissen','desc'=>'Tipps und Tricks für Ihren Garten','url'=>'https://www.mein-schoener-garten.de'],
 ];
 $_vorstand     = $_c['vorstand']             ?? $_vsDefault;
@@ -122,8 +122,8 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Muster-Kleingartenverein e.V. - Ihre grüne Oase in Hamburg seit 1975. 63 Parzellen, Vereinshaus zu mieten, lebendige Gemeinschaft.">
-    <meta name="keywords" content="Kleingartenverein, Hamburg, Musterstadt, KGV Musterstadt, Garten, Parzelle, Vereinshaus mieten">
+    <meta name="description" content="Muster-Kleingartenverein e.V. - Beschreibung deines Vereins. Parzellen, Vereinshaus, lebendige Gemeinschaft.">
+    <meta name="keywords" content="Kleingartenverein, Garten, Parzelle, Vereinshaus mieten">
     <meta name="author" content="Muster-Kleingartenverein e.V.">
     <meta name="google-site-verification" content="GOOGLE_VERIFICATION_TOKEN" />
 
@@ -131,7 +131,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
     <meta property="og:type" content="website">
     <meta property="og:url" content="<?= site_url() ?>/">
     <meta property="og:title" content="Muster-Kleingartenverein e.V.">
-    <meta property="og:description" content="Ihre grüne Oase in Hamburg seit 1975. Werden Sie Teil unserer Gemeinschaft!">
+    <meta property="og:description" content="Grüne Oase – werden Sie Teil unserer Gemeinschaft!">
     <meta property="og:image" content="<?= site_url() ?>/front.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -140,7 +140,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="<?= site_url() ?>/">
     <meta property="twitter:title" content="Muster-Kleingartenverein e.V.">
-    <meta property="twitter:description" content="Ihre grüne Oase in Hamburg seit 1975. Werden Sie Teil unserer Gemeinschaft!">
+    <meta property="twitter:description" content="Grüne Oase – werden Sie Teil unserer Gemeinschaft!">
     <meta property="twitter:image" content="<?= site_url() ?>/front.jpg">
 
     <!-- Canonical -->
@@ -152,7 +152,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
     <link rel="manifest" href="/manifest.json">
     <link rel="apple-touch-icon" href="/icon-180.png">
 
-    <title>Muster-Kleingartenverein e.V. | Hamburg</title>
+    <title>Muster-Kleingartenverein e.V.</title>
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -168,7 +168,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "Musterstraße 1",
-            "addressLocality": "Hamburg",
+            "addressLocality": "DEINE STADT",
             "postalCode": "22419",
             "addressCountry": "DE"
         },
@@ -192,7 +192,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "Musterstraße 1",
-            "addressLocality": "Hamburg",
+            "addressLocality": "DEINE STADT",
             "postalCode": "22419",
             "addressCountry": "DE"
         },
@@ -253,7 +253,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
         <?php endif; ?>
         <div class="hero-overlay"></div>
         <div class="hero-inner">
-            <span class="hero-eyebrow">🌿 Musterstadt · seit 1975</span>
+            <span class="hero-eyebrow">🌿 DEINE STADT · seit GRÜNDUNGSJAHR</span>
             <h1><?php echo htmlspecialchars($_hero['headline'] ?? 'Muster-Kleingartenverein e.V.'); ?></h1>
             <p class="hero-subtitle"><?php echo htmlspecialchars($_hero['subtitle'] ?? ''); ?></p>
             <p class="hero-description"><?php echo $_hero['description'] ?? ''; ?></p>
@@ -277,7 +277,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
     <section class="section" id="about">
         <div class="container">
             <h2 class="section-title">Über unseren Verein</h2>
-            <p class="section-subtitle">Eine lebendige Gemeinschaft seit 1975</p>
+            <p class="section-subtitle">Eine lebendige Gemeinschaft</p>
             <div style="max-width: 800px; margin: 0 auto; text-align: center;">
                 <p style="font-size: 1.15rem; line-height: 1.8; color: var(--text-gray);">
                     Unsere Gartengemeinschaft in Musterstadt bietet Stadtbewohnern die Möglichkeit,
@@ -754,7 +754,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
                         <div>
                             <h4 style="color: var(--primary-green); margin-bottom: 0.5rem;">📮 Postanschrift</h4>
                             <p>Postfach 620 162</p>
-                            <p>22401 Hamburg</p>
+                            <p>DEINE PLZ · DEINE STADT</p>
                         </div>
 
                         <div>
@@ -851,7 +851,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
                     <img src="logo.png" alt="KGV Musterstadt Logo" title="Muster-Kleingartenverein e.V." width="60" height="60" loading="lazy">
                     <span>Gartengemeinschaft<br>Musterstadt e.V.</span>
                 </div>
-                <p class="footer-tagline">Grüne Oase in Hamburg seit 1975 –<br>Natur, Gemeinschaft und Nachbarschaft.</p>
+                <p class="footer-tagline">Grüne Oase –<br>Natur, Gemeinschaft und Nachbarschaft.</p>
                 <p class="footer-col-title">Kontakt</p>
                 <div class="footer-contact-list">
                     <span class="footer-contact-item">

@@ -358,7 +358,7 @@ function sf_letter_pdf(array $tpl, array $member, array $vars, array $settings =
     // ── Datum (rechtsbündig) ────────────────────────────────────────────
     $pdf->SetFont('Helvetica', '', 10);
     $pdf->SetTextColor(0, 0, 0);
-    $pdf->Cell($W, 5, $e('Hamburg, ' . $today), 0, 1, 'R');
+    $pdf->Cell($W, 5, $e('Musterstadt, ' . $today), 0, 1, 'R');
     $pdf->Ln(8);
 
     // ── Betreff: groß, fett, unterstrichen ─────────────────────────────
@@ -645,7 +645,7 @@ function sf_certificate_pdf(string $name, int $jahre, string $datum = '', string
     $pdf->SetY(170);
     $pdf->SetFont('Helvetica', '', 11);
     $pdf->SetTextColor(0, 0, 0);
-    $pdf->Cell(297, 5, $e('Hamburg, ' . $datum), 0, 1, 'C');
+    $pdf->Cell(297, 5, $e('Musterstadt, ' . $datum), 0, 1, 'C');
 
     $pdf->Ln(10);
     $pdf->SetDrawColor(120, 120, 120);

@@ -126,7 +126,7 @@ function sf_action_generate_letter(): void {
     $safeName = preg_replace('/[^a-z0-9_-]/i', '_', (string)($member['name'] ?? 'Mitglied'));
     $safeTpl  = preg_replace('/[^a-z0-9_-]/i', '_', $tplId);
     header('Content-Type: application/pdf');
-    header('Content-Disposition: attachment; filename="KGV461_' . $safeTpl . '_' . $safeName . '.pdf"');
+    header('Content-Disposition: attachment; filename="VEREIN_' . $safeTpl . '_' . $safeName . '.pdf"');
     header('Content-Length: ' . strlen($pdf));
     echo $pdf;
     exit;
@@ -451,7 +451,7 @@ function sf_mail_protocol_to_attendees(array $protocol): bool {
     $alt .= "--{$bAlt}\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Transfer-Encoding: 8bit\r\n\r\n{$bodyHtml}\r\n--{$bAlt}--";
 
     $b64 = chunk_split(base64_encode($pdfBin));
-    $fname = 'KGV461_Protokoll_' . preg_replace('/[^a-z0-9_-]/i', '_', (string)($protocol['date'] ?? '')) . '.pdf';
+    $fname = 'VEREIN_Protokoll_' . preg_replace('/[^a-z0-9_-]/i', '_', (string)($protocol['date'] ?? '')) . '.pdf';
 
     $body  = "--{$bMix}\r\nContent-Type: multipart/alternative; boundary=\"{$bAlt}\"\r\n\r\n{$alt}\r\n\r\n";
     $body .= "--{$bMix}\r\nContent-Type: application/pdf; name=\"{$fname}\"\r\nContent-Transfer-Encoding: base64\r\nContent-Disposition: attachment; filename=\"{$fname}\"\r\n\r\n{$b64}\r\n";
@@ -793,7 +793,7 @@ function sf_action_protocol_pdf(): void {
     $out = $pdf->Output('S');
     $safeName = preg_replace('/[^a-z0-9_-]/i', '_', (string)($p['title'] ?? 'Protokoll'));
     header('Content-Type: application/pdf');
-    header('Content-Disposition: attachment; filename="KGV461_Protokoll_' . ($p['date'] ?? '') . '_' . $safeName . '.pdf"');
+    header('Content-Disposition: attachment; filename="VEREIN_Protokoll_' . ($p['date'] ?? '') . '_' . $safeName . '.pdf"');
     header('Content-Length: ' . strlen($out));
     echo $out;
     exit;
@@ -1069,7 +1069,7 @@ function sf_action_print_urkunde(): void {
     $pdf = sf_certificate_pdf((string)($member['name'] ?? ''), $jahre, $datum, $override);
     $safeName = preg_replace('/[^a-z0-9_-]/i', '_', (string)($member['name'] ?? 'Mitglied'));
     header('Content-Type: application/pdf');
-    header('Content-Disposition: attachment; filename="KGV461_Ehrenurkunde_' . $jahre . 'J_' . $safeName . '.pdf"');
+    header('Content-Disposition: attachment; filename="VEREIN_Ehrenurkunde_' . $jahre . 'J_' . $safeName . '.pdf"');
     header('Content-Length: ' . strlen($pdf));
     echo $pdf;
     exit;
@@ -1089,7 +1089,7 @@ function sf_action_print_labels(): void {
 
     $pdf = sf_address_labels_pdf($chosen);
     header('Content-Type: application/pdf');
-    header('Content-Disposition: attachment; filename="KGV461_Adressetiketten_' . count($chosen) . '.pdf"');
+    header('Content-Disposition: attachment; filename="VEREIN_Adressetiketten_' . count($chosen) . '.pdf"');
     header('Content-Length: ' . strlen($pdf));
     echo $pdf;
     exit;
@@ -1105,7 +1105,7 @@ function sf_action_print_aushang(): void {
     $pdf = sf_aushang_pdf($title, $body, $accent);
     $safe = preg_replace('/[^a-z0-9_-]/i', '_', $title);
     header('Content-Type: application/pdf');
-    header('Content-Disposition: attachment; filename="KGV461_Aushang_' . $safe . '.pdf"');
+    header('Content-Disposition: attachment; filename="VEREIN_Aushang_' . $safe . '.pdf"');
     header('Content-Length: ' . strlen($pdf));
     echo $pdf;
     exit;
@@ -1303,7 +1303,7 @@ function sf_action_card_print(): void {
     $pdf = sf_card_pdf($imgPath, (string)($member['name'] ?? ''), $message, $textPos);
     $safeName = preg_replace('/[^a-z0-9_-]/i', '_', (string)($member['name'] ?? 'Mitglied'));
     header('Content-Type: application/pdf');
-    header('Content-Disposition: attachment; filename="KGV461_Karte_' . $safeName . '.pdf"');
+    header('Content-Disposition: attachment; filename="VEREIN_Karte_' . $safeName . '.pdf"');
     header('Content-Length: ' . strlen($pdf));
     echo $pdf;
     exit;
@@ -1366,7 +1366,7 @@ function sf_action_protocol_invitation(): void {
 
     if ($output === 'preview') {
         header('Content-Type: application/pdf');
-        header('Content-Disposition: inline; filename="KGV461_Einladung_' . preg_replace('/[^a-z0-9_-]/i','_',(string)$p['date']) . '.pdf"');
+        header('Content-Disposition: inline; filename="VEREIN_Einladung_' . preg_replace('/[^a-z0-9_-]/i','_',(string)$p['date']) . '.pdf"');
         header('Content-Length: ' . strlen($pdfBin));
         echo $pdfBin;
         exit;
@@ -1426,7 +1426,7 @@ function sf_action_protocol_invitation(): void {
     $alt .= "--{$bAlt}\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Transfer-Encoding: 8bit\r\n\r\n{$html}\r\n--{$bAlt}--";
 
     $b64 = chunk_split(base64_encode($pdfBin));
-    $fname = 'KGV461_Einladung_' . preg_replace('/[^a-z0-9_-]/i','_',(string)$p['date']) . '.pdf';
+    $fname = 'VEREIN_Einladung_' . preg_replace('/[^a-z0-9_-]/i','_',(string)$p['date']) . '.pdf';
     $body  = "--{$bMix}\r\nContent-Type: multipart/alternative; boundary=\"{$bAlt}\"\r\n\r\n{$alt}\r\n\r\n";
     $body .= "--{$bMix}\r\nContent-Type: application/pdf; name=\"{$fname}\"\r\nContent-Transfer-Encoding: base64\r\nContent-Disposition: attachment; filename=\"{$fname}\"\r\n\r\n{$b64}\r\n";
     $body .= "--{$bMix}--";

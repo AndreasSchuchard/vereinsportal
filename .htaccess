@@ -30,10 +30,6 @@
     RewriteCond %{HTTP_HOST} ^www\.YOUR-DOMAIN\.TLD$ [NC]
     RewriteRule ^ https://YOUR-DOMAIN.TLD%{REQUEST_URI} [R=301,L]
 
-    # 3) www → non-www (reparatur-hamburg.eu — Altdomain)
-    RewriteCond %{HTTP_HOST} ^www\.reparatur-hamburg\.eu$ [NC]
-    RewriteRule ^ https://reparatur-hamburg.eu%{REQUEST_URI} [R=301,L]
-
     # Redirect old static legal pages to PHP
     RewriteRule ^impressum\.html$ /impressum.php [R=301,L]
     RewriteRule ^datenschutz\.html$ /datenschutz.php [R=301,L]

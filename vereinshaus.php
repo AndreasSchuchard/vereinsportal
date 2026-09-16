@@ -3,6 +3,7 @@ require_once __DIR__ . '/inc/settings_loader.php';
 
 $_cf = __DIR__ . '/data/content.json';
 $_c  = file_exists($_cf) ? (json_decode(file_get_contents($_cf), true) ?: []) : [];
+$_vereinName = trim((string)($_c['impressum']['verein'] ?? ($_c['verein']['name'] ?? 'Unser Verein')));
 $_vh            = $_c['vereinshaus']   ?? ['description' => '', 'main_image' => '', 'gallery' => []];
 $_prices        = $_c['prices']        ?? ['miete' => 300, 'kaution' => 200, 'strom_kwh' => 0.50, 'endreinigung' => 50, 'endreinigung_mitglied' => 0];
 // Member-Tarif dynamisch (Hälfte der Standard-Miete) für SEO + Hero-Stat
@@ -37,8 +38,8 @@ $_hasPhoto = !empty($_vh['main_image']);
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vereinshaus mieten Musterstadt | Gartengemeinschaft Musterstadt</title>
-<meta name="description" content="Vereinshaus des KGV Musterstadt e.V. in Musterstadt mieten. Platz für bis zu 50 Personen, voll ausgestattete Küche, Terrasse. Jetzt Verfügbarkeit prüfen & anfragen.">
+<title>Vereinshaus mieten – <?= htmlspecialchars($_vereinName) ?></title>
+<meta name="description" content="Vereinshaus des <?= htmlspecialchars($_vereinName) ?> mieten. Platz für bis zu 50 Personen, voll ausgestattete Küche, Terrasse. Jetzt Verfügbarkeit prüfen & anfragen.">
 <link rel="canonical" href="<?= site_url() ?>/vereinshaus" />
 <link rel="icon" type="image/png" href="logo.png">
 <meta name="theme-color" content="#3d6b41">
@@ -46,7 +47,7 @@ $_hasPhoto = !empty($_vh['main_image']);
 <link rel="apple-touch-icon" href="/icon-180.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="<?= site_url() ?>/vereinshaus">
-<meta property="og:title" content="Vereinshaus mieten – KGV Musterstadt e.V. Musterstadt">
+<meta property="og:title" content="Vereinshaus mieten – <?= htmlspecialchars($_vereinName) ?>">
 <meta property="og:description" content="Vereinshaus in Musterstadt mieten. Bis zu 50 Personen, Küche, Terrasse, Parkplätze. Ab <?php echo (int)$_mieteMember; ?> € für Mitglieder.">
 <meta property="og:image" content="<?= site_url() ?>/front.jpg">
 <meta property="og:image:width" content="1200">

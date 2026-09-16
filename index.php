@@ -74,6 +74,7 @@ h1{font-family:"Playfair Display",serif;color:#fff;font-size:2rem;line-height:1.
 $_cf = __DIR__ . '/data/content.json';
 $_c  = file_exists($_cf) ? (json_decode(file_get_contents($_cf), true) ?: []) : [];
 $_settings = $_c['settings'] ?? [];
+$_vereinName = trim((string)($_c['impressum']['verein'] ?? ($_c['verein']['name'] ?? 'Unser Verein')));
 $_ftTel    = htmlspecialchars($_settings['telefon'] ?? '+49 000 000 00 00');
 $_ftEmail  = htmlspecialchars($_settings['email']   ?? 'vorstand@example.org');
 $_ftStr    = htmlspecialchars($_settings['strasse'] ?? 'Musterstraße 1');
@@ -122,15 +123,15 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Muster-Kleingartenverein e.V. - Beschreibung deines Vereins. Parzellen, Vereinshaus, lebendige Gemeinschaft.">
+    <meta name="description" content="<?= htmlspecialchars($_vereinName) ?> – Beschreibung deines Vereins. Parzellen, Vereinshaus, lebendige Gemeinschaft.">
     <meta name="keywords" content="Kleingartenverein, Garten, Parzelle, Vereinshaus mieten">
-    <meta name="author" content="Muster-Kleingartenverein e.V.">
+    <meta name="author" content="<?= htmlspecialchars($_vereinName) ?>">
     <meta name="google-site-verification" content="GOOGLE_VERIFICATION_TOKEN" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="<?= site_url() ?>/">
-    <meta property="og:title" content="Muster-Kleingartenverein e.V.">
+    <meta property="og:title" content="<?= htmlspecialchars($_vereinName) ?>">
     <meta property="og:description" content="Grüne Oase – werden Sie Teil unserer Gemeinschaft!">
     <meta property="og:image" content="<?= site_url() ?>/front.jpg">
     <meta property="og:image:width" content="1200">
@@ -139,7 +140,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="<?= site_url() ?>/">
-    <meta property="twitter:title" content="Muster-Kleingartenverein e.V.">
+    <meta property="twitter:title" content="<?= htmlspecialchars($_vereinName) ?>">
     <meta property="twitter:description" content="Grüne Oase – werden Sie Teil unserer Gemeinschaft!">
     <meta property="twitter:image" content="<?= site_url() ?>/front.jpg">
 
@@ -152,7 +153,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
     <link rel="manifest" href="/manifest.json">
     <link rel="apple-touch-icon" href="/icon-180.png">
 
-    <title>Muster-Kleingartenverein e.V.</title>
+    <title><?= htmlspecialchars($_vereinName) ?></title>
 
     <!-- Structured Data -->
     <script type="application/ld+json">

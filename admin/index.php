@@ -1746,7 +1746,6 @@ textarea.modal-textarea:focus{border-color:#3d6b41}
   <?php endif; ?>
 
   <div style="margin-bottom:20px">
-    <a href="/intern/export.php" class="btn btn-note" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;padding:9px 20px;font-size:0.88rem">📥 CSV exportieren</a>
   </div>
 
   <?php if (empty($bookings)): ?>
@@ -2328,8 +2327,6 @@ textarea.modal-textarea:focus{border-color:#3d6b41}
     <!-- Mitglieder-Liste -->
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:24px 0 12px">
       <div class="section-title" style="margin:0">👥 Aktive Mitglieder (<?= count($allMembers) ?>)</div>
-      <a href="/intern/member_export.php" class="btn btn-note" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;padding:7px 16px;font-size:0.82rem">📥 CSV</a>
-      <a href="/intern/kassenbuch_export.php" class="btn btn-note" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;padding:7px 16px;font-size:0.82rem">💶 Kassenbuch</a>
       <button onclick="printPhonelist()" class="btn btn-note" style="display:inline-flex;align-items:center;gap:6px;padding:7px 16px;font-size:0.82rem">🖨️ Telefonliste drucken</button>
       <?php if ($canSeeMembers): ?>
       <button onclick="document.getElementById('bulkMsgModal').style.display='flex'" style="background:#3d6b41;color:#fff;border:none;padding:7px 16px;border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer">📢 Massen-Nachricht</button>

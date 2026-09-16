@@ -604,7 +604,7 @@ ul li{margin-bottom:3px}
 
   <div class="tip-box">
     <div class="box-icon">💡</div>
-    <div class="box-text"><strong>Anderes Jahr exportieren:</strong> Die URL <span class="url">/intern/kassenbuch_export.php?year=2025</span> exportiert das Jahr 2025.</div>
+    <div class="box-text"><strong>Anderes Jahr exportieren:</strong> In dieser Release-Version steht der Export noch nicht zur Verfügung (Vorbereitung).</div>
   </div>
 </div>
 

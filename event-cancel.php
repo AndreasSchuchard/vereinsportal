@@ -61,7 +61,7 @@ $confirmStep = ($msg === '' && $regId !== '' && $token !== '' && $regName !== ''
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
-<title>Anmeldung stornieren | KGV Musterstadt e.V.</title>
+<title>Anmeldung stornieren | unser Verein</title>
 <link rel="icon" type="image/png" href="/logo.png">
 <link rel="stylesheet" href="/portal.css?v=2">
 <style>

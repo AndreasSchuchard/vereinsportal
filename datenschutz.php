@@ -9,7 +9,7 @@ $ds = [
     'verantwortlicher' => (string)($storedPrivacy['verantwortlicher'] ?? 'Max Mustermann'),
     'telefon'          => (string)($storedPrivacy['telefon'] ?? '+49 000 000 00 00'),
     'email'            => (string)($storedPrivacy['email'] ?? 'vorstand@example.org'),
-    'adresse'          => (string)($storedPrivacy['adresse'] ?? 'Musterstraße 1, 12345 Musterstadt'),
+    'adresse'          => (string)($storedPrivacy['adresse'] ?? 'Musterstraße 1, PLZ Ort'),
 ];
 
 // The processing descriptions are maintained in code so that an outdated CMS

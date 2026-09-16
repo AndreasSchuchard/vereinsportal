@@ -90,7 +90,7 @@ function sf_action_generate_letter(): void {
         $mailBody  = "--{$boundary}\r\nContent-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: 8bit\r\n\r\n{$finalText}\r\n\r\n";
         $mailBody .= "--{$boundary}\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Transfer-Encoding: 8bit\r\n\r\n{$finalHtml}\r\n--{$boundary}--";
         $headers   = "MIME-Version: 1.0\r\nContent-Type: multipart/alternative; boundary=\"{$boundary}\"\r\n";
-        $headers  .= "From: KGV Musterstadt e.V. <kontakt@example.org>\r\nReply-To: " . ($settings['email'] ?? 'kontakt@example.org') . "\r\nReturn-Path: kontakt@example.org\r\n";
+        $headers  .= "From: unser Verein <kontakt@example.org>\r\nReply-To: " . ($settings['email'] ?? 'kontakt@example.org') . "\r\nReturn-Path: kontakt@example.org\r\n";
         $ok = @mail($email, $finalSubject, $mailBody, $headers, "-fkontakt@example.org");
 
         // Log
@@ -428,7 +428,7 @@ function sf_mail_protocol_to_attendees(array $protocol): bool {
     $pdfBin = sf_protocol_pdf_binary($protocol);
     ob_end_clean();
 
-    $subject = '[KGV Musterstadt] Protokoll: ' . ($protocol['title'] ?? '');
+    $subject = '[Verein] Protokoll: ' . ($protocol['title'] ?? '');
     $bodyTxt = "Liebe/r Sitzungsteilnehmer/in,\n\nim Anhang findest du das Protokoll der Sitzung vom " . ($protocol['date'] ?? '') . ".\n\nViele Grüße\nDeine Schriftführung";
 
     $contentArr = sf_load_json(dirname(__DIR__) . '/data/content.json');
@@ -458,7 +458,7 @@ function sf_mail_protocol_to_attendees(array $protocol): bool {
     $body .= "--{$bMix}--";
 
     $hdr  = "MIME-Version: 1.0\r\nContent-Type: multipart/mixed; boundary=\"{$bMix}\"\r\n";
-    $hdr .= "From: KGV Musterstadt e.V. <kontakt@example.org>\r\nReply-To: " . ($settings['email'] ?? 'kontakt@example.org') . "\r\nReturn-Path: kontakt@example.org\r\n";
+    $hdr .= "From: unser Verein <kontakt@example.org>\r\nReply-To: " . ($settings['email'] ?? 'kontakt@example.org') . "\r\nReturn-Path: kontakt@example.org\r\n";
     $hdr .= "Bcc: " . implode(', ', $recipients) . "\r\n";
 
     return @mail((string)($settings['email'] ?? 'kontakt@example.org'), $subject, $body, $hdr, "-fkontakt@example.org");
@@ -496,7 +496,7 @@ function sf_protocol_pdf_binary(array $p): string {
 
     // ── Meta-Block (Ort, Datum, Anwesenheit) ───────────────────────────
     $pdf->Ln(4);
-    sf_meta_row($pdf, 'Ort',   "Vereinshaus KGV Musterstadt e.V.\nMusterstraße 1/Ecke Beckermannweg\n12345 Musterstadt");
+    sf_meta_row($pdf, 'Ort',   "Vereinshaus unser Verein\nVereinsstraße 1\nPLZ Ort");
     sf_meta_row($pdf, 'Datum', $dDateDe);
     sf_meta_row($pdf, 'Art',   (string)($p['type'] ?? 'Sitzung'));
 
@@ -609,7 +609,7 @@ function sf_render_invitation_dialog(array $protocol): void {
         <label>Uhrzeit</label>
         <input type="text" name="time" placeholder="z.B. 19:30 Uhr" value="19:30 Uhr">
         <label>Ort</label>
-        <input type="text" name="location" placeholder="Vereinshaus KGV Musterstadt" value="Vereinshaus KGV Musterstadt">
+        <input type="text" name="location" placeholder="Vereinshaus unser Verein" value="Vereinshaus unser Verein">
         <label>Zusatz-Hinweis (optional)</label>
         <textarea name="note" rows="4" placeholder="Bitte Tagesordnungs-Anträge bis 7 Tage vorher einreichen…"></textarea>
         <div style="margin-top:18px;display:flex;gap:10px">
@@ -690,7 +690,7 @@ function sf_action_protocol_pdf(): void {
     $pdf->SetTextColor(61, 107, 65);
     $pdf->Cell(140, 5, $e('Muster-Kleingartenverein e.V.'), 0, 1);
     $pdf->SetFont('Helvetica', '', 8); $pdf->SetTextColor(110, 110, 110);
-    $pdf->Cell(140, 4, $e('Musterstraße 1/Ecke Beckermannweg · 12345 Musterstadt'), 0, 1);
+    $pdf->Cell(140, 4, $e('Vereinsstraße 1 · PLZ Ort'), 0, 1);
     $pdf->Ln(8);
 
     // Title
@@ -788,7 +788,7 @@ function sf_action_protocol_pdf(): void {
     // Footer
     $pdf->SetY(-12);
     $pdf->SetFont('Helvetica', '', 7); $pdf->SetTextColor(140, 140, 140);
-    $pdf->Cell($W, 4, $e('Erstellt am ' . date('d.m.Y H:i') . ' · KGV Musterstadt e.V.'), 0, 1, 'C');
+    $pdf->Cell($W, 4, $e('Erstellt am ' . date('d.m.Y H:i') . ' · unser Verein'), 0, 1, 'C');
 
     $out = $pdf->Output('S');
     $safeName = preg_replace('/[^a-z0-9_-]/i', '_', (string)($p['title'] ?? 'Protokoll'));
@@ -902,7 +902,7 @@ function sf_action_newsletter(): void {
 
     // Versenden
     $fromEmail = 'kontakt@example.org';
-    $fromName  = 'KGV Musterstadt e.V.';
+    $fromName  = 'unser Verein';
     $sentCount = 0; $failed = 0;
     $textBody  = strip_tags($greeting . "\n\n" . $body);
     foreach (array_chunk($recipients, 30) as $chunk) {
@@ -1224,7 +1224,7 @@ function sf_mail_application_decision(array $a): bool {
           . ($decNote !== '' ? $decNote . "\n\n" : '')
           . "Den vollständigen Stand und alle Dokumente findest du im Mitgliederbereich unter „Meine Anträge\":\n"
           . site_url() . "/mitglieder.php?tab=meine-antraege\n\n"
-          . "Viele Grüße\nDein Vorstand · KGV Musterstadt e.V.";
+          . "Viele Grüße\nDein Vorstand · unser Verein";
 
     $html = kgv_email_html(
         'Hallo ' . htmlspecialchars($firstName !== '' ? $firstName : 'lieber Gartenfreund') . ' 👋,',
@@ -1275,7 +1275,7 @@ function sf_mail_application_decision(array $a): bool {
         $body .= "--{$bMix}--";
         $hdr   = "MIME-Version: 1.0\r\nContent-Type: multipart/mixed; boundary=\"{$bMix}\"\r\n";
     }
-    $hdr .= "From: KGV Musterstadt e.V. <kontakt@example.org>\r\nReply-To: kontakt@example.org\r\nReturn-Path: kontakt@example.org\r\n";
+    $hdr .= "From: unser Verein <kontakt@example.org>\r\nReply-To: kontakt@example.org\r\nReturn-Path: kontakt@example.org\r\n";
 
     return @mail($to, '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, $hdr, '-fkontakt@example.org');
 }
@@ -1432,7 +1432,7 @@ function sf_action_protocol_invitation(): void {
     $body .= "--{$bMix}--";
 
     $hdr  = "MIME-Version: 1.0\r\nContent-Type: multipart/mixed; boundary=\"{$bMix}\"\r\n";
-    $hdr .= "From: KGV Musterstadt e.V. <kontakt@example.org>\r\nReply-To: " . ($settings['email'] ?? 'kontakt@example.org') . "\r\nReturn-Path: kontakt@example.org\r\n";
+    $hdr .= "From: unser Verein <kontakt@example.org>\r\nReply-To: " . ($settings['email'] ?? 'kontakt@example.org') . "\r\nReturn-Path: kontakt@example.org\r\n";
     $hdr .= "Bcc: " . implode(', ', $recipients) . "\r\n";
 
     $ok = @mail((string)($settings['email'] ?? 'kontakt@example.org'), $subject, $body, $hdr, "-fkontakt@example.org");

@@ -4,7 +4,7 @@ require_once __DIR__ . '/settings_loader.php';
 
 
 /**
- * Schriftführerin-Cockpit für KGV Musterstadt
+ * Schriftführerin-Cockpit für unser Verein
  *
  * Module:
  *   - sf_inbox()         — Dashboard mit Aktion-Items
@@ -148,7 +148,7 @@ function sf_default_letter_templates(): array {
             'id'       => 'tpl_welcome',
             'title'    => 'Begrüßungsschreiben Neumitglied',
             'icon'     => '👋',
-            'subject'  => 'Herzlich willkommen im KGV Musterstadt e.V., {name}!',
+            'subject'  => 'Herzlich willkommen im unser Verein, {name}!',
             'body'     => "Liebe/r {name},\n\nherzlich willkommen in unserer Muster-Kleingartenverein e.V.!\n\nWir freuen uns sehr, dass du dich für unseren Verein entschieden hast und ab sofort Parzelle {parzelle} dein Zuhause auf Zeit ist.\n\nIn den nächsten Tagen erreichen dich noch folgende Unterlagen:\n- Vereinssatzung\n- Gartenordnung\n- Liste der Vereinstermine\n\nBei Fragen steht dir der Vorstand jederzeit zur Verfügung — wir sind nur einen Anruf oder eine Mail entfernt.\n\nWir wünschen dir eine schöne und entspannte Zeit in deinem neuen Garten!\n\nHerzliche Grüße",
         ],
         [
@@ -379,7 +379,7 @@ function sf_letter_pdf(array $tpl, array $member, array $vars, array $settings =
     $pdf->Cell($W, 5, $e($vorstand), 0, 1);
     $pdf->SetFont('Helvetica', '', 8.5);
     $pdf->SetTextColor(110, 110, 110);
-    $pdf->Cell($W, 4, $e($rolle . ' · KGV Musterstadt e.V.'), 0, 1);
+    $pdf->Cell($W, 4, $e($rolle . ' · unser Verein'), 0, 1);
 
     // ── Footer mit IBAN ─────────────────────────────────────────────────
     $pdf->SetY(-14);
@@ -790,7 +790,7 @@ function sf_aushang_pdf(string $title, string $body, string $accentColor = '#3d6
     $pdf->SetY(-15);
     $pdf->SetFont('Helvetica', '', 8);
     $pdf->SetTextColor(140, 140, 140);
-    $pdf->Cell(0, 4, $e('Der Vorstand · KGV Musterstadt e.V. · Musterstraße 1/Ecke Beckermannweg · 12345 Musterstadt'), 0, 1, 'C');
+    $pdf->Cell(0, 4, $e('Der Vorstand · unser Verein · Adresse des Vereins'), 0, 1, 'C');
 
     return $pdf->Output('S');
 }
@@ -1109,7 +1109,7 @@ function sf_card_pdf(string $imageFile, string $name, string $message, string $t
     $pdf->SetY($blockY + $blockH - 8);
     $pdf->SetFont('Helvetica', '', 7.5);
     $pdf->SetTextColor(140, 140, 140);
-    $pdf->Cell($W, 4, $e('KGV Musterstadt e.V. · Muster-Kleingartenverein'), 0, 1, 'C');
+    $pdf->Cell($W, 4, $e('unser Verein'), 0, 1, 'C');
 
     return $pdf->Output('S');
 }
@@ -1249,7 +1249,7 @@ function sf_protocol_invitation_pdf(array $p, array $settings = [], string $time
     $pdf->Cell(170, 5, $e((string)($settings['kontakt_name'] ?? 'Max Mustermann')), 0, 1);
     $pdf->SetFont('Helvetica', '', 8.5);
     $pdf->SetTextColor(110, 110, 110);
-    $pdf->Cell(170, 4, $e((string)($settings['kontakt_rolle'] ?? '1. Vorsitzender') . ' · KGV Musterstadt e.V.'), 0, 1);
+    $pdf->Cell(170, 4, $e((string)($settings['kontakt_rolle'] ?? '1. Vorsitzender') . ' · unser Verein'), 0, 1);
 
     // ── Footer ─────────────────────────────────────────────────────────
     $pdf->SetY(-14);
@@ -1311,7 +1311,7 @@ function sf_briefkopf_top(\FPDF $pdf, array $settings = [], float $startY = 12):
     $pdf->SetFont('Helvetica', 'I', 10);
     $pdf->SetTextColor(61, 107, 65);
 
-    $addr   = trim((string)($settings['briefkopf_adresse'] ?? 'Musterstraße 1/Ecke Beckermannweg, 12345 Musterstadt'));
+    $addr   = trim((string)($settings['briefkopf_adresse'] ?? 'Vereinsstraße 1, PLZ Ort'));
     // Briefkopf zeigt IMMER den 1. Vorsitzenden (aus Vorstand-Liste, nicht
     // settings.kontakt_name — sonst überschreibt Schriftführer-Eintrag das
     // offizielle Dokument)

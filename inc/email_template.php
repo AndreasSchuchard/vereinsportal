@@ -75,7 +75,7 @@ function kgv_get_vorsitz(?array $content = null): array {
 }
 
 /**
- * Unified KGV Musterstadt e-mail template — Option A "Warm & Klar"
+ * Unified unser Verein e-mail template — Option A "Warm & Klar"
  *
  * @param string $greeting  "Hallo Andreas 👋," (HTML or plain)
  * @param string $content   main body HTML

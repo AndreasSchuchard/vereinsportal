@@ -109,7 +109,7 @@ if ($_n_hasMember) {
 <nav class="kgv-nav" aria-label="Hauptnavigation">
   <div class="kgv-nav-left">
     <a href="<?= $_n_hasMember ? '/mitglieder.php' : '/intern/' ?>" class="kgv-nav-logo">
-      <img src="/images/logo.png" alt="KGV Musterstadt e.V.">
+      <img src="/images/logo.png" alt="unser Verein">
     </a>
     <?php if ($_n_isLoggedIn): ?>
     <div class="kgv-nav-sep"></div>

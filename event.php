@@ -41,8 +41,8 @@ $flashId    = (string)($_GET['rid'] ?? '');
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
-<meta name="description" content="<?= htmlspecialchars($event['subtitle'] ?? 'Anmeldung zur Veranstaltung des KGV Musterstadt e.V.') ?>">
-<title><?= htmlspecialchars($pageTitle) ?> | KGV Musterstadt e.V.</title>
+<meta name="description" content="<?= htmlspecialchars($event['subtitle'] ?? 'Anmeldung zur Veranstaltung des unser Verein') ?>">
+<title><?= htmlspecialchars($pageTitle) ?> | unser Verein</title>
 <link rel="icon" type="image/png" href="/logo.png">
 <link rel="stylesheet" href="/portal.css?v=2">
 <style>
@@ -115,7 +115,7 @@ $flashId    = (string)($_GET['rid'] ?? '');
   <div class="evt-head"><h1>Veranstaltung nicht gefunden</h1></div>
   <div class="evt-body">
     <p>Diese Anmeldeseite existiert nicht oder wurde entfernt.</p>
-    <div class="evt-foot-link"><a href="/">← Zur Startseite KGV Musterstadt</a></div>
+    <div class="evt-foot-link"><a href="/">← Zur Startseite unser Verein</a></div>
   </div>
 
 <?php else: ?>
@@ -246,7 +246,7 @@ $flashId    = (string)($_GET['rid'] ?? '');
       </form>
     <?php endif; ?>
 
-    <div class="evt-foot-link"><a href="/">← Zur Startseite KGV Musterstadt e.V.</a></div>
+    <div class="evt-foot-link"><a href="/">← Zur Startseite unser Verein</a></div>
   </div>
 <?php endif; ?>
 

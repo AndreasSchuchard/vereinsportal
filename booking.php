@@ -8,7 +8,7 @@ header('Content-Type: application/json; charset=UTF-8');
 
 require_once __DIR__ . '/inc/email_template.php';
 $fromEmail    = 'kontakt@example.org';
-$fromName     = 'KGV Musterstadt e.V.';
+$fromName     = 'unser Verein';
 $bookingsFile = __DIR__ . '/data/bookings.json';
 $logFile      = __DIR__ . '/data/booking.log';
 $dataDir      = __DIR__ . '/data';
@@ -177,8 +177,8 @@ foreach ($_cc['blocked_ranges'] ?? [] as $_br) {
 // Extract contact settings + email templates for use in emails below
 $_bcfg = $_cc['settings'] ?? [];
 $_etDef = [
-    'inquiry_subject' => 'Ihre Buchungsanfrage – KGV Musterstadt Vereinshaus am {datum}',
-    'inquiry_body'    => "Liebe/r {name},\n\nvielen Dank für Ihre Buchungsanfrage für den {datum}.\n\nWir haben Ihre Anfrage erhalten und werden uns schnellstmöglich bei Ihnen melden.\n\nMit freundlichen Grüßen\nKGV Musterstadt e.V.",
+    'inquiry_subject' => 'Ihre Buchungsanfrage – Vereinshaus am {datum}',
+    'inquiry_body'    => "Liebe/r {name},\n\nvielen Dank für Ihre Buchungsanfrage für den {datum}.\n\nWir haben Ihre Anfrage erhalten und werden uns schnellstmöglich bei Ihnen melden.\n\nMit freundlichen Grüßen\nunser Verein",
 ];
 $_bEmailTpl     = array_merge($_etDef, $_cc['email_templates'] ?? []);
 // Buchungs-Kontakt: Auto-Lookup im Vorstand (Kassier/Vermietung), Fallback auf settings.kontakt_*

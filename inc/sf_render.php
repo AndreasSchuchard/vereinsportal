@@ -493,7 +493,7 @@ function sf_render_newsletter(string $csrf): void {
         </details>
 
         <label style="display:block;font-size:0.78rem;font-weight:700;color:#5a6c5a;margin-bottom:5px">Betreff</label>
-        <input type="text" name="subject" required maxlength="200" placeholder="z.B. KGV Musterstadt — Aktuelle Vereinsinformationen Mai 2026"
+        <input type="text" name="subject" required maxlength="200" placeholder="z.B. Verein — Aktuelle Vereinsinformationen Mai 2026"
                style="width:100%;padding:10px 12px;border:1.5px solid #d4e6c3;border-radius:8px;margin-bottom:14px;font-size:0.92rem;box-sizing:border-box">
 
         <label style="display:block;font-size:0.78rem;font-weight:700;color:#5a6c5a;margin-bottom:5px">Canva-Banner (optional, oben in der Mail)</label>
@@ -1413,7 +1413,7 @@ function sf_render_cards(string $csrf): void {
 
 Wir wünschen dir ein wunderbares Lebensjahr voller Sonnenschein, Gesundheit und vieler entspannter Stunden im Garten.
 
-Der Vorstand der KGV Musterstadt e.V.</textarea>
+Der Vorstand der unser Verein</textarea>
 
           <button type="submit" style="background:#d81b60;color:#fff;border:none;padding:11px 24px;border-radius:8px;font-size:0.92rem;font-weight:600;cursor:pointer">💌 Karte als PDF generieren (A5)</button>
         </form>

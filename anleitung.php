@@ -80,7 +80,7 @@ button:hover{opacity:.9}
 <div class="card">
   <div class="logo">📗</div>
   <h1>Admin-Handbuch</h1>
-  <p>KGV Musterstadt e.V. · Nur für den Vorstand</p>
+  <p>unser Verein · Nur für den Vorstand</p>
   <?php if ($_anlError): ?>
   <div class="err"><?= htmlspecialchars($_anlError) ?></div>
   <?php endif; ?>
@@ -100,7 +100,7 @@ button:hover{opacity:.9}
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Admin-Handbuch – KGV Musterstadt e.V.</title>
+<title>Admin-Handbuch – unser Verein</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--green:#3d6b41;--green-light:#7cb342;--green-bg:#f0f4ee;--text:#2d3e2d;--gray:#5a6c5a;--border:#d4e6c3;--yellow-bg:#fffde7;--yellow-border:#f9a825;--red-bg:#ffebee;--red-border:#ef9a9a;--blue-bg:#e3f2fd;--blue-border:#90caf9}
@@ -201,8 +201,8 @@ ul li{margin-bottom:3px}
 <aside class="sidebar">
   <div class="sidebar-header">
     <div class="sidebar-logo">
-      <img src="/images/logo.png" alt="KGV Musterstadt">
-      KGV Musterstadt e.V.
+      <img src="/images/logo.png" alt="unser Verein">
+      unser Verein
     </div>
     <div class="sidebar-sub">Admin-Handbuch · Nur für den Vorstand</div>
     <form method="POST" style="margin-top:10px">

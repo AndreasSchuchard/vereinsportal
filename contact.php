@@ -3,7 +3,7 @@ declare(strict_types=1);
 header('Content-Type: application/json; charset=UTF-8');
 
 $fromEmail  = 'kontakt@example.org';
-$fromName   = 'KGV Musterstadt e.V.';
+$fromName   = 'unser Verein';
 $logFile    = __DIR__ . '/data/contact.log';
 $dataDir    = __DIR__ . '/data';
 
@@ -80,7 +80,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     respond(['status' => 'error', 'message' => 'invalid_email'], 400);
 }
 
-$adminSubject = "Kontaktanfrage KGV Musterstadt: " . ($subject !== '' ? $subject : 'Allgemeine Anfrage');
+$adminSubject = "Kontaktanfrage unser Verein: " . ($subject !== '' ? $subject : 'Allgemeine Anfrage');
 $adminText    = "Neue Kontaktanfrage\n\nName: {$name}\nEmail: {$email}\nBetreff: {$subject}\n\nNachricht:\n{$message}";
 $adminHtml    = "<!DOCTYPE html><html><body style='background:#f5f7f2;font-family:Arial,sans-serif;padding:20px;'>"
               . "<div style='max-width:540px;margin:0 auto;background:#fff;border-radius:12px;border:1px solid #d4e6c3;overflow:hidden;'>"

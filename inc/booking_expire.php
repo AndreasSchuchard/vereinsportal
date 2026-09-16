@@ -108,7 +108,7 @@ function kgv_send_booking_expire_mail(array $b): bool {
     // Buchungs-Kontakt (Nicole) als BCC + Signatur
     $contact   = kgv_get_booking_contact();
     $fromEmail = 'kontakt@example.org';
-    $fromName  = 'KGV Musterstadt e.V.';
+    $fromName  = 'unser Verein';
     $sigName   = (string)($contact['name']  ?? 'Erika Musterfrau');
     $sigEmail  = (string)($contact['email'] ?? 'kontakt@example.org');
     $sigPhone  = (string)($contact['phone'] ?? '');
@@ -120,7 +120,7 @@ function kgv_send_booking_expire_mail(array $b): bool {
         $bccList[] = $sigEmail;
     }
 
-    $subject = 'Deine Buchungsanfrage ist abgelaufen — KGV Musterstadt Vereinshaus';
+    $subject = 'Deine Buchungsanfrage ist abgelaufen — Vereinshaus';
 
     $textBody =
           "Hallo {$name},\n\n"
@@ -129,7 +129,7 @@ function kgv_send_booking_expire_mail(array $b): bool {
         . "Falls dein Termin noch aktuell ist, melde dich gerne erneut:\n"
         . site_url() . "/vereinshaus\n\n"
         . "Wir kümmern uns dann schneller. Sorry für die Wartezeit.\n\n"
-        . "Freundliche Grüße\n{$sigName}\n{$sigRole} · KGV Musterstadt e.V.";
+        . "Freundliche Grüße\n{$sigName}\n{$sigRole} · unser Verein";
 
     $htmlBody =
           "<p>deine Anfrage für das Vereinshaus"

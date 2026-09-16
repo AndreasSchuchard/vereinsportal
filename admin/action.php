@@ -52,13 +52,13 @@ function removeBookingBufferDay(array $bDates, string $bookingId = '', string $b
 }
 
 $fromEmail = 'kontakt@example.org';
-$fromName  = 'KGV Musterstadt e.V.';
+$fromName  = 'unser Verein';
 
 // Einstellungen und E-Mail-Vorlagen aus content.json laden
 $_contentData  = file_exists(CONTENT_FILE) ? (json_decode((string)file_get_contents(CONTENT_FILE), true) ?: []) : [];
 $_cfg          = $_contentData['settings'] ?? [];
 $cfgIban       = $_cfg['iban']         ?? '';
-$cfgKontoInhaber = $_cfg['kontoinhaber'] ?? 'KGV Musterstadt e.V.';
+$cfgKontoInhaber = $_cfg['kontoinhaber'] ?? 'unser Verein';
 $cfgBank       = $_cfg['bank']         ?? '';
 // Buchungs-Kontakt: Auto-Lookup im Vorstand (Kassier/Vermietung), Fallback auf settings.kontakt_*
 require_once dirname(__DIR__) . '/inc/email_template.php';
@@ -69,10 +69,10 @@ $cfgTelefon      = $_cfgBookingContact['phone'];
 $cfgEmail        = $_cfgBookingContact['email'];
 $cfgZahlungsziel = (int)($_cfg['zahlungsziel_wochen'] ?? 4);
 $_etDefault = [
-    'confirm_subject' => 'Buchungsbestätigung – KGV Musterstadt Vereinshaus am {datum}',
-    'confirm_body'    => "Liebe/r {name},\n\nwir freuen uns, Ihre Buchungsanfrage hiermit verbindlich zu bestätigen!\n\nZeitraum: {datum}\n\nGesamtbetrag: {betrag}\nKaution: 200,00 EUR\nZu überweisen: {gesamt}\n\nEmpfänger: {kontoinhaber}\nIBAN: {iban}\n\nKontakt: {kontakt_name} · {telefon} · {email_kontakt}\n\nMit freundlichen Grüßen\n{kontakt_name}\nKGV Musterstadt e.V.",
-    'reject_subject'  => 'Zu Ihrer Anfrage – KGV Musterstadt Vereinshaus am {datum}',
-    'reject_body'     => "Liebe/r {name},\n\nvielen Dank für Ihre Anfrage zur Nutzung unseres Vereinshauses am {datum}.\n\nLeider können wir Ihnen diesen Zeitraum nicht anbieten.\n\nFür alternative Terminanfragen:\n{kontakt_name} · {telefon} · {email_kontakt}\n\nMit freundlichen Grüßen\n{kontakt_name}\nKGV Musterstadt e.V.",
+    'confirm_subject' => 'Buchungsbestätigung – Vereinshaus am {datum}',
+    'confirm_body'    => "Liebe/r {name},\n\nwir freuen uns, Ihre Buchungsanfrage hiermit verbindlich zu bestätigen!\n\nZeitraum: {datum}\n\nGesamtbetrag: {betrag}\nKaution: 200,00 EUR\nZu überweisen: {gesamt}\n\nEmpfänger: {kontoinhaber}\nIBAN: {iban}\n\nKontakt: {kontakt_name} · {telefon} · {email_kontakt}\n\nMit freundlichen Grüßen\n{kontakt_name}\nunser Verein",
+    'reject_subject'  => 'Zu Ihrer Anfrage – Vereinshaus am {datum}',
+    'reject_body'     => "Liebe/r {name},\n\nvielen Dank für Ihre Anfrage zur Nutzung unseres Vereinshauses am {datum}.\n\nLeider können wir Ihnen diesen Zeitraum nicht anbieten.\n\nFür alternative Terminanfragen:\n{kontakt_name} · {telefon} · {email_kontakt}\n\nMit freundlichen Grüßen\n{kontakt_name}\nunser Verein",
 ];
 $cfgEmailTpl = array_merge($_etDefault, $_contentData['email_templates'] ?? []);
 unset($_contentData, $_cfg, $_etDefault);

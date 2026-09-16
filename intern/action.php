@@ -32,13 +32,13 @@ define('TODOS_FILE',    dirname(__DIR__) . '/data/todos.json');
 define('TODO_IMG_DIR',  dirname(__DIR__) . '/data/todo_img');
 
 $fromEmail = 'kontakt@example.org';
-$fromName  = 'KGV Musterstadt e.V.';
+$fromName  = 'unser Verein';
 
 // Einstellungen und E-Mail-Vorlagen aus content.json laden
 $_contentData  = file_exists(CONTENT_FILE) ? (json_decode((string)file_get_contents(CONTENT_FILE), true) ?: []) : [];
 $_cfg          = $_contentData['settings'] ?? [];
 $cfgIban       = $_cfg['iban']         ?? '';
-$cfgKontoInhaber = $_cfg['kontoinhaber'] ?? 'KGV Musterstadt e.V.';
+$cfgKontoInhaber = $_cfg['kontoinhaber'] ?? 'unser Verein';
 $cfgBank       = $_cfg['bank']         ?? '';
 // Buchungs-Kontakt: Auto-Lookup im Vorstand (Kassier/Vermietung), Fallback auf settings.kontakt_*
 // Sodass Buchungsmails immer von Nicole signiert sind, unabhängig davon, wer im Backoffice bestätigt.
@@ -50,10 +50,10 @@ $cfgTelefon      = $_cfgBookingContact['phone'];
 $cfgEmail        = $_cfgBookingContact['email'];
 $cfgZahlungsziel = (int)($_cfg['zahlungsziel_wochen'] ?? 4);
 $_etDefault = [
-    'confirm_subject' => 'Buchungsbestätigung – KGV Musterstadt Vereinshaus am {datum}',
-    'confirm_body'    => "Liebe/r {name},\n\nwir freuen uns, Ihre Buchungsanfrage hiermit verbindlich zu bestätigen!\n\nZeitraum: {datum}\n\nRaummiete gesamt: {betrag}\nEndreinigung (verpflichtend, besenrein übergeben): {endreinigung}\nKaution (Rückerstattung nach Veranstaltung): {kaution}\nZu überweisen gesamt: {gesamt}\n\nEmpfänger: {kontoinhaber}\nIBAN: {iban}\n\nKontakt: {kontakt_name} · {telefon} · {email_kontakt}\n\nMit freundlichen Grüßen\n{kontakt_name}\nKGV Musterstadt e.V.",
-    'reject_subject'  => 'Zu Ihrer Anfrage – KGV Musterstadt Vereinshaus am {datum}',
-    'reject_body'     => "Liebe/r {name},\n\nvielen Dank für Ihre Anfrage zur Nutzung unseres Vereinshauses am {datum}.\n\nLeider können wir Ihnen diesen Zeitraum nicht anbieten.\n\nFür alternative Terminanfragen:\n{kontakt_name} · {telefon} · {email_kontakt}\n\nMit freundlichen Grüßen\n{kontakt_name}\nKGV Musterstadt e.V.",
+    'confirm_subject' => 'Buchungsbestätigung – Vereinshaus am {datum}',
+    'confirm_body'    => "Liebe/r {name},\n\nwir freuen uns, Ihre Buchungsanfrage hiermit verbindlich zu bestätigen!\n\nZeitraum: {datum}\n\nRaummiete gesamt: {betrag}\nEndreinigung (verpflichtend, besenrein übergeben): {endreinigung}\nKaution (Rückerstattung nach Veranstaltung): {kaution}\nZu überweisen gesamt: {gesamt}\n\nEmpfänger: {kontoinhaber}\nIBAN: {iban}\n\nKontakt: {kontakt_name} · {telefon} · {email_kontakt}\n\nMit freundlichen Grüßen\n{kontakt_name}\nunser Verein",
+    'reject_subject'  => 'Zu Ihrer Anfrage – Vereinshaus am {datum}',
+    'reject_body'     => "Liebe/r {name},\n\nvielen Dank für Ihre Anfrage zur Nutzung unseres Vereinshauses am {datum}.\n\nLeider können wir Ihnen diesen Zeitraum nicht anbieten.\n\nFür alternative Terminanfragen:\n{kontakt_name} · {telefon} · {email_kontakt}\n\nMit freundlichen Grüßen\n{kontakt_name}\nunser Verein",
 ];
 $cfgEmailTpl = array_merge($_etDefault, $_contentData['email_templates'] ?? []);
 unset($_contentData, $_cfg, $_etDefault);
@@ -254,11 +254,11 @@ if ($action === 'add_todo') {
             . htmlspecialchars($text)
             . "</div>"
             . "<p style='margin-bottom:8px'><a href='" . site_url() . "/intern/?tab=todos' style='display:inline-block;background:#3d6b41;color:#fff;text-decoration:none;padding:10px 18px;border-radius:6px;font-weight:600'>→ Zum Backoffice</a></p>",
-            'Neues Todo – KGV Musterstadt',
-            'KGV Musterstadt e.V.', '', 'kontakt@example.org', 'Webmaster-Notification'
+            'Neues Todo – unser Verein',
+            'unser Verein', '', 'kontakt@example.org', 'Webmaster-Notification'
         );
         @send_mail_simple($_notifyTo, $_notifySubject, $_notifyText, $_notifyHtml,
-                          'KGV Musterstadt e.V.', 'kontakt@example.org', 'kontakt@example.org');
+                          'unser Verein', 'kontakt@example.org', 'kontakt@example.org');
     }
     header('Location: /intern/?tab=todos'); exit;
 }
@@ -550,7 +550,7 @@ foreach ($bookings as &$b) {
         $_sName  = $b['name']  ?? '';
         $_sDates = formatDatesDE($b);
         if (filter_var($_sEmail, FILTER_VALIDATE_EMAIL)) {
-            $_sSubject = 'Kautionsabrechnung – Vereinshaus KGV Musterstadt';
+            $_sSubject = 'Kautionsabrechnung – Vereinshaus unser Verein';
             $_sText    = "Liebe/r {$_sName},\n\nvielen herzlichen Dank für Ihre Veranstaltung in unserem Vereinshaus!\n\n";
             $_sText   .= "Hier die Abrechnung Ihrer Kaution:\n\n";
             $_sText   .= "Kaution:          " . number_format($_kautionBtg, 2, ',', '.') . " €\n";
@@ -561,7 +561,7 @@ foreach ($bookings as &$b) {
             $_sText .= "────────────────\n";
             $_sText .= "Rückzahlung:      " . number_format($returnedAmount, 2, ',', '.') . " €\n";
             if ($settleNote !== '') $_sText .= "\n{$settleNote}\n";
-            $_sText .= "\nMit freundlichen Grüßen\n" . $cfgKontaktName . "\nKGV Musterstadt e.V.";
+            $_sText .= "\nMit freundlichen Grüßen\n" . $cfgKontaktName . "\nunser Verein";
 
             // HTML-Version
             $_dmgRowsHtml = '';

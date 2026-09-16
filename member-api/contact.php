@@ -147,13 +147,13 @@ if (($action === 'reply' || $action === 'peer_reply') && $threadId !== '') {
             $subj = 'Antwort auf Ihre Nachricht: ' . $subject;
             $html = "<!DOCTYPE html><html><body style='font-family:Arial,sans-serif;background:#f5f7f2;padding:20px'>"
                   . "<div style='max-width:540px;margin:0 auto;background:#fff;border-radius:12px;border:1px solid #d4e6c3;overflow:hidden'>"
-                  . "<div style='background:#3d6b41;padding:16px 24px'><img src='" . site_url() . "/images/logo.png' alt='KGV Musterstadt e.V.' height='48' style='display:block;max-height:48px'></div>"
+                  . "<div style='background:#3d6b41;padding:16px 24px'><img src='" . site_url() . "/images/logo.png' alt='unser Verein' height='48' style='display:block;max-height:48px'></div>"
                   . "<div style='padding:24px'><p>Hallo {$notifyName},</p>"
                   . "<p style='color:#5a6c5a'><strong>{$replyerName}</strong> hat auf Ihre Nachricht geantwortet.</p>"
                   . "<div style='background:#f5f7f2;border-radius:8px;padding:14px;margin-bottom:12px'><p style='margin:0;white-space:pre-wrap;color:#2d3e2d'>" . htmlspecialchars($body) . "</p></div>"
                   . "<a href='" . site_url() . "/mitglieder.php?tab=kontakt' style='display:inline-block;background:#3d6b41;color:#fff;padding:10px 22px;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.88rem'>Nachricht ansehen →</a>"
                   . "</div></div></body></html>";
-            $hdr = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: KGV Musterstadt Mitgliederbereich <{$fromEmail}>\r\nReturn-Path: {$fromEmail}\r\n";
+            $hdr = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: unser Verein Mitgliederbereich <{$fromEmail}>\r\nReturn-Path: {$fromEmail}\r\n";
             @mail($notifyEmail, '=?UTF-8?B?' . base64_encode($subj) . '?=', $html, $hdr, "-f{$fromEmail}");
         }
         break;
@@ -213,7 +213,7 @@ $cc  = file_exists($ccf) ? (json_decode((string)file_get_contents($ccf), true) ?
 $en  = $cc['settings']['email_notifications'] ?? [];
 if ($action !== 'peer_reply' && !empty($en['enabled']) && !empty($en['member_notify'])) {
     $fromEmail = 'kontakt@example.org';
-    $fromName  = 'KGV Musterstadt Mitgliederbereich';
+    $fromName  = 'unser Verein Mitgliederbereich';
     $mn = htmlspecialchars($member['name']);
     $mp = htmlspecialchars($member['parzelle']);
     $emailSubj = ($action === 'reply' ? 'Neue Antwort: ' : 'Neue Nachricht: ') . $subject . " (Parzelle {$member['parzelle']})";
@@ -262,7 +262,7 @@ if ($action !== 'peer_reply' && !empty($en['enabled']) && !empty($en['member_not
 
     $emailHtml = "<!DOCTYPE html><html><body style='font-family:Arial,sans-serif;background:#f5f7f2;padding:20px'>"
                . "<div style='max-width:540px;margin:0 auto;background:#fff;border-radius:12px;border:1px solid #d4e6c3;overflow:hidden'>"
-               . "<div style='background:#3d6b41;padding:16px 24px'><img src='" . site_url() . "/images/logo.png' alt='KGV Musterstadt e.V.' height='48' style='display:block;max-height:48px'></div>"
+               . "<div style='background:#3d6b41;padding:16px 24px'><img src='" . site_url() . "/images/logo.png' alt='unser Verein' height='48' style='display:block;max-height:48px'></div>"
                . "<div style='padding:24px'>"
                . "<table style='width:100%;border-collapse:collapse;margin-bottom:16px'>"
                . "<tr><td style='padding:6px 0;color:#5a6c5a;width:80px'>Von</td><td style='padding:6px 0;font-weight:600'>{$mn} · Parzelle {$mp}</td></tr>"

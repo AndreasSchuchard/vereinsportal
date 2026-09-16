@@ -78,7 +78,7 @@ $pdf->SetTextColor(61, 107, 65);
 $pdf->Cell(140, 5, $e('Muster-Kleingartenverein e.V.'), 0, 1);
 $pdf->SetFont('Helvetica', '', 8);
 $pdf->SetTextColor(120, 120, 120);
-$pdf->Cell(140, 4, $e('Musterstraße 1/Ecke Beckermannweg · 12345 Musterstadt'), 0, 1);
+$pdf->Cell(140, 4, $e('Vereinsstraße 1 · PLZ Ort'), 0, 1);
 $pdf->Ln(2);
 $pdf->SetDrawColor(220, 220, 220);
 $pdf->Line(20, $pdf->GetY(), 190, $pdf->GetY());
@@ -168,7 +168,7 @@ $pdf->Line(20, $pdf->GetY(), 190, $pdf->GetY());
 $pdf->Ln(2);
 $pdf->SetFont('Helvetica', 'I', 7.5);
 $pdf->SetTextColor(150, 150, 150);
-$pdf->Cell(0, 4, $e('KGV Musterstadt e.V. · www.' . site_url() . ' · Druck-Aushang ' . date('d.m.Y')), 0, 1, 'C');
+$pdf->Cell(0, 4, $e('unser Verein · www.' . site_url() . ' · Druck-Aushang ' . date('d.m.Y')), 0, 1, 'C');
 
 @unlink($qrTmp);
 

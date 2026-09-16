@@ -141,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_SESSION['kgv_member'])) {
         if ($to !== '' && filter_var($to, FILTER_VALIDATE_EMAIL)) {
             $catLabels = sf_schaden_categories();
             $cat = $catLabels[$catKey] ?? '🔧 Sonstige';
-            $subj = '[KGV Musterstadt · Schaden] ' . $cat . ' — ' . $title;
+            $subj = '[unser Verein · Schaden] ' . $cat . ' — ' . $title;
             $txt  = "Neue Schadenmeldung\n\n"
                   . "Kategorie: {$cat}\nTitel: {$title}\n"
                   . "Von: " . ($member['name'] ?? '?') . " <" . ($member['email'] ?? '?') . ">\n\n"
@@ -165,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_SESSION['kgv_member'])) {
             $body  = "--{$b}\r\nContent-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: 8bit\r\n\r\n{$txt}\r\n\r\n";
             $body .= "--{$b}\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Transfer-Encoding: 8bit\r\n\r\n{$html}\r\n--{$b}--";
             $hdr   = "MIME-Version: 1.0\r\nContent-Type: multipart/alternative; boundary=\"{$b}\"\r\n";
-            $hdr  .= "From: KGV Musterstadt e.V. <kontakt@example.org>\r\nReply-To: " . (string)($member['email'] ?? 'kontakt@example.org') . "\r\nReturn-Path: kontakt@example.org\r\n";
+            $hdr  .= "From: unser Verein <kontakt@example.org>\r\nReply-To: " . (string)($member['email'] ?? 'kontakt@example.org') . "\r\nReturn-Path: kontakt@example.org\r\n";
             @mail($to, $subj, $body, $hdr, '-fkontakt@example.org');
         }
 
@@ -221,7 +221,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_SESSION['kgv_member'])) {
             $artLabel = $arten[$art];
             $parz     = (string)($member['parzelle'] ?? '');
             $nAtt     = count($uploads);
-            $subj = '[KGV Musterstadt · ' . $artLabel . '] ' . $title . ' — ' . ($member['name'] ?? '?');
+            $subj = '[unser Verein · ' . $artLabel . '] ' . $title . ' — ' . ($member['name'] ?? '?');
             $txt  = "Neuer Antrag eingegangen.\n\n"
                   . "Art: {$artLabel}\n"
                   . "Von: " . ($member['name'] ?? '?') . ($parz !== '' ? " (Parzelle {$parz})" : '') . "\n"
@@ -248,7 +248,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_SESSION['kgv_member'])) {
             $body  = "--{$b}\r\nContent-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: 8bit\r\n\r\n{$txt}\r\n\r\n";
             $body .= "--{$b}\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Transfer-Encoding: 8bit\r\n\r\n{$html}\r\n--{$b}--";
             $hdr   = "MIME-Version: 1.0\r\nContent-Type: multipart/alternative; boundary=\"{$b}\"\r\n";
-            $hdr  .= "From: KGV Musterstadt e.V. <kontakt@example.org>\r\nReply-To: " . (string)($member['email'] ?? 'kontakt@example.org') . "\r\nReturn-Path: kontakt@example.org\r\n";
+            $hdr  .= "From: unser Verein <kontakt@example.org>\r\nReply-To: " . (string)($member['email'] ?? 'kontakt@example.org') . "\r\nReturn-Path: kontakt@example.org\r\n";
             @mail($to, $subj, $body, $hdr, '-fkontakt@example.org');
         }
 
@@ -279,7 +279,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_SESSION['kgv_member'])) {
             $cfg = sf_config();
             $to  = $cfg['antrag_to'] ?? '';
             if ($to !== '' && filter_var($to, FILTER_VALIDATE_EMAIL)) {
-                $subj = '[KGV Musterstadt · Antrag zurückgezogen] ' . $withdrawnTitle . ' — ' . ($member['name'] ?? '?');
+                $subj = '[unser Verein · Antrag zurückgezogen] ' . $withdrawnTitle . ' — ' . ($member['name'] ?? '?');
                 $txt  = ($member['name'] ?? '?') . " hat den Antrag \"{$withdrawnTitle}\" zurückgezogen.\n\n"
                       . "Im Cockpit: " . site_url() . "/intern/?tab=schriftfuehrung&sub=applications";
                 $html = kgv_email_html(
@@ -294,7 +294,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_SESSION['kgv_member'])) {
                 $body  = "--{$b}\r\nContent-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: 8bit\r\n\r\n{$txt}\r\n\r\n";
                 $body .= "--{$b}\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Transfer-Encoding: 8bit\r\n\r\n{$html}\r\n--{$b}--";
                 $hdr   = "MIME-Version: 1.0\r\nContent-Type: multipart/alternative; boundary=\"{$b}\"\r\n";
-                $hdr  .= "From: KGV Musterstadt e.V. <kontakt@example.org>\r\nReply-To: " . (string)($member['email'] ?? 'kontakt@example.org') . "\r\nReturn-Path: kontakt@example.org\r\n";
+                $hdr  .= "From: unser Verein <kontakt@example.org>\r\nReply-To: " . (string)($member['email'] ?? 'kontakt@example.org') . "\r\nReturn-Path: kontakt@example.org\r\n";
                 @mail($to, $subj, $body, $hdr, '-fkontakt@example.org');
             }
         }
@@ -688,7 +688,7 @@ if (($isKoppel || $isKassier) && $_SERVER['REQUEST_METHOD'] === 'POST') {
                            . "<div style='background:#f5f7f2;border-radius:8px;padding:14px;margin-bottom:14px'><p style='margin:0;white-space:pre-wrap;color:#2d3e2d'>" . htmlspecialchars($rBody) . "</p></div>"
                            . "<a href='" . site_url() . "/mitglieder.php?tab=kontakt' style='display:inline-block;background:#3d6b41;color:#fff;padding:10px 22px;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.88rem'>Antwort ansehen →</a>";
                 $_rhtml = kgv_email_html('Hallo ' . htmlspecialchars($rMemberName) . ',', $_rcontent, 'Antwort auf Ihre Anfrage');
-                $_rhdr  = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: KGV Musterstadt e.V. <{$_rfrom}>\r\nReturn-Path: {$_rfrom}\r\n";
+                $_rhdr  = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: unser Verein <{$_rfrom}>\r\nReturn-Path: {$_rfrom}\r\n";
                 @mail($rMemberEmail, '=?UTF-8?B?' . base64_encode($_rsubj) . '?=', $_rhtml, $_rhdr, "-f{$_rfrom}");
             }
         }
@@ -750,9 +750,9 @@ function he(string $s): string { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="KGV Musterstadt">
+<meta name="apple-mobile-web-app-title" content="unser Verein">
 <meta name="theme-color" content="#3d6b41">
-<title>Mitgliederbereich – KGV Musterstadt e.V.</title>
+<title>Mitgliederbereich – unser Verein</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="apple-touch-icon" href="/icon-180.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
@@ -997,7 +997,7 @@ body { font-family: 'Poppins', sans-serif; background: var(--green-pale); color:
 <!-- ══ LOGIN PAGE ══════════════════════════════════════════════════════════════ -->
 <div class="login-wrap">
   <div class="login-card">
-    <div style="text-align:center;margin-bottom:8px"><img src="<?= site_url() ?>/images/logo.png" alt="KGV Musterstadt e.V." style="max-height:72px;width:auto"></div>
+    <div style="text-align:center;margin-bottom:8px"><img src="<?= site_url() ?>/images/logo.png" alt="unser Verein" style="max-height:72px;width:auto"></div>
     <h1>Mitgliederbereich</h1>
     <p>Bitte melden Sie sich mit Ihrer E-Mail-Adresse und Ihrem Passwort an.</p>
     <div id="loginError" class="error-msg"></div>
@@ -2129,7 +2129,7 @@ body { font-family: 'Poppins', sans-serif; background: var(--green-pale); color:
           </div>
           <label style="display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;cursor:pointer;margin-bottom:16px;line-height:1.5">
             <input type="checkbox" name="consent_reconfirm" value="1" required style="margin-top:3px;flex-shrink:0">
-            <span>Ich stimme der Verarbeitung meiner aktualisierten Kontaktdaten durch den KGV Musterstadt zu (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO).</span>
+            <span>Ich stimme der Verarbeitung meiner aktualisierten Kontaktdaten durch den unser Verein zu (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO).</span>
           </label>
           <div style="display:flex;gap:10px">
             <button type="submit" class="btn-primary" style="font-size:0.88rem">Speichern</button>
@@ -2945,7 +2945,7 @@ activatePhonelistProtection();
      align-items:center;justify-content:space-between;gap:12px;
      box-shadow:0 -2px 12px rgba(0,0,0,.3);">
   <div style="flex:1;font-size:14px;line-height:1.3">
-    <strong>KGV Musterstadt installieren</strong><br>
+    <strong>unser Verein installieren</strong><br>
     <span style="opacity:.85;font-size:12px">App auf dem Homescreen speichern</span>
   </div>
   <button id="pwa-install-btn" style="background:#4a7c4e;color:#fff;border:none;border-radius:8px;

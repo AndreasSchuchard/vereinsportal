@@ -105,7 +105,7 @@ if (!kgv_events_save($all)) { http_response_code(500); exit('Storage write error
 
 // ── Bestätigungs-Mail an Anmelder ─────────────────────────────────────────
 $fromEmail = 'kontakt@example.org';
-$fromName  = 'KGV Musterstadt e.V.';
+$fromName  = 'unser Verein';
 $cancelUrl = site_url() . '/event-cancel.php?id=' . urlencode($registration['id']) . '&t=' . urlencode($cancelToken);
 
 $catRow = (!empty($event['show_catering']) && $catering !== '')
@@ -143,7 +143,7 @@ $custText =
     . "- Name: {$fullname}\n- E-Mail: {$email}\n- Telefon: {$phone}\n- Personen: {$guests}\n"
     . ((!empty($event['show_catering']) && $catering !== '') ? "- Buffet-Beitrag: {$catering}\n" : '')
     . "\nStornierung: {$cancelUrl}\n\n"
-    . "Freundliche Grüße\nDer Festausschuss\nKGV Musterstadt e.V.";
+    . "Freundliche Grüße\nDer Festausschuss\nunser Verein";
 
 // HTML-Mail mit kgv_email_html (vom Festausschuss)
 $sigName  = 'Andreas Schuchard';
@@ -171,7 +171,7 @@ foreach (($ccF['vorstand'] ?? []) as $v) {
 $bccList   = array_values(array_unique($bccList));
 $notifyMain = 'events@example.org';
 
-$adminSubj = '[KGV Musterstadt · Anmeldung] ' . $_evTitle . ' — ' . $fullname . ' (' . $guests . ' Pers.)';
+$adminSubj = '[unser Verein · Anmeldung] ' . $_evTitle . ' — ' . $fullname . ' (' . $guests . ' Pers.)';
 $adminTxt  = "Neue Anmeldung für '{$_evTitle}'\n\n"
            . "Name: {$fullname}\nE-Mail: {$email}\nTelefon: {$phone}\nPersonen: {$guests}\n"
            . ((!empty($event['show_catering']) && $catering !== '') ? "Buffet-Beitrag: {$catering}\n" : '')

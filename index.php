@@ -26,7 +26,7 @@ if (!empty($_sm['maintenance']) && empty($_SESSION['kgv_admin']) && !$_memberByp
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KGV Musterstadt – Wartungsarbeiten</title>
+<title>unser Verein – Wartungsarbeiten</title>
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -52,10 +52,10 @@ h1{font-family:"Playfair Display",serif;color:#fff;font-size:2rem;line-height:1.
 </head>
 <body>
 <div class="card">
-  <div class="logo-wrap"><img src="/logo.png" alt="KGV Musterstadt"></div>
+  <div class="logo-wrap"><img src="/logo.png" alt="unser Verein"></div>
   <div class="badge">Wartungsarbeiten</div>
   <h1>Wir sind gleich zurück</h1>
-  <p class="sub">KGV Musterstadt e.V. · Muster-Kleingartenverein</p>
+  <p class="sub">unser Verein</p>
   <div class="divider"></div>
   <p class="msg">' . $mMsg . '</p>'
   . ($mEmail !== '' || $mTel !== '' ? '
@@ -78,7 +78,7 @@ $_vereinName = trim((string)($_c['impressum']['verein'] ?? ($_c['verein']['name'
 $_ftTel    = htmlspecialchars($_settings['telefon'] ?? '+49 000 000 00 00');
 $_ftEmail  = htmlspecialchars($_settings['email']   ?? 'vorstand@example.org');
 $_ftStr    = htmlspecialchars($_settings['strasse'] ?? 'Musterstraße 1');
-$_ftPlz    = htmlspecialchars($_settings['plz_ort'] ?? '12345 Musterstadt');
+$_ftPlz    = htmlspecialchars($_settings['plz_ort'] ?? 'PLZ Ort');
 $_hero    = $_c['hero']         ?? [];
 $_ticker  = $_c['ticker']       ?? [];
 $_notif   = $_c['notification'] ?? ['active' => true, 'text' => ''];
@@ -161,7 +161,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Muster-Kleingartenverein e.V.",
-        "alternateName": "KGV Musterstadt",
+        "alternateName": "unser Verein",
         "url": "<?= site_url() ?>",
         "logo": "/logo.png",
         "foundingDate": "1975",
@@ -185,7 +185,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
     {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        "name": "KGV Musterstadt e.V. – Vereinshaus Musterstadt",
+        "name": "unser Verein – Vereinshaus unserem Verein",
         "url": "<?= site_url() ?>/",
         "telephone": "+49-163-5140490",
         "email": "vorstand@example.org",
@@ -203,7 +203,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
             "longitude": "10.0140"
         },
         "priceRange": "€",
-        "description": "Vermietung des Vereinshauses des KGV Musterstadt e.V. in Musterstadt für Feiern, Veranstaltungen und Vereinstreffen."
+        "description": "Vermietung des Vereinshauses des unser Verein in Musterstadt für Feiern, Veranstaltungen und Vereinstreffen."
     }
     </script>
 
@@ -228,20 +228,20 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
         <nav aria-label="Hauptnavigation">
             <div class="logo">
                 <div class="logo-img">
-                    <img src="logo.png" alt="Muster-Kleingartenverein e.V. Logo" title="KGV Musterstadt e.V. – Startseite" width="180" height="60">
+                    <img src="logo.png" alt="Muster-Kleingartenverein e.V. Logo" title="unser Verein – Startseite" width="180" height="60">
                 </div>
             </div>
             <button class="mobile-menu-btn" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navMenu" onclick="toggleMobileMenu(this)">☰</button>
             <ul id="navMenu">
                 <li><a href="#home" title="Zur Startseite">Startseite</a></li>
                 <li><a href="#about" title="Über unseren Verein">Über Uns</a></li>
-                <?php if ($_sec['vorstand']): ?><li><a href="#vorstand" title="Der Vorstand des KGV Musterstadt">Der Vorstand</a></li><?php endif; ?>
+                <?php if ($_sec['vorstand']): ?><li><a href="#vorstand" title="Der Vorstand des unser Verein">Der Vorstand</a></li><?php endif; ?>
                 <?php if ($_sec['gallery']): ?><li><a href="#gallery" title="Bildergalerie">Galerie</a></li><?php endif; ?>
-                <?php if ($_sec['booking']): ?><li><a href="/vereinshaus" title="Vereinshaus des KGV Musterstadt mieten">Vereinshaus mieten</a></li><?php endif; ?>
+                <?php if ($_sec['booking']): ?><li><a href="/vereinshaus" title="Vereinshaus des unser Verein mieten">Vereinshaus mieten</a></li><?php endif; ?>
                 <?php if ($_sec['termine'] && !empty($_termineAll)): ?><li><a href="#termine" title="Termine und Veranstaltungen">Termine</a></li><?php endif; ?>
                 <?php if ($_sec['links']): ?><li><a href="#links" title="Nützliche Links">Links</a></li><?php endif; ?>
-                <?php if ($_sec['member']): ?><li><a href="#member" title="Mitglied im KGV Musterstadt werden">Mitglied werden</a></li><?php endif; ?>
-                <li><a href="/mitglieder.php" title="Zum Mitgliederbereich" style="font-weight:600;color:var(--primary-green)"><img src="/images/logo.png" alt="KGV Musterstadt Mitgliederbereich" title="Mitgliederbereich" style="height:18px;width:auto;vertical-align:middle;margin-right:5px" width="18" height="18"> Mitgliederbereich</a></li>
+                <?php if ($_sec['member']): ?><li><a href="#member" title="Mitglied im unser Verein werden">Mitglied werden</a></li><?php endif; ?>
+                <li><a href="/mitglieder.php" title="Zum Mitgliederbereich" style="font-weight:600;color:var(--primary-green)"><img src="/images/logo.png" alt="unser Verein Mitgliederbereich" title="Mitgliederbereich" style="height:18px;width:auto;vertical-align:middle;margin-right:5px" width="18" height="18"> Mitgliederbereich</a></li>
             </ul>
         </nav>
     </header>
@@ -259,8 +259,8 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
             <p class="hero-subtitle"><?php echo htmlspecialchars($_hero['subtitle'] ?? ''); ?></p>
             <p class="hero-description"><?php echo $_hero['description'] ?? ''; ?></p>
             <div class="hero-buttons">
-                <a href="/vereinshaus" title="Vereinshaus des KGV Musterstadt für Ihre Veranstaltung mieten" class="hero-btn-primary">🏡 Vereinshaus mieten</a>
-                <a href="#about" title="Mehr über den KGV Musterstadt e.V. erfahren" class="hero-btn-outline">Mehr erfahren</a>
+                <a href="/vereinshaus" title="Vereinshaus des unser Verein für Ihre Veranstaltung mieten" class="hero-btn-primary">🏡 Vereinshaus mieten</a>
+                <a href="#about" title="Mehr über den unser Verein erfahren" class="hero-btn-outline">Mehr erfahren</a>
             </div>
             <div class="hero-stats">
                 <div class="hero-stat"><strong>63</strong><span>Parzellen</span></div>
@@ -474,7 +474,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
                 let vhIdx=0;
                 function vhOpen(i){vhIdx=(i!==undefined)?i:gviActive;vhShow();document.getElementById('vh-lb').style.display='flex';document.body.style.overflow='hidden';}
                 function vhClose(){document.getElementById('vh-lb').style.display='none';document.body.style.overflow='';}
-                function vhShow(){const d=vhImages[vhIdx];const i=document.getElementById('vh-lb-img');i.src=d.src;i.alt=d.caption||'Vereinshaus KGV Musterstadt e.V.';document.getElementById('vh-lb-caption').textContent=d.caption;document.getElementById('vh-lb-prev').style.display=vhImages.length>1?'':'none';document.getElementById('vh-lb-next').style.display=vhImages.length>1?'':'none';}
+                function vhShow(){const d=vhImages[vhIdx];const i=document.getElementById('vh-lb-img');i.src=d.src;i.alt=d.caption||'Vereinshaus unser Verein';document.getElementById('vh-lb-caption').textContent=d.caption;document.getElementById('vh-lb-prev').style.display=vhImages.length>1?'':'none';document.getElementById('vh-lb-next').style.display=vhImages.length>1?'':'none';}
                 function vhPrev(){vhIdx=(vhIdx-1+vhImages.length)%vhImages.length;vhShow();}
                 function vhNext(){vhIdx=(vhIdx+1)%vhImages.length;vhShow();}
                 document.addEventListener('keydown',function(e){if(document.getElementById('vh-lb').style.display==='flex'){if(e.key==='Escape')vhClose();if(e.key==='ArrowLeft')vhPrev();if(e.key==='ArrowRight')vhNext();}});
@@ -544,7 +544,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
                     </div>
                 </div>
                 <?php if (!empty($_vsGroupPhoto)): ?>
-                <img class="vorstand-group-photo fade-in" src="/images/<?= htmlspecialchars($_vsGroupPhoto) ?>" alt="Der Vorstand des KGV Musterstadt e.V." title="Der Vorstand der Muster-Kleingartenverein e.V." width="800" height="400" loading="lazy">
+                <img class="vorstand-group-photo fade-in" src="/images/<?= htmlspecialchars($_vsGroupPhoto) ?>" alt="Der Vorstand des unser Verein" title="Der Vorstand der Muster-Kleingartenverein e.V." width="800" height="400" loading="lazy">
                 <?php endif; ?>
             </div>
         </div>
@@ -737,7 +737,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
                            aria-label="Standort des Vereinshauses auf OpenStreetMap öffnen">
                             <img src="/assets/anfahrt-karte-osm.png"
                                  width="1280" height="720" loading="lazy"
-                                 alt="Karte mit dem Standort des Vereinshauses KGV Musterstadt in Musterstadt"
+                                 alt="Karte mit dem Standort des Vereinshauses unser Verein in Musterstadt"
                                  style="display:block;width:100%;height:400px;object-fit:cover;border:0;border-radius:15px;">
                         </a>
                         <p style="font-size:.75rem;color:var(--text-gray);margin:.5rem 0 0;">
@@ -749,7 +749,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
                         <div>
                             <h4 style="color: var(--primary-green); margin-bottom: 0.5rem;">📍 Adresse</h4>
                             <p>Musterstraße 1</p>
-                            <p>12345 Musterstadt</p>
+                            <p>PLZ Ort</p>
                         </div>
 
                         <div>
@@ -849,7 +849,7 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
             <!-- Spalte 1: Branding + Kontakt -->
             <div class="footer-section">
                 <div class="footer-logo-row">
-                    <img src="logo.png" alt="KGV Musterstadt Logo" title="Muster-Kleingartenverein e.V." width="60" height="60" loading="lazy">
+                    <img src="logo.png" alt="unser Verein Logo" title="Muster-Kleingartenverein e.V." width="60" height="60" loading="lazy">
                     <span>Gartengemeinschaft<br>Musterstadt e.V.</span>
                 </div>
                 <p class="footer-tagline">Grüne Oase –<br>Natur, Gemeinschaft und Nachbarschaft.</p>
@@ -859,11 +859,11 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
                         <span class="fci">📍</span>
                         <span><?= $_ftStr ?>, <?= $_ftPlz ?></span>
                     </span>
-                    <a href="tel:<?= preg_replace('/[^0-9+]/', '', $_ftTel) ?>" title="KGV Musterstadt anrufen" class="footer-contact-item">
+                    <a href="tel:<?= preg_replace('/[^0-9+]/', '', $_ftTel) ?>" title="unser Verein anrufen" class="footer-contact-item">
                         <span class="fci">📱</span>
                         <span><?= $_ftTel ?></span>
                     </a>
-                    <a href="mailto:<?= $_ftEmail ?>" title="E-Mail an KGV Musterstadt senden" class="footer-contact-item">
+                    <a href="mailto:<?= $_ftEmail ?>" title="E-Mail an unser Verein senden" class="footer-contact-item">
                         <span class="fci">✉️</span>
                         <span><?= $_ftEmail ?></span>
                     </a>
@@ -905,8 +905,8 @@ $_vhJson = json_encode($_vhImgArr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT 
             <span>&copy; <?= date('Y') ?> Muster-Kleingartenverein e.V.</span>
             <span class="footer-credit">Realisierung: Andreas Schuchard · <a href="https://horizontlabor.de" target="_blank" rel="noopener" title="Horizontlabor – Webentwicklung">Horizontlabor</a></span>
             <div class="footer-bottom-links">
-                <a href="/impressum.php" title="Impressum des KGV Musterstadt e.V.">Impressum</a>
-                <a href="/datenschutz.php" title="Datenschutzerklärung des KGV Musterstadt e.V.">Datenschutz</a>
+                <a href="/impressum.php" title="Impressum des unser Verein">Impressum</a>
+                <a href="/datenschutz.php" title="Datenschutzerklärung des unser Verein">Datenschutz</a>
             </div>
         </div>
     </footer>

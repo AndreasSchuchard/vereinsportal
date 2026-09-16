@@ -75,7 +75,7 @@ function generate_vorabinfo_pdf(array $b, array $prices, array $settings): strin
     // ── HEADER ───────────────────────────────────────────────────────────────
     $pdf->SetFont('Helvetica', 'BI', 8);
     $pdf->SetTextColor(61, 107, 65); // KGV green
-    $pdf->Cell(140, 4, $e('Musterstraße 1/Ecke Beckermannweg, 12345 Musterstadt'), 0, 1);
+    $pdf->Cell(140, 4, $e('Vereinsstraße 1, PLZ Ort'), 0, 1);
     $pdf->Cell(140, 4, $e('Vorsitzender: ' . $vorstand), 0, 1);
 
     $pdf->SetFont('Helvetica', 'B', 10.5);

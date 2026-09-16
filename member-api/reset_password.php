@@ -82,10 +82,10 @@ if ($action === 'request') {
             $_resetContent,
             'Passwort zurücksetzen'
         );
-        $text = "Liebe/r {$found['name']},\n\nSie haben eine Anfrage zum Zurücksetzen Ihres Passworts gestellt.\n\nLink: {$resetLink}\n\nDieser Link ist 1 Stunde gültig.\n\nKGV Musterstadt e.V.";
+        $text = "Liebe/r {$found['name']},\n\nSie haben eine Anfrage zum Zurücksetzen Ihres Passworts gestellt.\n\nLink: {$resetLink}\n\nDieser Link ist 1 Stunde gültig.\n\nunser Verein";
         $fromEmail = 'kontakt@example.org';
-        $hdr = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: KGV Musterstadt Mitgliederbereich <{$fromEmail}>\r\nReturn-Path: {$fromEmail}\r\n";
-        @mail($found['email'], 'Passwort zurücksetzen – KGV Musterstadt', $html, $hdr, "-f{$fromEmail}");
+        $hdr = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: unser Verein Mitgliederbereich <{$fromEmail}>\r\nReturn-Path: {$fromEmail}\r\n";
+        @mail($found['email'], 'Passwort zurücksetzen – unser Verein', $html, $hdr, "-f{$fromEmail}");
         error_log("[member-reset] request email={$email}\n", 3, $logFile);
     }
 

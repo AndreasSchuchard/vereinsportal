@@ -72,12 +72,12 @@ if (!empty($briefing['due_notes'])) {
 if (!empty($briefing['new_apps']))     $txt .= "📥 Neue Anträge: " . count($briefing['new_apps']) . "\n";
 if (!empty($briefing['new_contacts'])) $txt .= "📨 Offene Kontaktanfragen: " . count($briefing['new_contacts']) . "\n";
 
-$subject = 'KGV Musterstadt — Briefing ' . date('d.m.Y');
+$subject = 'unser Verein — Briefing ' . date('d.m.Y');
 $boundary = 'b_' . md5(uniqid('', true));
 $body  = "--{$boundary}\r\nContent-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: 8bit\r\n\r\n{$txt}\r\n\r\n";
 $body .= "--{$boundary}\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Transfer-Encoding: 8bit\r\n\r\n{$html}\r\n--{$boundary}--";
 $headers   = "MIME-Version: 1.0\r\nContent-Type: multipart/alternative; boundary=\"{$boundary}\"\r\n";
-$headers  .= "From: KGV Musterstadt e.V. <kontakt@example.org>\r\nReply-To: kontakt@example.org\r\nReturn-Path: kontakt@example.org\r\n";
+$headers  .= "From: unser Verein <kontakt@example.org>\r\nReply-To: kontakt@example.org\r\nReturn-Path: kontakt@example.org\r\n";
 if ($cc !== '') $headers .= "Cc: {$cc}\r\n";
 
 $ok = @mail($to, $subject, $body, $headers, '-fkontakt@example.org');

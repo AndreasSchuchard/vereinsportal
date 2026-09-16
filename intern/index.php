@@ -300,8 +300,8 @@ if ($loggedIn && $canSeeMembers && !empty($_POST['member_action'])) {
                 // Setup-Link für Welcome-Mail
                 $_setupLink = site_url() . '/mitglieder.php?reset_token=' . urlencode($setupToken);
                 $_from = 'kontakt@example.org';
-                $_subj = 'Ihr Mitgliederzugang KGV Musterstadt – Passwort einrichten';
-                $_text = "Liebe/r {$req['name']},\n\nIhr Zugang zum Mitgliederbereich des KGV Musterstadt e.V. wurde freigeschaltet. 🎉\n\nBitte klicken Sie auf den folgenden Link, um Ihr persönliches Passwort einzurichten (gültig 7 Tage):\n\n{$_setupLink}\n\nLogin nach Einrichtung: " . site_url() . "/mitglieder.php\nE-Mail: {$req['email']}\n\nMit freundlichen Grüßen\nKGV Musterstadt e.V.";
+                $_subj = 'Ihr Mitgliederzugang unser Verein – Passwort einrichten';
+                $_text = "Liebe/r {$req['name']},\n\nIhr Zugang zum Mitgliederbereich des unser Verein wurde freigeschaltet. 🎉\n\nBitte klicken Sie auf den folgenden Link, um Ihr persönliches Passwort einzurichten (gültig 7 Tage):\n\n{$_setupLink}\n\nLogin nach Einrichtung: " . site_url() . "/mitglieder.php\nE-Mail: {$req['email']}\n\nMit freundlichen Grüßen\nunser Verein";
                 $_activContent =
                     "<p style='color:#5a6c5a;line-height:1.7;margin-bottom:18px'>Dein Zugang zum Mitgliederbereich ist freigeschaltet! 🎉</p>"
                   . "<p style='color:#5a6c5a;line-height:1.7;margin-bottom:14px'>Bitte richte jetzt dein persönliches Passwort ein. Der Link ist <strong>7 Tage gültig</strong>:</p>"
@@ -316,7 +316,7 @@ if ($loggedIn && $canSeeMembers && !empty($_POST['member_action'])) {
                     $_activContent,
                     'Willkommen im Mitgliederbereich'
                 );
-                $_hdr  = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: KGV Musterstadt e.V. <{$_from}>\r\nReturn-Path: {$_from}\r\n";
+                $_hdr  = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: unser Verein <{$_from}>\r\nReturn-Path: {$_from}\r\n";
                 $_mailOk = @mail($req['email'], '=?UTF-8?B?' . base64_encode($_subj) . '?=', $_html, $_hdr, "-f{$_from}");
                 error_log("[admin] approve member={$req['email']} setup-link sent mail=" . ($_mailOk ? 'ok' : 'fail') . "\n", 3, dirname(__DIR__) . '/data/admin.log');
                 break;
@@ -366,7 +366,7 @@ if ($loggedIn && $canSeeMembers && !empty($_POST['member_action'])) {
                 $mem['must_change_password'] = true;
                 $_resetLink = site_url() . '/mitglieder.php?reset_token=' . urlencode($resetToken);
                 $_from = 'kontakt@example.org';
-                $_subj = 'Passwort zurücksetzen – KGV Musterstadt Mitgliederbereich';
+                $_subj = 'Passwort zurücksetzen – unser Verein Mitgliederbereich';
                 $_pwContent =
                     "<p style='color:#5a6c5a;line-height:1.7;margin-bottom:14px'>Dein Passwort wurde durch den Vorstand zurückgesetzt.</p>"
                   . "<p style='color:#5a6c5a;line-height:1.7;margin-bottom:14px'>Bitte klicke auf den folgenden Link, um ein neues Passwort zu setzen (gültig <strong>1 Stunde</strong>):</p>"
@@ -377,7 +377,7 @@ if ($loggedIn && $canSeeMembers && !empty($_POST['member_action'])) {
                     $_pwContent,
                     'Passwort zurückgesetzt'
                 );
-                $_hdr  = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: KGV Musterstadt e.V. <{$_from}>\r\nReturn-Path: {$_from}\r\n";
+                $_hdr  = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: unser Verein <{$_from}>\r\nReturn-Path: {$_from}\r\n";
                 @mail($mem['email'], $_subj, $_html, $_hdr, "-f{$_from}");
                 error_log("[admin] reset_password id={$mem['id']} link-sent\n", 3, dirname(__DIR__) . '/data/admin.log');
                 break;
@@ -547,7 +547,7 @@ if ($loggedIn && $canSeeMembers && !empty($_POST['member_action'])) {
                         $_sig_name, $_sig_phone, $_sig_email, $_sig_role
                     );
 
-                    $_hdr = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: KGV Musterstadt e.V. <{$_from}>\r\nReturn-Path: {$_from}\r\n";
+                    $_hdr = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: unser Verein <{$_from}>\r\nReturn-Path: {$_from}\r\n";
                     @mail($memberEmail, $_subj, $_html, $_hdr, "-f{$_from}");
                 }
                 kgv_log_action('Nachricht beantwortet', $memberName . ' · ' . $threadSubj);
@@ -586,7 +586,7 @@ if ($loggedIn && $canSeeMembers && !empty($_POST['member_action'])) {
                             . "</div>"
                             . "<div style='text-align:center;margin:20px 0'><a href='" . site_url() . "/mitglieder.php?tab=kontakt' style='display:inline-block;background:#3d6b41;color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.88rem'>Im Mitgliederbereich ansehen →</a></div>";
                         $_bmHtml = kgv_email_html('Hallo ' . htmlspecialchars($_bm['name']) . ' 👋,', $_bmContent, $bmSubject, $_bmsig['name'], $_bmsig['phone'], $_bmsig['email'], $_bmsig['rolle']);
-                        $_hdr = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: KGV Musterstadt e.V. <{$_from}>\r\nReturn-Path: {$_from}\r\n";
+                        $_hdr = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: unser Verein <{$_from}>\r\nReturn-Path: {$_from}\r\n";
                         @mail($_bm['email'], '=?UTF-8?B?' . base64_encode($bmSubject) . '?=', $_bmHtml, $_hdr, "-f{$_from}");
                         $sentCount++;
                     }
@@ -685,8 +685,8 @@ if ($loggedIn && $canSeeMembers && !empty($_POST['member_action'])) {
                             . "</div>";
                         $_html = kgv_email_html('Hallo ' . $_mn . ' 👋,', $_nmContent, 'Nachricht vom Vorstand',
                             $_sig['name'], $_sig['phone'], $_sig['email'], $_sig['rolle']);
-                        $_hdr = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: KGV Musterstadt e.V. <{$_from}>\r\nReturn-Path: {$_from}\r\n";
-                        @mail($targetMem['email'], $nmSubject . ' – KGV Musterstadt', $_html, $_hdr, "-f{$_from}");
+                        $_hdr = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: unser Verein <{$_from}>\r\nReturn-Path: {$_from}\r\n";
+                        @mail($targetMem['email'], $nmSubject . ' – unser Verein', $_html, $_hdr, "-f{$_from}");
                         error_log("[admin] new_msg email={$targetMem['email']} subj={$nmSubject}\n", 3, dirname(__DIR__) . '/data/member.log');
                     }
                 }
@@ -1152,7 +1152,7 @@ if ($loggedIn && !empty($_POST['reply_contact'])) {
                     'Antwort auf deine Anfrage',
                     $_sn, $_sp, $_se, $_sr
                 );
-                $hdr = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: KGV Musterstadt e.V. <{$fromEmail}>\r\nReturn-Path: {$fromEmail}\r\n";
+                $hdr = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: unser Verein <{$fromEmail}>\r\nReturn-Path: {$fromEmail}\r\n";
                 @mail($toEmail, '=?UTF-8?B?' . base64_encode($eSubj) . '?=', $eHtml, $hdr, "-f{$fromEmail}");
             }
         }
@@ -1268,7 +1268,7 @@ if ($loggedIn) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Backoffice – KGV Musterstadt</title>
+<title>Backoffice – unser Verein</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f4ee;color:#2d3e2d;min-height:100vh}
@@ -1403,8 +1403,8 @@ textarea.modal-textarea:focus{border-color:#3d6b41}
 <?php if (!$loggedIn): ?>
 <div class="login-wrap">
   <div class="login-box">
-    <div class="login-logo"><img src="<?= site_url() ?>/images/logo.png" alt="KGV Musterstadt e.V." style="max-height:80px;width:auto"></div>
-    <h2>KGV Musterstadt Backoffice</h2>
+    <div class="login-logo"><img src="<?= site_url() ?>/images/logo.png" alt="unser Verein" style="max-height:80px;width:auto"></div>
+    <h2>unser Verein Backoffice</h2>
     <p>Buchungsverwaltung · Muster-Kleingartenverein</p>
     <?php if (!empty($loginError)): ?>
     <div class="error-msg">Falsches Passwort. Bitte erneut versuchen.</div>
@@ -4145,7 +4145,7 @@ tr:nth-child(even) td{background:#f5f7f2}
 .no-consent{color:#888;font-style:italic}
 @media print{@page{margin:15mm}}
 </style></head><body>
-<h1>Mitgliederliste – KGV Musterstadt e.V.</h1>
+<h1>Mitgliederliste – unser Verein</h1>
 <div class="sub">Stand: ${new Date().toLocaleDateString('de-DE')} · Intern – nicht für Dritte bestimmt</div>
 <table>
 <thead><tr><th>Parzelle</th><th>Name</th><th>Telefon</th><th>E-Mail</th><th>Telef.liste</th></tr></thead>

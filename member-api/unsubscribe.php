@@ -54,7 +54,7 @@ if ($memberId === '' || $token === '') {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Abmeldung — KGV Musterstadt e.V.</title>
+<title>Abmeldung — unser Verein</title>
 <style>
   body { margin:0; font-family: Arial, sans-serif; background:#f2f6f0; display:flex; align-items:center; justify-content:center; min-height:100vh; padding:20px; box-sizing:border-box; }
   .card { background:#fff; border-radius:16px; border:1px solid #d4e6c3; max-width:480px; width:100%; overflow:hidden; box-shadow:0 4px 20px rgba(0,0,0,0.06); }
@@ -71,7 +71,7 @@ if ($memberId === '' || $token === '') {
 <body>
 <div class="card">
   <div class="header">
-    <img src="<?= site_url() ?>/images/logo.png" alt="KGV Musterstadt e.V.">
+    <img src="<?= site_url() ?>/images/logo.png" alt="unser Verein">
   </div>
   <div class="body">
     <?php if ($success !== ''): ?>

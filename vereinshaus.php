@@ -56,7 +56,7 @@ $_hasPhoto = !empty($_vh['main_image']);
 {
   "@context": "https://schema.org",
   "@type": "EventVenue",
-  "name": "Vereinshaus KGV Musterstadt e.V.",
+  "name": "Vereinshaus unser Verein",
   "description": "Vereinshaus und Veranstaltungssaal in Musterstadt. Geeignet für Geburtstage, Feiern, Vereinstreffen und private Veranstaltungen. Bis zu 50 Personen, voll ausgestattete Küche, Terrasse und Parkplätze.",
   "url": "<?= site_url() ?>/vereinshaus",
   "telephone": "+49-163-5140490",
@@ -100,22 +100,22 @@ $_hasPhoto = !empty($_vh['main_image']);
 
 <!-- ── NAVIGATION ── -->
 <nav class="topnav">
-    <a href="/" class="topnav-logo" title="KGV Musterstadt e.V. – Startseite">
-        <img src="logo.png" alt="KGV Musterstadt Logo">
+    <a href="/" class="topnav-logo" title="unser Verein – Startseite">
+        <img src="logo.png" alt="unser Verein Logo">
         <span>Gartengemeinschaft<br>Musterstadt e.V.</span>
     </a>
     <div class="topnav-links">
         <a href="#ausstattung" class="topnav-back" title="Ausstattung und Merkmale des Vereinshauses">Ausstattung</a>
         <a href="#preise" class="topnav-back" title="Mietpreise und Konditionen">Preise</a>
-        <a href="/" class="topnav-back" title="Zurück zur KGV Musterstadt Website">← Startseite</a>
-        <a href="#buchung" class="topnav-cta" title="Vereinshaus Musterstadt anfragen">Jetzt anfragen</a>
+        <a href="/" class="topnav-back" title="Zurück zur unser Verein Website">← Startseite</a>
+        <a href="#buchung" class="topnav-cta" title="Vereinshaus unserem Verein anfragen">Jetzt anfragen</a>
     </div>
 </nav>
 
 <!-- ── HERO ── -->
 <section class="hero">
     <?php if ($_hasPhoto): ?>
-    <img class="hero-bg" src="/images/<?php echo htmlspecialchars($_vh['main_image']); ?>" alt="Vereinshaus KGV Musterstadt">
+    <img class="hero-bg" src="/images/<?php echo htmlspecialchars($_vh['main_image']); ?>" alt="Vereinshaus unser Verein">
     <div class="hero-overlay"></div>
     <?php else: ?>
     <div class="hero-no-photo"></div>
@@ -124,7 +124,7 @@ $_hasPhoto = !empty($_vh['main_image']);
         <span class="hero-badge">DEINE STADT · DEINE PLZ</span>
         <h1>Vereinshaus mieten in Musterstadt</h1>
         <p class="hero-sub">
-            <?php echo !empty($_vh['description']) ? htmlspecialchars($_vh['description']) : 'Ihr besonderer Ort für Feiern, Feste und Vereinstreffen – mitten in der grünen Gartenanlage des KGV Musterstadt e.V.'; ?>
+            <?php echo !empty($_vh['description']) ? htmlspecialchars($_vh['description']) : 'Ihr besonderer Ort für Feiern, Feste und Vereinstreffen – mitten in der grünen Gartenanlage des unser Verein'; ?>
         </p>
         <div class="hero-stats">
             <div class="hero-stat"><strong>50</strong><span>Personen</span></div>
@@ -152,7 +152,7 @@ $_hasPhoto = !empty($_vh['main_image']);
         <div class="features-box">
             <div class="features-box-img">
                 <?php if (!empty($_vh['main_image'])): ?>
-                <img src="/images/<?php echo htmlspecialchars($_vh['main_image']); ?>" alt="Vereinshaus KGV Musterstadt" loading="lazy">
+                <img src="/images/<?php echo htmlspecialchars($_vh['main_image']); ?>" alt="Vereinshaus unser Verein" loading="lazy">
                 <?php else: ?>
                 <div class="features-box-img-fallback">🏡</div>
                 <?php endif; ?>
@@ -406,18 +406,18 @@ $_hasPhoto = !empty($_vh['main_image']);
 <!-- ── FOOTER ── -->
 <footer class="footer">
     <div class="container">
-        <img src="logo.png" alt="KGV Musterstadt e.V. Logo" class="footer-logo">
+        <img src="logo.png" alt="unser Verein Logo" class="footer-logo">
         <p class="footer-tagline">Muster-Kleingartenverein e.V. · Hamburg</p>
         <p class="footer-nav-row">
-            <a href="/" title="KGV Musterstadt e.V. – Startseite">Startseite</a>
+            <a href="/" title="unser Verein – Startseite">Startseite</a>
             <a href="#ausstattung" title="Ausstattung des Vereinshauses">Ausstattung</a>
             <a href="#galerie" title="Fotos vom Vereinshaus">Galerie</a>
             <a href="#preise" title="Mietpreise und Konditionen">Preise</a>
             <a href="#buchung" title="Buchungsanfrage stellen">Buchung anfragen</a>
         </p>
         <p>
-            <a href="/contact.php" title="Kontakt zum KGV Musterstadt e.V.">Kontakt</a>
-            <a href="/impressum.php" title="Impressum – KGV Musterstadt e.V.">Impressum</a>
+            <a href="/contact.php" title="Kontakt zum unser Verein">Kontakt</a>
+            <a href="/impressum.php" title="Impressum – unser Verein">Impressum</a>
             <a href="/datenschutz.php" title="Datenschutzerklärung">Datenschutz</a>
         </p>
         <p class="footer-credit-line">Realisierung: Andreas Schuchard · <a href="https://horizontlabor.de" target="_blank" rel="noopener" title="Horizontlabor – Webentwicklung">Horizontlabor</a></p>

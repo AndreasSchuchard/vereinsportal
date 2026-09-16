@@ -21,7 +21,7 @@ function kgv_get_booking_contact(?array $content = null): array {
     }
     $settings = (array)($content['settings'] ?? []);
     $fallback = [
-        'name'  => (string)($settings['kontakt_name']  ?? 'KGV Musterstadt e.V.'),
+        'name'  => (string)($settings['kontakt_name']  ?? 'Vorstand'),
         'rolle' => (string)($settings['kontakt_rolle'] ?? 'Vermietung'),
         'phone' => (string)($settings['telefon']       ?? ''),
         'email' => (string)($settings['email']         ?? 'kontakt@example.org'),
@@ -115,7 +115,7 @@ function kgv_get_admin_sig(): array {
     $ccf = dirname(__DIR__) . '/data/content.json';
     $cc  = file_exists($ccf) ? (json_decode((string)file_get_contents($ccf), true) ?: []) : [];
     return [
-        'name'  => $cc['settings']['kontakt_name']  ?? 'KGV Musterstadt e.V.',
+        'name'  => $cc['settings']['kontakt_name']  ?? 'Vorstand',
         'phone' => $cc['settings']['telefon']       ?? '',
         'email' => $cc['settings']['email']         ?? 'vorstand@example.org',
         'rolle' => $cc['settings']['kontakt_rolle'] ?? '1. Vorsitzender',
@@ -126,15 +126,24 @@ function kgv_email_html(
     string $greeting,
     string $content,
     string $subtitle       = 'Nachricht vom Vorstand',
-    string $sigName        = 'KGV Musterstadt e.V.',
+    string $sigName        = 'Verein',
     string $sigPhone       = '',
     string $sigEmail       = 'vorstand@example.org',
     string $sigRole        = 'Vorstand',
     string $unsubscribeUrl = '',
     string $recipientEmail = ''
 ): string {
+    // ── Vereinsdaten dynamisch aus content.json (Fallback: Parameter) ──────────
+    $ccf = dirname(__DIR__) . '/data/content.json';
+    $cc  = file_exists($ccf) ? (json_decode((string)file_get_contents($ccf), true) ?: []) : [];
+    $imp = (array)($cc['impressum'] ?? []);
+    $set = (array)($cc['settings']   ?? []);
+    $_verein  = trim((string)($imp['verein']     ?? ($set['vereinsname'] ?? $sigName)));
+    $_ort     = trim((string)($imp['plz_ort']    ?? ''));
+    $_strasse = trim((string)($imp['strasse']    ?? ''));
+
     $sig  = '<strong>' . htmlspecialchars($sigName) . '</strong><br>';
-    $sig .= htmlspecialchars($sigRole) . ' · KGV Musterstadt e.V.<br>';
+    $sig .= htmlspecialchars($sigRole) . ' · ' . htmlspecialchars($_verein) . '<br>';
     $sig .= ($sigPhone !== '' ? '📞 ' . htmlspecialchars($sigPhone) . ' &nbsp;·&nbsp; ' : '');
     $sig .= '✉ ' . htmlspecialchars($sigEmail);
 
@@ -147,7 +156,7 @@ function kgv_email_html(
       // ── Header ──────────────────────────────────────────────────────────
       . "<div style='background:#3d6b41;border-radius:12px 12px 0 0;padding:18px 26px;"
       .              "display:flex;align-items:center;gap:16px'>"
-      . "<img src='" . site_url() . "/images/logo.png' alt='KGV Musterstadt e.V.' height='42'"
+      . "<img src='" . site_url() . "/images/logo.png' alt='" . htmlspecialchars($_verein) . "' height='42'"
       .      " style='display:block;max-height:42px;flex-shrink:0'>"
       . "<span style='color:#b8d9ba;font-size:0.82rem;line-height:1.4'>" . htmlspecialchars($subtitle) . "</span>"
       . "</div>"
@@ -161,15 +170,15 @@ function kgv_email_html(
       // ── Signature ────────────────────────────────────────────────────────
       . "<div style='margin-top:28px;padding-top:16px;border-top:2px solid #e8f0e0;"
       .              "font-size:0.85rem;color:#3d6b41;line-height:1.7'>"
-      . "<p style='margin:0 0 10px;color:#5a6c5a;font-size:0.9rem'>Viele Grüße aus Musterstadt 🌱</p>"
+      . "<p style='margin:0 0 10px;color:#5a6c5a;font-size:0.9rem'>" . 'Viele Grüße' . ($_ort !== '' ? ' aus ' . htmlspecialchars($_ort) : '') . " 🌱</p>"
       . $sig
       . "</div>"
       . "</div>"
 
       // ── Footer with address + optional unsubscribe ──────────────────────────
       . "<div style='text-align:center;padding:14px;font-size:0.68rem;color:#9aaa9a;line-height:1.7'>"
-      . "KGV Musterstadt e.V. · Kleingartenverein<br>"
-      . "Musterstraße 1 · 12345 Musterstadt<br>"
+      . htmlspecialchars($_verein) . " · Kleingartenverein<br>"
+      . ($_strasse !== '' ? htmlspecialchars($_strasse) . ' · ' : '') . htmlspecialchars($_ort) . "<br>"
       . ($recipientEmail !== '' ? "Diese E-Mail wurde gesendet an " . htmlspecialchars($recipientEmail) . ".<br>" : "")
       . "Diese E-Mail wurde automatisch generiert."
       . ($unsubscribeUrl !== ''

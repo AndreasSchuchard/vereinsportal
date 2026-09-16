@@ -412,21 +412,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $tplVars = [
             'name' => 'Max Mustermann', 'datum' => date('d.m.Y', strtotime('+7 days')),
             'betrag' => '300,00 EUR', 'gesamt' => '500,00 EUR', 'iban' => $_cfg['iban'] ?? 'DE12 3456 7890',
-            'kontoinhaber' => $_cfg['kontoinhaber'] ?? 'KGV Musterstadt e.V.', 'kontakt_name' => $_cfg['kontakt_name'] ?? 'KGV Musterstadt e.V.',
+            'kontoinhaber' => $_cfg['kontoinhaber'] ?? 'unserem Verein', 'kontakt_name' => $_cfg['kontakt_name'] ?? 'unserem Verein',
             'telefon' => $_cfg['telefon'] ?? '', 'email_kontakt' => $_cfg['email'] ?? '',
             'zahlungsziel' => (int)($_cfg['zahlungsziel_wochen'] ?? 4) . ' Wochen',
         ];
         $etDefault = [
-            'confirm_subject' => 'Buchungsbestätigung – KGV Musterstadt Vereinshaus am {datum}',
-            'confirm_body'    => "Liebe/r {name},\n\nwir freuen uns, Ihre Buchungsanfrage hiermit verbindlich zu bestätigen!\n\nZeitraum: {datum}\n\nGesamtbetrag: {betrag}\nKaution: 200,00 EUR\nZu überweisen: {gesamt}\n\nEmpfänger: {kontoinhaber}\nIBAN: {iban}\n\nKontakt: {kontakt_name} · {telefon} · {email_kontakt}\n\nMit freundlichen Grüßen\n{kontakt_name}\nKGV Musterstadt e.V.",
-            'reject_subject'  => 'Zu Ihrer Anfrage – KGV Musterstadt Vereinshaus am {datum}',
-            'reject_body'     => "Liebe/r {name},\n\nvielen Dank für Ihre Anfrage zur Nutzung unseres Vereinshauses am {datum}.\n\nLeider können wir Ihnen diesen Zeitraum nicht anbieten.\n\nFür alternative Terminanfragen:\n{kontakt_name} · {telefon} · {email_kontakt}\n\nMit freundlichen Grüßen\n{kontakt_name}\nKGV Musterstadt e.V.",
-            'inquiry_subject' => 'Ihre Anfrage ist eingegangen – KGV Musterstadt Vereinshaus am {datum}',
-            'inquiry_body'    => "Liebe/r {name},\n\nvielen Dank für Ihre Buchungsanfrage zum {datum}.\n\nWir haben Ihre Anfrage erhalten und melden uns baldmöglichst bei Ihnen.\n\nKontakt: {kontakt_name} · {telefon} · {email_kontakt}\n\nMit freundlichen Grüßen\n{kontakt_name}\nKGV Musterstadt e.V.",
+            'confirm_subject' => 'Buchungsbestätigung – Vereinshaus am {datum}',
+            'confirm_body'    => "Liebe/r {name},\n\nwir freuen uns, Ihre Buchungsanfrage hiermit verbindlich zu bestätigen!\n\nZeitraum: {datum}\n\nGesamtbetrag: {betrag}\nKaution: 200,00 EUR\nZu überweisen: {gesamt}\n\nEmpfänger: {kontoinhaber}\nIBAN: {iban}\n\nKontakt: {kontakt_name} · {telefon} · {email_kontakt}\n\nMit freundlichen Grüßen\n{kontakt_name}\nunserem Verein",
+            'reject_subject'  => 'Zu Ihrer Anfrage – Vereinshaus am {datum}',
+            'reject_body'     => "Liebe/r {name},\n\nvielen Dank für Ihre Anfrage zur Nutzung unseres Vereinshauses am {datum}.\n\nLeider können wir Ihnen diesen Zeitraum nicht anbieten.\n\nFür alternative Terminanfragen:\n{kontakt_name} · {telefon} · {email_kontakt}\n\nMit freundlichen Grüßen\n{kontakt_name}\nunserem Verein",
+            'inquiry_subject' => 'Ihre Anfrage ist eingegangen – Vereinshaus am {datum}',
+            'inquiry_body'    => "Liebe/r {name},\n\nvielen Dank für Ihre Buchungsanfrage zum {datum}.\n\nWir haben Ihre Anfrage erhalten und melden uns baldmöglichst bei Ihnen.\n\nKontakt: {kontakt_name} · {telefon} · {email_kontakt}\n\nMit freundlichen Grüßen\n{kontakt_name}\nunserem Verein",
         ];
         $tpl = array_merge($etDefault, $c['email_templates'] ?? []);
         $subjectKey = $tplKey . '_subject'; $bodyKey = $tplKey . '_body';
-        $subject = str_replace(array_map(fn($k) => '{' . $k . '}', array_keys($tplVars)), array_values($tplVars), $tpl[$subjectKey] ?? 'Testmail KGV Musterstadt');
+        $subject = str_replace(array_map(fn($k) => '{' . $k . '}', array_keys($tplVars)), array_values($tplVars), $tpl[$subjectKey] ?? 'Testmail unserem Verein');
         $subject = substr(preg_replace('/[\r\n\x00]+/', ' ', $subject) ?? '', 0, 200);
         $body    = str_replace(array_map(fn($k) => '{' . $k . '}', array_keys($tplVars)), array_values($tplVars), $tpl[$bodyKey]    ?? 'Dies ist eine Testmail.');
         $_sig = kgv_get_admin_sig();
@@ -434,7 +434,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   . "<div style='background:#f5f7f2;padding:14px 18px;border-radius:8px;border-left:4px solid #9e9e9e;white-space:pre-wrap;font-size:0.9rem;color:#2d3e2d;line-height:1.6'>" . nl2br(htmlspecialchars($body)) . "</div>";
         $html = kgv_email_html('Hallo, 👋', $htmlBody, '⚠️ Test: ' . htmlspecialchars($tpl[$subjectKey] ?? ''), $_sig['name'], $_sig['phone'], $_sig['email'], $_sig['rolle']);
         $from = 'kontakt@example.org';
-        $hdr  = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: KGV Musterstadt e.V. <{$from}>\r\nReturn-Path: {$from}\r\n";
+        $hdr  = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: unserem Verein <{$from}>\r\nReturn-Path: {$from}\r\n";
         $ok = @mail($toEmail, '=?UTF-8?B?' . base64_encode('[TEST] ' . $subject) . '?=', $html, $hdr, "-f{$from}");
         echo json_encode(['status' => $ok ? 'ok' : 'error', 'message' => $ok ? 'Testmail gesendet an ' . $toEmail : 'mail()-Funktion fehlgeschlagen']);
         exit;
@@ -599,7 +599,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $html2 = kgv_email_html(
                     'Hallo ' . htmlspecialchars($firstName) . ',',
                     $content2,
-                    'Neue Mitteilung · KGV Musterstadt e.V.',
+                    'Neue Mitteilung · unserem Verein',
                     $sig['name'], $sig['phone'], $sig['email'], $sig['rolle'],
                     $unsubUrl, (string)$nmEmail
                 );
@@ -609,11 +609,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                        . "Typ: {$typeLabel2}\r\nTitel: {$newPost['title']}\r\n\r\n"
                        . ($bodyPreview !== '' ? $bodyPreview . "\r\n\r\n" : '')
                        . "Zur Pinnwand: " . site_url() . "/mitglieder.php?tab=pinnwand\r\n\r\n"
-                       . "---\r\nViele Grüße\r\n{$sig['name']}, {$sig['rolle']} · KGV Musterstadt e.V.\r\n\r\n"
+                       . "---\r\nViele Grüße\r\n{$sig['name']}, {$sig['rolle']} · unserem Verein\r\n\r\n"
                        . "Abmelden: {$unsubUrl}";
 
                 $boundary = 'kgv_' . md5(uniqid('', true));
-                $hdr2 = "From: KGV Musterstadt e.V. <{$fromEmail}>\r\n"
+                $hdr2 = "From: unserem Verein <{$fromEmail}>\r\n"
                       . "MIME-Version: 1.0\r\n"
                       . "Content-Type: multipart/alternative; boundary=\"{$boundary}\"\r\n"
                       . "List-Unsubscribe: <{$unsubUrl}>\r\n"
@@ -782,12 +782,12 @@ $_lkDefault = [
     ['emoji'=>'📚','title'=>'Garten Wissen','desc'=>'Tipps und Tricks für Ihren Garten','url'=>'https://www.mein-schoener-garten.de'],
 ];
 $_etDefault = [
-    'confirm_subject' => 'Buchungsbestätigung – KGV Musterstadt Vereinshaus am {datum}',
-    'confirm_body'    => "Liebe/r {name},\n\nwir freuen uns, Ihre Buchungsanfrage hiermit verbindlich zu bestätigen!\n\nZeitraum: {datum}\n\nGesamtbetrag: {betrag} EUR\nKaution (rückzahlbar): 200,00 EUR\nZu überweisen: {gesamt} EUR\n\nEmpfänger: {kontoinhaber}\nIBAN: {iban}\nVerwendungszweck: Vereinshaus {datum} | {name}\n\nBei Rückfragen:\n{kontakt_name} · {telefon} · {email_kontakt}\n\nWir wünschen Ihnen eine schöne Veranstaltung!\n\nMit freundlichen Grüßen\n{kontakt_name}\nKGV Musterstadt e.V.",
-    'reject_subject'  => 'Zu Ihrer Anfrage – KGV Musterstadt Vereinshaus am {datum}',
-    'reject_body'     => "Liebe/r {name},\n\nvielen Dank für Ihre Anfrage zur Nutzung unseres Vereinshauses am {datum}.\n\nLeider können wir Ihnen diesen Zeitraum nicht anbieten.\n\nFür alternative Terminanfragen:\n{kontakt_name} · {telefon} · {email_kontakt}\n\nMit freundlichen Grüßen\n{kontakt_name}\nKGV Musterstadt e.V.",
-    'inquiry_subject' => 'Ihre Buchungsanfrage – KGV Musterstadt Vereinshaus am {datum}',
-    'inquiry_body'    => "Liebe/r {name},\n\nvielen Dank für Ihre Buchungsanfrage für den {datum}.\n\nWir haben Ihre Anfrage erhalten und werden uns schnellstmöglich bei Ihnen melden.\n\nMit freundlichen Grüßen\nKGV Musterstadt e.V.",
+    'confirm_subject' => 'Buchungsbestätigung – Vereinshaus am {datum}',
+    'confirm_body'    => "Liebe/r {name},\n\nwir freuen uns, Ihre Buchungsanfrage hiermit verbindlich zu bestätigen!\n\nZeitraum: {datum}\n\nGesamtbetrag: {betrag} EUR\nKaution (rückzahlbar): 200,00 EUR\nZu überweisen: {gesamt} EUR\n\nEmpfänger: {kontoinhaber}\nIBAN: {iban}\nVerwendungszweck: Vereinshaus {datum} | {name}\n\nBei Rückfragen:\n{kontakt_name} · {telefon} · {email_kontakt}\n\nWir wünschen Ihnen eine schöne Veranstaltung!\n\nMit freundlichen Grüßen\n{kontakt_name}\nunserem Verein",
+    'reject_subject'  => 'Zu Ihrer Anfrage – Vereinshaus am {datum}',
+    'reject_body'     => "Liebe/r {name},\n\nvielen Dank für Ihre Anfrage zur Nutzung unseres Vereinshauses am {datum}.\n\nLeider können wir Ihnen diesen Zeitraum nicht anbieten.\n\nFür alternative Terminanfragen:\n{kontakt_name} · {telefon} · {email_kontakt}\n\nMit freundlichen Grüßen\n{kontakt_name}\nunserem Verein",
+    'inquiry_subject' => 'Ihre Buchungsanfrage – Vereinshaus am {datum}',
+    'inquiry_body'    => "Liebe/r {name},\n\nvielen Dank für Ihre Buchungsanfrage für den {datum}.\n\nWir haben Ihre Anfrage erhalten und werden uns schnellstmöglich bei Ihnen melden.\n\nMit freundlichen Grüßen\nunserem Verein",
 ];
 
 $c            = loadContent();
@@ -844,7 +844,7 @@ $activeTab = $_GET['tab'] ?? ($msg ? match(true) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Seite bearbeiten – KGV Musterstadt</title>
+<title>Seite bearbeiten – unserem Verein</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f4ee;color:#2d3e2d;min-height:100vh}
@@ -1574,7 +1574,7 @@ foreach ($sectionDefs as $key => [$icon, $label]):
         </div>
         <div class="field">
           <label>Kontoinhaber</label>
-          <input type="text" name="kontoinhaber" value="<?= htmlspecialchars($settings['kontoinhaber'] ?? 'KGV Musterstadt e.V.') ?>" maxlength="80">
+          <input type="text" name="kontoinhaber" value="<?= htmlspecialchars($settings['kontoinhaber'] ?? 'unserem Verein') ?>" maxlength="80">
         </div>
         <div class="field">
           <label>Bank <span class="hint">(optional)</span></label>
@@ -1949,10 +1949,10 @@ $_notifyCount = count($_notifyMembers);
 <?php
 $_imp = $c['impressum'] ?? [];
 $_imp += [
-    'verein'=>'Muster-Kleingartenverein e.V.','strasse'=>'Musterstraße 1',
-    'plz_ort'=>'12345 Musterstadt','vertreter'=>'Max Mustermann (1. Vorsitzender)',
+    'verein'=>'Muster-Kleingartenverein e.V.','strasse'=>'Vereinsstraße 1',
+    'plz_ort'=>'12345 unserer Stadt','vertreter'=>'Max Mustermann (1. Vorsitzender)',
     'telefon'=>'+49 000 000 00 00','email'=>'vorstand@example.org',
-    'postanschrift'=>'Musterstraße 2, 12345 Musterstadt','registergericht'=>'Amtsgericht Musterstadt',
+    'postanschrift'=>'Vereinsstraße 2, 12345 unserer Stadt','registergericht'=>'Amtsgericht unserer Stadt',
     'registernummer'=>'12345','verantwortlich'=>'Maria Beispiel',
     'haftung_text'=>'Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links.',
     'urheberrecht_text'=>'Die durch die Seitenbetreiber erstellten Inhalte und Werke unterliegen dem deutschen Urheberrecht.',
@@ -1961,7 +1961,7 @@ $_ds = $c['datenschutz'] ?? [];
 $_ds += [
     'stand'=>'Juli 2025','verantwortlicher'=>'Max Mustermann',
     'telefon'=>'+49 000 000 00 00','email'=>'vorstand@example.org',
-    'adresse'=>'Musterstraße 1, 12345 Musterstadt',
+    'adresse'=>'Vereinsstraße 1, 12345 unserer Stadt',
     'sections'=>[
         ['titel'=>'2. Erhebung und Speicherung personenbezogener Daten','inhalt'=>'Beim Aufrufen unserer Website werden durch den auf Ihrem Endgerät zum Einsatz kommenden Browser automatisch Informationen an den Server unserer Website gesendet.'],
         ['titel'=>'3. Weitergabe von Daten','inhalt'=>'Eine Übermittlung Ihrer persönlichen Daten an Dritte findet nicht statt, außer in gesetzlich vorgesehenen Fällen.'],

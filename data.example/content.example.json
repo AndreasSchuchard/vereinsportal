@@ -15,36 +15,91 @@
   },
   "gallery_title": "Galerie",
   "gallery": [
-    { "src": "/images/galerie_1.jpg", "alt": "Vereinshaus" },
-    { "src": "/images/galerie_2.jpg", "alt": "Gartenfest" }
+    {
+      "src": "/images/galerie_1.jpg",
+      "alt": "Vereinshaus"
+    },
+    {
+      "src": "/images/galerie_2.jpg",
+      "alt": "Gartenfest"
+    }
   ],
   "prices": {
-    "einzelkarte": 5,
-    "mitglied": 0,
-    "hinweis": "Preise pro Person"
+    "hinweis": "Preise pro Person",
+    "miete": 300,
+    "kaution": 200,
+    "strom_kwh": 0.5,
+    "endreinigung": 50,
+    "endreinigung_mitglied": 0
   },
   "booking_options": [
-    { "key": "ganzer_tag", "label": "Ganzer Tag", "preis": 80 },
-    { "key": "halber_tag", "label": "Halber Tag", "preis": 45 }
+    {
+      "key": "ganzer_tag",
+      "label": "Ganzer Tag",
+      "preis": 80
+    },
+    {
+      "key": "halber_tag",
+      "label": "Halber Tag",
+      "preis": 45
+    }
   ],
   "sections_visible": {
-    "hero": true, "ticker": true, "vereinshaus": true, "booking": true,
-    "termine": true, "galerie": true, "vorstand": true, "member": true, "kontakt": true
+    "hero": true,
+    "ticker": true,
+    "vereinshaus": true,
+    "booking": true,
+    "termine": true,
+    "galerie": true,
+    "vorstand": true,
+    "member": true,
+    "kontakt": true
   },
   "termine": [
-    { "datum": "2026-04-12", "titel": "Frühjahrsputz", "text": "Arbeitseinsatz auf dem Gelände" }
+    {
+      "datum": "2026-04-12",
+      "titel": "Frühjahrsputz",
+      "text": "Arbeitseinsatz auf dem Gelände"
+    }
   ],
   "vereinshaus": {
     "description": "Beschreibung des Vereinshauses …",
     "main_image": "/images/vh_1.jpg",
-    "gallery": ["/images/vh_2.jpg"],
-    "features": ["Küche", "Terrasse", "Parkplätze"],
+    "gallery": [
+      "/images/vh_2.jpg"
+    ],
+    "features": [
+      "Küche",
+      "Terrasse",
+      "Parkplätze"
+    ],
     "kapazitaet": 50
   },
   "vorstand": [
-    { "role": "1. Vorsitzender", "name": "Vorname Nachname", "email": "vorstand@example.org", "phone": "+49 000 000 00 00", "photo": "", "full": true },
-    { "role": "Kassierer:in", "name": "Vorname Nachname", "email": "kasse@example.org", "phone": "+49 000 000 00 00", "photo": "", "full": false },
-    { "role": "Schriftführer:in", "name": "Vorname Nachname", "email": "schriftfuehrung@example.org", "phone": "+49 000 000 00 00", "photo": "", "full": false }
+    {
+      "role": "1. Vorsitzender",
+      "name": "Vorname Nachname",
+      "email": "vorstand@example.org",
+      "phone": "+49 000 000 00 00",
+      "photo": "",
+      "full": true
+    },
+    {
+      "role": "Kassierer:in",
+      "name": "Vorname Nachname",
+      "email": "kasse@example.org",
+      "phone": "+49 000 000 00 00",
+      "photo": "",
+      "full": false
+    },
+    {
+      "role": "Schriftführer:in",
+      "name": "Vorname Nachname",
+      "email": "schriftfuehrung@example.org",
+      "phone": "+49 000 000 00 00",
+      "photo": "",
+      "full": false
+    }
   ],
   "impressum": {
     "verein": "Euer Kleingartenverein e.V.",
@@ -65,20 +120,38 @@
     "email": "vorstand@example.org",
     "adresse": "Musterstraße 1, 12345 Musterstadt",
     "sections": [
-      { "titel": "1. Verantwortliche Stelle", "inhalt": "Text hier einfügen …" },
-      { "titel": "2. Erhebung und Speicherung personenbezogener Daten", "inhalt": "Text hier einfügen …" }
+      {
+        "titel": "1. Verantwortliche Stelle",
+        "inhalt": "Text hier einfügen …"
+      },
+      {
+        "titel": "2. Erhebung und Speicherung personenbezogener Daten",
+        "inhalt": "Text hier einfügen …"
+      }
     ]
   },
   "links": [
-    { "emoji": "🌳", "title": "Landesverband", "desc": "Link-Beschreibung", "url": "https://example.org" }
+    {
+      "emoji": "🌳",
+      "title": "Landesverband",
+      "desc": "Link-Beschreibung",
+      "url": "https://example.org"
+    }
   ],
   "email_templates": {
     "confirm_subject": "Buchungsbestätigung – Vereinshaus am {datum}",
     "confirm_body": "Hallo {name},\n\neure Buchung am {datum} ist bestätigt.\n\nMit freundlichen Grüßen\nVorstand"
   },
   "settings": {},
-  "blocked_dates": ["2026-12-24", "2026-12-31"],
+  "blocked_dates": [
+    "2026-12-24",
+    "2026-12-31"
+  ],
   "blocked_ranges": [
-    { "start": "2026-07-01", "end": "2026-07-07", "grund": "Sommerfest" }
+    {
+      "start": "2026-07-01",
+      "end": "2026-07-07",
+      "grund": "Sommerfest"
+    }
   ]
 }
